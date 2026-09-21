@@ -201,7 +201,7 @@ Technische Realität, die der Text abdecken muss (Stand nach Remediation):
 - [ ] Lighthouse mobil auf Prod ≥ 90 (index/detektei/kontakt); Rich-Results-Test (Start, Detektei, Akademie, 1 Artikel)
 - [ ] Search Console: Property (DNS-TXT vorhanden) bestätigen, Sitemap einreichen, URL-Prüfung Start + 6 Leistungen
 - [ ] Uptime-Monitor (60 s) auf `/` und `/kontakt.html`; Vercel-Logs für `/api/contact` beobachten
-- [ ] Bypass-Secret widerrufen; Vercel-Team-Zugriff für Kunden
+- [ ] Beide Bypass-Secrets widerrufen („Go-Live-QA", „Kundenabnahme Link") und Alias `detektei-weltweit-abnahme.vercel.app` entfernen; Vercel-Team-Zugriff für Kunden
 
 ## 12. Post-Launch
 **+1 h:** alle 19 URLs 200; Redirect-Matrix; Formular-Testmail; Konsole ohne Fehler; Uptime grün; GSC URL-Prüfung Start.
