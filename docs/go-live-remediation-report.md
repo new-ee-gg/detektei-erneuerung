@@ -212,3 +212,6 @@ Technische Realität, die der Text abdecken muss (Stand nach Remediation):
 ## 13. Abschluss-Einstufung
 
 **CONDITIONALLY READY.** Technik launchfähig (Regression auf Vercel-Preview bestanden: Header, Redirects, 404, Ausschlüsse, API-Verhalten, Lighthouse 99–100/100). Vor dem Livegang zwingend: B1 Mail-Credentials + Zustelltest, B2 Büro-Ost-Daten, B3 Datenschutztext (Anwalt), B5 DNS-Umzug; empfohlen: B4 Fotos, B6/B7 Kennzahlen/Öffnungszeiten. Danach Launch-Checkliste §11 abarbeiten und Bypass-Secret widerrufen.
+
+## 14. Nachträgliche Design-Änderung (Kundenwunsch 2026-09-21): Glasmorphismus
+Header-Nav-Pille, Dropdown, Theme-Toggle, Kontakt-CTA, Mobile-Nav, alle Buttons (Primary/Ghost/Pause), Formularfelder + Formularbox, Karten (Leistungen, Standorte, Zertifikate, Stats, Statistik, News, Jobs, Kontakt-Info), Notruf-Leiste, Ticker, Trust-Badge, CTA-Panel, Hinweisboxen. Zentrale Tokens `--glass-*` (Dark/Light). Backdrop-Blur nur über Bild/Verlauf (Header, CTA-Panel, Statistik-Karten, Buttons); Karten auf flachem Grund ohne Blur (Performance). Kontraste geprüft (weiß auf Glas-Blau ≥ 5:1). Regression: Lighthouse-Lauf nach Änderung siehe Commit-Historie.
