@@ -516,6 +516,15 @@ h2.section-title {
 .service-card:hover .service-link, .service-card:focus-within .service-link { color: var(--white); gap: 14px; }
 .service-card:focus-within::before { transform: scaleX(1); }
 .service-link::after { content: '→'; }
+/* Alle Kartenraster: Inhalte oben, Abschluss-Element (Link/Badge/Untertitel) unten bündig */
+.service-card { display: flex; flex-direction: column; }
+.service-card .service-link { margin-top: auto; padding-top: 32px; }
+.location-card { display: flex; flex-direction: column; }
+.location-card .location-map-link { margin-top: auto; padding-top: 18px; align-self: flex-start; }
+.cert-block .cert-sub { margin-top: auto; }
+.stat-block { display: flex; flex-direction: column; justify-content: flex-start; align-items: center; }
+.kriminal-card { display: flex; flex-direction: column; justify-content: flex-start; align-items: center; }
+.job-card > div { display: flex; flex-direction: column; }
 
 /* ---------------------------------------------------------
    13. BG Slider Section (Quote)
