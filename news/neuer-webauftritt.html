@@ -9,7 +9,7 @@
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="theme-color" content="#0a0a0b" media="(prefers-color-scheme: dark)" />
   <meta name="theme-color" content="#F0EEE9" media="(prefers-color-scheme: light)" />
-  <script>(function(){try{var t=localStorage.getItem('dp-theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';}document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
+  <script>(function(){var d=document.documentElement;d.className+=' js';var t=null;try{t=localStorage.getItem('dp-theme');}catch(e){}if(t!=='light'&&t!=='dark'){try{t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';}catch(e){t='dark';}}d.setAttribute('data-theme',t);})();</script>
 
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Detektei Security Service Pappenberger" />
@@ -26,10 +26,12 @@
   <meta name="twitter:description" content="Die Detektei Pappenberger präsentiert ihren neuen Webauftritt: klarere Struktur, neuer Ratgeber-Bereich und alle Leistungen im Überblick — München &amp; bundesweit." />
   <meta name="twitter:image" content="https://www.detektei-weltweit.de/assets/images/og-image.png" />
 
-  <link rel="icon" href="../assets/images/logo-badge.svg" type="image/svg+xml" />
-  <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/cormorant-garamond-600.woff2" crossorigin />
-  <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/barlow-400.woff2" crossorigin />
-  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/cormorant-garamond-300.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/barlow-300.woff2" crossorigin />
   <link rel="stylesheet" href="../css/main.css" />
 
   <script type="application/ld+json">
@@ -57,7 +59,7 @@
       "url": "https://www.detektei-weltweit.de",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://www.detektei-weltweit.de/assets/images/logo-full.svg"
+        "url": "https://www.detektei-weltweit.de/assets/images/logo-publisher.png"
       }
     }
   }
@@ -90,27 +92,28 @@
   </script>
 </head>
 <body>
+<a class="skip-link" href="#main-content">Zum Inhalt springen</a>
 
-<header class="site-header" id="site-header" role="banner">
-  <a href="../index.html" class="site-logo" aria-label="Detektei Pappenberger – Startseite"><img class="site-logo__img" src="../assets/images/logo-full.svg" alt="Detektei Security Service Pappenberger" width="380" height="187"></a>
+<header class="site-header" id="site-header">
+  <a href="/" class="site-logo" aria-label="Detektei Pappenberger – Startseite"><img class="site-logo__img" fetchpriority="high" src="../assets/images/logo-full.svg" alt="Detektei Security Service Pappenberger" width="380" height="187"></a>
   <nav class="site-nav" aria-label="Hauptnavigation">
     <div class="site-nav__item site-nav__item--has-dropdown">
-      <a href="../index.html#leistungen" class="site-nav__link" aria-haspopup="true">Leistungen</a>
-      <div class="site-nav__dropdown" role="menu">
-        <a href="../detektei.html"             class="site-nav__dropdown-link" role="menuitem">Detektei &amp; Ermittlungen</a>
-        <a href="../objektschutz.html"         class="site-nav__dropdown-link" role="menuitem">Objektschutz</a>
-        <a href="../veranstaltungsschutz.html" class="site-nav__dropdown-link" role="menuitem">Veranstaltungsschutz</a>
-        <a href="../video-sicherheit.html"     class="site-nav__dropdown-link" role="menuitem">Video Sicherheit</a>
-        <a href="../sonderdienste.html"        class="site-nav__dropdown-link" role="menuitem">Sonderdienste</a>
-        <a href="../akademie.html"             class="site-nav__dropdown-link" role="menuitem">Akademie</a>
+      <a href="/#leistungen" class="site-nav__link">Leistungen</a>
+      <div class="site-nav__dropdown">
+        <a href="../detektei.html"             class="site-nav__dropdown-link">Detektei &amp; Ermittlungen</a>
+        <a href="../objektschutz.html"         class="site-nav__dropdown-link">Objektschutz</a>
+        <a href="../veranstaltungsschutz.html" class="site-nav__dropdown-link">Veranstaltungsschutz</a>
+        <a href="../video-sicherheit.html"     class="site-nav__dropdown-link">Video Sicherheit</a>
+        <a href="../sonderdienste.html"        class="site-nav__dropdown-link">Sonderdienste</a>
+        <a href="../akademie.html"             class="site-nav__dropdown-link">Akademie</a>
       </div>
     </div>
-    <div class="site-nav__item"><a href="../news.html"          class="site-nav__link">News</a></div>
+    <div class="site-nav__item"><a href="../news.html"          class="site-nav__link active" aria-current="page">News</a></div>
     <div class="site-nav__item"><a href="../karriere.html"      class="site-nav__link">Karriere</a></div>
     <div class="site-nav__item"><a href="../wissenswertes.html" class="site-nav__link">Wissenswertes</a></div>
   </nav>
   <a href="../kontakt.html" class="nav-cta">Kontakt</a>
-  <button class="nav-toggle" aria-label="Navigation öffnen" aria-expanded="false" aria-controls="mobile-nav">
+  <button class="nav-toggle" type="button" aria-label="Navigation öffnen" aria-expanded="false" aria-controls="mobile-nav">
     <span class="nav-toggle__bar"></span>
     <span class="nav-toggle__bar"></span>
     <span class="nav-toggle__bar"></span>
@@ -118,8 +121,8 @@
 </header>
 
 <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile Navigation">
-  <a href="../index.html"            class="mobile-nav__link">Startseite</a>
-  <a href="../index.html#leistungen" class="mobile-nav__link">Leistungen</a>
+  <a href="/"            class="mobile-nav__link">Startseite</a>
+  <a href="/#leistungen" class="mobile-nav__link">Leistungen</a>
   <div class="mobile-nav__sub">
     <a href="../detektei.html"             class="mobile-nav__sub-link">Detektei &amp; Ermittlungen</a>
     <a href="../objektschutz.html"         class="mobile-nav__sub-link">Objektschutz</a>
@@ -128,18 +131,18 @@
     <a href="../sonderdienste.html"        class="mobile-nav__sub-link">Sonderdienste</a>
     <a href="../akademie.html"             class="mobile-nav__sub-link">Akademie</a>
   </div>
-  <a href="../news.html"             class="mobile-nav__link">News</a>
+  <a href="../news.html"             class="mobile-nav__link" aria-current="page">News</a>
   <a href="../karriere.html"         class="mobile-nav__link">Karriere</a>
   <a href="../wissenswertes.html"    class="mobile-nav__link">Wissenswertes</a>
   <a href="../kontakt.html"          class="mobile-nav__link">Kontakt</a>
-  <a href="tel:+498974127886"        class="mobile-nav__phone">24h: +49 (0) 89 741 27 886</a>
+  <a href="tel:+498974127886"        class="mobile-nav__phone">24h:&nbsp;+49&nbsp;(0)&nbsp;89&nbsp;741&nbsp;27&nbsp;886</a>
 </nav>
 
-<main id="main-content">
+<main id="main-content" tabindex="-1">
 
   <div class="page-hero">
     <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="../index.html">Startseite</a>
+      <a href="/">Startseite</a>
       <span class="breadcrumb__sep" aria-hidden="true">/</span>
       <a href="../news.html">News</a>
       <span class="breadcrumb__sep" aria-hidden="true">/</span>
@@ -155,7 +158,7 @@
   <section class="content-section" aria-labelledby="content-art">
     <div class="prose">
 
-        <p>Nach drei Jahrzehnten Ermittlungs- und Sicherheitsarbeit war es Zeit für einen Webauftritt, der unserem Anspruch entspricht: Diskretion, Präzision, Ergebnis. Das Ergebnis sehen Sie gerade — ein klar strukturierter Auftritt, der alle <a href="../index.html#leistungen">Leistungen</a> von der Detektei über den Objektschutz bis zur Sicherheitsakademie übersichtlich bündelt.</p>
+        <p>Nach drei Jahrzehnten Ermittlungs- und Sicherheitsarbeit war es Zeit für einen Webauftritt, der unserem Anspruch entspricht: Diskretion, Präzision, Ergebnis. Das Ergebnis sehen Sie gerade — ein klar strukturierter Auftritt, der alle <a href="/#leistungen">Leistungen</a> von der Detektei über den Objektschutz bis zur Sicherheitsakademie übersichtlich bündelt.</p>
         <h2>Was neu ist</h2>
         <ul>
           <li><strong>Klare Struktur:</strong> Jede Leistung hat eine eigene Seite — von <a href="../detektei.html">Ermittlungen</a> bis <a href="../video-sicherheit.html">Video-Sicherheit</a>.</li>
@@ -169,31 +172,31 @@
 
 
 <!-- CTA Section -->
-<div class="cta-section" style="height:380px;" aria-labelledby="cta-art-heading">
+<section class="cta-section cta-section--compact" aria-labelledby="cta-art-heading">
   <div class="cta-bg-slides" aria-hidden="true">
-    <div id="cbg-0" class="cbg active"></div>
-    <div id="cbg-1" class="cbg"></div>
-    <div id="cbg-2" class="cbg"></div>
+    <div id="cbg-0" class="cbg ph active"></div>
+    <div id="cbg-1" class="cbg ph"></div>
+    <div id="cbg-2" class="cbg ph"></div>
   </div>
   <div class="cta-overlay"></div>
   <div class="cta-content reveal">
     <div class="section-label">Erstberatung</div>
     <h2 id="cta-art-heading">Lernen Sie uns kennen</h2>
     <p>Entdecken Sie unsere Leistungen — oder sprechen Sie direkt mit uns. Kostenlos und unverbindlich.</p>
-    <a href="tel:+498974127886" class="cta-tel">+49 (0) 89 741 27 886</a>
+    <a href="tel:+498974127886" class="cta-tel">+49&nbsp;(0)&nbsp;89&nbsp;741&nbsp;27&nbsp;886</a>
     <div class="cta-actions">
       <a href="../kontakt.html" class="btn-primary">Kontakt aufnehmen</a>
       <a href="tel:+4989720150030" class="btn-ghost">Direkt anrufen</a>
     </div>
   </div>
-</div>
+</section>
 
 </main>
 
-<footer class="site-footer" role="contentinfo">
+<footer class="site-footer">
   <div class="footer-top">
     <div class="footer-brand-col">
-      <a href="../index.html" class="footer-logo" aria-label="Detektei Security Service Pappenberger – Startseite"><img class="footer-logo__img" src="../assets/images/logo-full.svg" alt="Detektei Security Service Pappenberger"></a>
+      <a href="/" class="footer-logo" aria-label="Detektei Security Service Pappenberger – Startseite"><img class="footer-logo__img" src="../assets/images/logo-full.svg" alt="Detektei Security Service Pappenberger"></a>
       <p class="footer-about">
         Seit 1995 Ihr Spezialist für Ermittlung und Sicherheit in München und bundesweit. ISO 9001 zertifiziert, diskret, professionell — für Unternehmen, Anwälte und Privatpersonen.
       </p>
@@ -221,9 +224,9 @@
     <div>
       <div class="footer-col-title">Kontakt</div>
       <ul class="footer-links">
-        <li><a href="tel:+4989720150030">+49 (0) 89 720 15 030</a></li>
-        <li><a href="tel:+498974127886">24h: +49 (0) 89 741 27 886</a></li>
-        <li><a href="../index.html#standorte">Alle Standorte</a></li>
+        <li><a href="tel:+4989720150030">+49&nbsp;(0)&nbsp;89&nbsp;720&nbsp;15&nbsp;030</a></li>
+        <li><a href="tel:+498974127886">24h:&nbsp;+49&nbsp;(0)&nbsp;89&nbsp;741&nbsp;27&nbsp;886</a></li>
+        <li><a href="/#standorte">Alle Standorte</a></li>
         <li><a href="../kontakt.html">Anfrage senden</a></li>
       </ul>
     </div>

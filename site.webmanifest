@@ -1,0 +1,16 @@
+{
+  "name": "Detektei Security Service Pappenberger",
+  "short_name": "Pappenberger",
+  "description": "Detektei, Objektschutz, Veranstaltungsschutz und Videoüberwachung – München & bundesweit, seit 1995.",
+  "lang": "de",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "background_color": "#0a0a0b",
+  "theme_color": "#0a0a0b",
+  "icons": [
+    { "src": "/assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
