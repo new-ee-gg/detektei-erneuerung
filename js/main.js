@@ -113,7 +113,7 @@
      Inhalte sind ohne JS vollständig sichtbar (Regeln greifen nur unter html.js).
   ────────────────────────────────────── */
   run('reveal', function () {
-    var els = document.querySelectorAll('.reveal, .reveal-rule');
+    var els = document.querySelectorAll('.reveal, .reveal-rule, .reveal-img');
     if (!els.length) return;
     if (prefersReducedMotion || !('IntersectionObserver' in window)) {
       els.forEach(function (el) { el.classList.add('visible'); });
