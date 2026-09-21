@@ -133,8 +133,15 @@ Nach Erledigung von 1–3 und dem DNS-Umzug ist die Seite launchfähig; 4 ist ke
 | Grep-Checks | `unsplash`, ` style="`, `reset.css`, `&amp;amp;`, `role=menu` | jeweils 0 |
 | Syntax | `node --check` main.js/contact.js | ok |
 
-### 6.1 Lighthouse auf Vercel-Preview
-_(wird nach finalem Redeploy ergänzt – siehe Abschlussmeldung)_
+### 6.1 Lighthouse auf Vercel-Preview (`detektei-weltweit-dsx17z1tl-new-ee.vercel.app`, Brotli/CDN, Bypass-Header)
+
+| Seite | Mobil Perf | LCP | FCP | CLS | TBT | Desktop Perf | A11y |
+|---|---|---|---|---|---|---|---|
+| `/` | **99** | 1,9 s | 0,9 s | 0 | 30 ms | 100 | 100 |
+| `/detektei.html` | **100** | 1,9 s | 0,9 s | 0,013 | 10 ms | 100 | 100 |
+| `/kontakt.html` | **99** | 1,9 s | 1,1 s | 0,002 | 0 ms | (Lauf-Artefakt, lokal 99) | 100 |
+
+Nur First-Party-Host (+ `vercel.live` Toolbar-Injektion des Previews, von der CSP blockiert). **Preview-Artefakte, nicht produktionsrelevant:** SEO-Score 69 wegen `x-robots-tag: noindex` (Vercel setzt das auf geschützten Previews), Best-Practices 92 wegen Toolbar-Script-CSP-Meldung und `site.webmanifest`-Redirect-Schleife (Manifest-Request ohne Bypass-Cookie). Auf der Produktionsdomain ohne Deployment Protection entfallen alle drei → **NEEDS EXTERNAL VERIFICATION** nach Launch (Lighthouse auf `https://www.detektei-weltweit.de/`).
 
 **Nicht getestet (NEEDS EXTERNAL VERIFICATION):** echte Geräte (iOS Safari, Android Chrome), Screenreader (VoiceOver/NVDA), Light-Mode-Lighthouse, Tastatur-Durchlauf im Browser, echte Mail-Zustellung, Apex-Redirect auf Produktionsdomain, CrUX-Felddaten, Google-Indexierung, securityheaders.com auf Prod.
 
@@ -203,4 +210,5 @@ Technische Realität, die der Text abdecken muss (Stand nach Remediation):
 **+30 Tage:** Rankings/Klicks je Landingpage, Conversion (Anrufe + Formulare), CWV-Felddaten „gut", Ratgeber-Traffic, Content-Gap-Seiten priorisieren, Header-Recheck, Fotos nachgeliefert?, Datenschutztext final.
 
 ## 13. Abschluss-Einstufung
-Siehe Abschlussmeldung (nach Regression auf Preview).
+
+**CONDITIONALLY READY.** Technik launchfähig (Regression auf Vercel-Preview bestanden: Header, Redirects, 404, Ausschlüsse, API-Verhalten, Lighthouse 99–100/100). Vor dem Livegang zwingend: B1 Mail-Credentials + Zustelltest, B2 Büro-Ost-Daten, B3 Datenschutztext (Anwalt), B5 DNS-Umzug; empfohlen: B4 Fotos, B6/B7 Kennzahlen/Öffnungszeiten. Danach Launch-Checkliste §11 abarbeiten und Bypass-Secret widerrufen.
