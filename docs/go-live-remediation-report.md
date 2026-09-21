@@ -218,4 +218,4 @@ Header-Nav-Pille, Dropdown, Theme-Toggle, Kontakt-CTA, Mobile-Nav, alle Buttons 
 
 ## 15. Logo-Übernahme (Kundendatei 2026-09-21)
 Offizielles Logo `DSS_Pappenberger_30Jahre_Logo.jpg` (2898×1368, weißer Hintergrund) übernommen: freigestellt als WebP mit Alpha (810/480 px), Publisher-PNG, Favicons/Apple-Touch/Manifest-Icons aus dem Badge. SVG-Varianten auf Originalstand (1996) zurückgesetzt.
-**CUSTOMER CONFIRMATION:** Logo trägt „SEIT 1996“ (30 Jahre in 2026), Website-Texte und JSON-LD (`foundingDate`) sagen „seit 1995“ (Freigabe 07/2026). Eine Angabe ist falsch – bitte Gründungsjahr final bestätigen; danach Texte (Hero, Ticker, Footer, Intro „1995“, News „30 Jahre“, Stats „30+“) bzw. Logo angleichen.
+**Entschieden (Kunde, 2026-09-21): Logo ist Single Source of Truth → Gründungsjahr 1996.** Alle 45 Textstellen (Hero, Ticker, Footer, Intro-Jahreszahl, News-Meilensteine, Descriptions, JSON-LD `foundingDate`, Manifest) auf 1996 umgestellt; „30 Jahre“/„30+“ bleibt korrekt (1996→2026). F-26 damit FIXED. Hinweis: `FREIGABE.md` (07/2026) nannte 1995 – überholt.
