@@ -2,7 +2,7 @@
 
 **Stand:** 2026-09-21 · **Branch:** `feature/dark-light-mode` (Working Tree, unkommittiert) · **Methodik:** Read-only. Kein Code geändert, nichts deployed.
 **Verifikationsquellen:** Quelltext aller 19 Seiten + CSS/JS · Link-/Anker-Crawler (Python) · Lighthouse 12 (mobile + desktop, index/detektei/kontakt, lokaler Server, Unsplash real geladen) · html-validate (19 Seiten) · WCAG-Kontrastrechnung aller Theme-Tokens · DNS/HTTP-Probe der Live-Domain · BKA-PKS-2024-Abgleich (Web).
-**Nicht ausgeführt (Kundenwunsch: kein Playwright):** interaktive Browser-Tests (Tastatur, Mobile-Nav, JS-aus). Diese Punkte sind aus dem Code abgeleitet und als *code-verifiziert* markiert, nicht *browser-verifiziert*.
+**Nicht ausgeführt (Kundenwunsch: kein Playwright):** interaktiv-Tests (Tastatur, Mobile-Nav, JS-aus). Diese Punkte sind aus dem Code abgeleitet und als *code-verifiziert* markiert, nicht *browser-verifiziert*.
 
 Status-Legende: **PASS** · **PARTIAL** · **FAIL** · **NOT VERIFIED** · **N/A**
 

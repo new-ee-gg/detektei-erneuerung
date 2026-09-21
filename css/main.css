@@ -334,6 +334,7 @@ button { cursor: pointer; border: none; background: none; }
   animation: slideUp 0.8s 0.15s forwards;
 }
 .hero-title em { font-style: normal; font-weight: 600; color: var(--accent-text); display: block; }
+.hero-title__kicker { display: block; font-size: 0.4em; font-weight: 400; letter-spacing: 0.02em; color: var(--white); margin-bottom: 0.25em; }
 .hero-sub {
   font-size: 16px; font-weight: 300; line-height: 1.75; color: var(--light);
   max-width: 500px; margin-bottom: 48px;
@@ -426,7 +427,7 @@ h2.section-title {
   background: linear-gradient(to right, var(--deep) 0%, transparent 45%);
 }
 .intro-founded { display: flex; align-items: baseline; gap: 10px; margin-bottom: 40px; }
-.intro-year { font-family: var(--font-serif); font-size: 80px; font-weight: 300; color: var(--border); line-height: 1; }
+.intro-year { font-family: var(--font-serif); font-size: 80px; font-weight: 300; color: var(--silver); line-height: 1; }
 .intro-since { font-family: var(--font-condensed); font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
 
 /* ---------------------------------------------------------
@@ -622,7 +623,7 @@ h2.section-title {
 .breadcrumb { display: flex; align-items: center; gap: 8px; margin-bottom: 28px; font-family: var(--font-condensed); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
 .breadcrumb a { color: var(--muted); transition: color 0.2s; }
 .breadcrumb a:hover { color: var(--accent-text); }
-.breadcrumb__sep { color: var(--border); }
+.breadcrumb__sep { color: var(--silver); }
 .page-hero h1 { font-family: var(--font-serif); font-size: clamp(36px, 5vw, 72px); font-weight: 300; line-height: 1.1; color: var(--white); margin-bottom: 24px; }
 .page-hero-divider { width: 48px; height: 1px; background: var(--gold); margin-bottom: 20px; }
 .page-hero p { font-size: 16px; font-weight: 300; color: var(--light); max-width: 580px; line-height: 1.75; }
