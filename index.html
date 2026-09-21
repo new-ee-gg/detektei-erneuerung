@@ -31,8 +31,8 @@
   <link rel="manifest" href="/site.webmanifest" />
 
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/cormorant-garamond-300.woff2" crossorigin />
-  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/cormorant-garamond-600.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/barlow-400.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/barlow-condensed-600.woff2" crossorigin />
   <link rel="stylesheet" href="css/main.css" />
 
   <script type="application/ld+json">
@@ -128,399 +128,267 @@
 
 <main id="main-content" tabindex="-1">
 
-<!-- ══ HERO — SLIDESHOW ══ -->
-<!-- Bildflächen: neutrale Platzhalter (CSS). Echte Fotos: <img src="assets/images/hero-1.webp" width="1800" height="1000" alt="" fetchpriority="high"> in #slide-0, weitere mit loading="lazy". -->
-<section class="hero" aria-labelledby="hero-heading">
-  <div id="slide-0" class="hero-slide ph active"></div>
-  <div id="slide-1" class="hero-slide ph"></div>
-  <div id="slide-2" class="hero-slide ph"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-overlay2"></div>
-
-  <div class="hero-content">
-    <p class="hero-eyebrow">Seit 1996 — München &amp; Bundesweit</p>
-    <h1 class="hero-title" id="hero-heading">
-      <span class="hero-title__kicker">Detektei München</span>
-      <em>Diskretion.<br>Präzision. Ergebnis.</em>
-    </h1>
-    <p class="hero-sub">
-      Die Detektei Pappenberger aus München steht seit 1996 für professionelle Ermittlungen und umfassende Sicherheitsdienstleistungen — bundesweit und überall dort, wo Vertrauen und Fakten zählen.
-    </p>
+<!-- ══ 01 HERO – typografisch, asymmetrisch ══ -->
+<section class="hero-editorial" aria-labelledby="hero-heading">
+  <div>
+    <p class="hero-meta"><span>Detektei</span><span>Objektschutz</span><span>Sicherheitsdienst</span><span>München &amp; bundesweit</span><span>seit 1996</span></p>
+    <h1 class="hero-h1" id="hero-heading"><span class="hero-kicker">Detektei München</span>Diskretion.<br>Präzision.<br>Ergebnis.</h1>
+  </div>
+  <div class="hero-side">
+    <p class="lead">Die Detektei Pappenberger aus München steht seit 1996 für professionelle Ermittlungen und umfassende Sicherheitsdienstleistungen — bundesweit und überall dort, wo Vertrauen und Fakten zählen.</p>
     <div class="hero-actions">
-      <a href="kontakt.html" class="btn-primary">Beratungsgespräch anfragen</a>
-      <a href="#leistungen"  class="btn-ghost">Unsere Leistungen</a>
+      <a href="kontakt.html" class="btn-primary">Erstgespräch vereinbaren</a>
+      <a href="#leistungen" class="link-arrow">Leistungen ansehen</a>
     </div>
-  </div>
-
-  <div class="hero-controls">
-    <div class="hero-slide-count" aria-hidden="true"><span id="heroCurrentNum">01</span> / 03</div>
-    <div class="hero-thumbs" id="heroThumbs" role="group" aria-label="Hintergrundbild wählen">
-      <button type="button" class="hero-thumb active" aria-label="Bild 1 von 3" aria-current="true"><span class="hero-thumb-fill" id="fill-0"></span></button>
-      <button type="button" class="hero-thumb" aria-label="Bild 2 von 3"><span class="hero-thumb-fill" id="fill-1"></span></button>
-      <button type="button" class="hero-thumb" aria-label="Bild 3 von 3"><span class="hero-thumb-fill" id="fill-2"></span></button>
-    </div>
-    <button type="button" class="hero-pause" id="heroPause" aria-pressed="false" aria-label="Animationen pausieren">
-      <svg class="icon-pause" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></svg>
-      <svg class="icon-play" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-    </button>
+    <dl class="hero-facts">
+      <div><dt>24-Stunden-Erreichbarkeit</dt><dd><a href="tel:+498974127886">+49&nbsp;(0)&nbsp;89&nbsp;741&nbsp;27&nbsp;886</a></dd></div>
+      <div><dt>Hauptsitz</dt><dd>Eichenstraße 15, 82061 Neuried bei München</dd></div>
+      <div><dt>Einsatzgebiet</dt><dd>München, bundesweit, international über Kooperationspartner</dd></div>
+      <div><dt>Qualität</dt><dd>ISO 9001, DIN 77200, AZAV-zertifizierte Akademie</dd></div>
+    </dl>
   </div>
 </section>
 
-<!-- ══ TICKER ══ -->
-<div class="ticker-wrap" aria-hidden="true">
-  <div class="ticker-track">
-    <span>Detektei</span><span>Objektschutz</span><span>Personenschutz</span>
-    <span>Videosicherheit</span><span>Baustellenüberwachung</span><span>Veranstaltungsschutz</span>
-    <span>ISO 9001 zertifiziert</span><span>Seit 1996</span><span>Bundesweit tätig</span>
-    <span>Detektei</span><span>Objektschutz</span><span>Personenschutz</span>
-    <span>Videosicherheit</span><span>Baustellenüberwachung</span><span>Veranstaltungsschutz</span>
-    <span>ISO 9001 zertifiziert</span><span>Seit 1996</span><span>Bundesweit tätig</span>
-  </div>
-</div>
-
-<!-- ══ INTRO SPLIT ══ -->
-<section class="intro" aria-labelledby="intro-heading">
-  <div class="intro-text reveal">
-    <div class="section-label">Über uns</div>
-    <div class="intro-founded">
-      <div class="intro-year" aria-hidden="true">1996</div>
-      <div class="intro-since">Gründungsjahr</div>
+<!-- ══ 02 POSITIONIERUNG + PROOF ══ -->
+<section class="section" aria-labelledby="intro-heading">
+  <div class="container">
+    <div class="about">
+      <div>
+        <p class="section-label">Über uns</p>
+        <h2 class="section-title reveal" id="intro-heading">Ihr kompetenter<br>Ansprechpartner.</h2>
+      </div>
+      <div class="about__text reveal reveal--late">
+        <p>Es gibt Situationen, die sich ohne professionelle Unterstützung weder durchschauen noch lösen lassen — ob im privaten Umfeld oder im Unternehmen. Wer dann einen Privatdetektiv oder Sicherheitsdienst beauftragt, trifft eine Vertrauensentscheidung. Wir nehmen diese Verantwortung seit drei Jahrzehnten ernst.</p>
+        <p>Was 1996 als Detektei in München begann, ist heute ein umfassendes Dienstleistungsunternehmen für Ermittlung, Sicherheit und Schutz: Wirtschaftsdetektei, Objektschutz, Veranstaltungsschutz und Videoüberwachung — getragen von einem weltweiten Netzwerk ortsansässiger Kooperationspartner.</p>
+        <a href="kontakt.html" class="link-arrow">Kontakt aufnehmen</a>
+      </div>
     </div>
-    <h2 class="section-title" id="intro-heading">Ihr kompetenter<br>Ansprechpartner.</h2>
-    <p class="section-body section-body--lead">
-      Es gibt Situationen, die sich ohne professionelle Unterstützung weder durchschauen noch lösen lassen — ob im privaten Umfeld oder im Unternehmen. Wer dann einen Privatdetektiv oder Sicherheitsdienst beauftragt, trifft eine Vertrauensentscheidung. Wir nehmen diese Verantwortung seit drei Jahrzehnten ernst.
-    </p>
-    <p class="section-body">
-      Was 1996 als Detektei in München begann, ist heute ein umfassendes Dienstleistungsunternehmen für Ermittlung, Sicherheit und Schutz: Wirtschaftsdetektei, Objektschutz, Veranstaltungsschutz und Videoüberwachung — getragen von einem weltweiten Netzwerk ortsansässiger Kooperationspartner.
-    </p>
-    <a href="kontakt.html" class="btn-ghost intro-cta">Kontakt aufnehmen</a>
-  </div>
-  <!-- Bildfläche: Platzhalter. Echtes Firmenfoto: <img src="assets/images/intro.webp" width="900" height="1100" alt="…" loading="lazy"> einfügen. -->
-  <div class="intro-image intro-image--placeholder" aria-hidden="true">
-    <div class="intro-image-overlay"></div>
+    <dl class="proof">
+      <div class="proof__item"><dt class="sr-only">Erfahrung</dt><dd><span class="proof__value">30<sup>+</sup></span><span class="proof__label">Jahre Ermittlungs- und Sicherheitsarbeit, seit 1996</span></dd></div>
+      <div class="proof__item"><dt class="sr-only">Einsatzgebiet</dt><dd><span class="proof__value">16</span><span class="proof__label">Bundesländer im Einsatz — von München aus bundesweit</span></dd></div>
+      <div class="proof__item"><dt class="sr-only">Standorte</dt><dd><span class="proof__value">4</span><span class="proof__label">Standorte: Neuried/München, Nürnberg, Schliersee, Merseburg</span></dd></div>
+      <div class="proof__item"><dt class="sr-only">Qualität</dt><dd><span class="proof__value">ISO</span><span class="proof__label">9001-zertifiziertes Qualitätsmanagement, DIN 77200</span></dd></div>
+    </dl>
   </div>
 </section>
 
-<!-- ══ STATS BAR ══ -->
-<section class="stats-bar" aria-label="Unternehmenskennzahlen">
-  <div class="stats-inner container">
-    <div class="stat-block reveal">
-      <div class="stat-big">30<sup>+</sup></div>
-      <div class="stat-desc">Jahre Erfahrung</div>
-    </div>
-    <div class="stat-block reveal">
-      <div class="stat-big">16</div>
-      <div class="stat-desc">Bundesländer</div>
-    </div>
-    <div class="stat-block reveal">
-      <div class="stat-big">∞</div>
-      <div class="stat-desc">Weltweites Netzwerk</div>
-    </div>
-    <div class="stat-block reveal">
-      <div class="stat-big">ISO</div>
-      <div class="stat-desc">9001 Zertifiziert</div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ SERVICES ══ -->
-<section class="services" id="leistungen" aria-labelledby="services-heading">
-  <div class="section-label reveal">Leistungen</div>
-  <h2 class="section-title reveal" id="services-heading">Unsere Leistungen<br>im Überblick.</h2>
-
-  <div class="services-grid">
-    <article class="service-card reveal">
-      <div class="service-num">01</div>
-      <svg class="service-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="20" cy="20" r="10"/><path d="M28 28l8 8"/></svg>
-      <div class="service-name">Detektei &amp;<br>Ermittlungen</div>
-      <div class="service-desc">Professionelle Observationen, Recherchen und gerichtsverwertbare Beweissicherung in allen Rechtsbereichen — bundesweit und diskret.</div>
-      <a href="detektei.html" class="service-link">Mehr erfahren</a>
-    </article>
-
-    <article class="service-card reveal">
-      <div class="service-num">02</div>
-      <svg class="service-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="8" y="10" width="28" height="24" rx="2"/><path d="M16 10V7M28 10V7M8 20h28"/></svg>
-      <div class="service-name">Objektschutz &amp;<br>Bewachung</div>
-      <div class="service-desc">Gewährleistung der Sicherheit von Objekten durch speziell geschultes Fachpersonal — Streifendienste, Eingangskontrollen, stationäre Bewachung.</div>
-      <a href="objektschutz.html" class="service-link">Mehr erfahren</a>
-    </article>
-
-    <article class="service-card reveal">
-      <div class="service-num">03</div>
-      <svg class="service-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="22" cy="16" r="8"/><path d="M8 38c0-7.7 6.3-14 14-14s14 6.3 14 14"/></svg>
-      <div class="service-name">Veranstaltungs&shy;schutz</div>
-      <div class="service-desc">Planung, Durchführung und Absicherung kommerzieller sowie privater Veranstaltungen — damit Ihr Event in Ruhe und geordnet stattfindet.</div>
-      <a href="veranstaltungsschutz.html" class="service-link">Mehr erfahren</a>
-    </article>
-
-    <article class="service-card reveal">
-      <div class="service-num">04</div>
-      <svg class="service-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="10" y="10" width="24" height="18" rx="2"/><path d="M16 28v6M28 28v6M10 34h24"/></svg>
-      <div class="service-name">Videosicherheit &amp;<br>Sicherheitszentrale</div>
-      <div class="service-desc">Modernste Videoüberwachung mit 24-Stunden-Live-Monitoring aus unserer Sicherheitszentrale — seit 2008 in Betrieb.</div>
-      <a href="video-sicherheit.html" class="service-link">Mehr erfahren</a>
-    </article>
-
-    <article class="service-card reveal">
-      <div class="service-num">05</div>
-      <svg class="service-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M22 6l16 10v12L22 38 6 28V16z"/><path d="M22 14v8M22 28v2"/></svg>
-      <div class="service-name">Sonderdienste</div>
-      <div class="service-desc">Bewaffneter Schutz von Personen, Objekten und Transporten. Spezialisierte Sicherheitsdienstleistungen für erhöhten Schutzbedarf.</div>
-      <a href="sonderdienste.html" class="service-link">Mehr erfahren</a>
-    </article>
-
-    <article class="service-card reveal">
-      <div class="service-num">06</div>
-      <svg class="service-icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M22 6l16 10v12L22 38 6 28V16z"/><path d="M22 14v16M14 22h16"/></svg>
-      <div class="service-name">Akademie &amp;<br>Ausbildung</div>
-      <div class="service-desc">ISO 9001 und AZAV zertifizierter Bildungsträger. §34a-Sachkundevorbereitung, Weiterqualifizierung und Speziallehrgänge.</div>
-      <a href="akademie.html" class="service-link">Mehr erfahren</a>
-    </article>
-  </div>
-</section>
-
-<!-- ══ BG SLIDER QUOTE ══ -->
-<section class="bg-slider-section" id="bgs1" aria-label="Leitsatz">
-  <div id="bgs1-0" class="bgs-slide ph active"></div>
-  <div id="bgs1-1" class="bgs-slide ph"></div>
-  <div id="bgs1-2" class="bgs-slide ph"></div>
-  <div class="bgs-overlay"></div>
-  <div class="bgs-overlay-grad"></div>
-  <div class="bgs-content">
-    <div class="bgs-text reveal">
-      <blockquote>
-        „Qualität und Diskretion sind für uns die obersten Maximen, um den Anforderungen unserer Auftraggeber gerecht zu werden.“
-      </blockquote>
-      <cite>— Detektei Pappenberger, seit 1996</cite>
-    </div>
-    <div class="bgs-cta">
-      <a href="kontakt.html" class="btn-primary reveal">Jetzt Kontakt aufnehmen</a>
-    </div>
-  </div>
-  <div class="bgs-dots" id="bgs1Dots" role="group" aria-label="Hintergrund wählen">
-    <button type="button" class="bgs-dot active" data-i="0" aria-label="Hintergrund 1 von 3" aria-current="true"></button>
-    <button type="button" class="bgs-dot" data-i="1" aria-label="Hintergrund 2 von 3"></button>
-    <button type="button" class="bgs-dot" data-i="2" aria-label="Hintergrund 3 von 3"></button>
-  </div>
-</section>
-
-<!-- ══ TRUST ══ -->
-<section class="trust" aria-labelledby="trust-heading">
-  <div class="section-label reveal">Vertrauen &amp; Qualität</div>
-  <h2 class="section-title reveal" id="trust-heading">Warum Pappenberger?</h2>
-  <div class="trust-grid">
-    <!-- Bildfläche: Platzhalter, echte Fotos siehe README -->
-    <div class="trust-imgslider reveal-left" aria-hidden="true">
-      <div id="tis-0" class="trust-img-slide ph active"></div>
-      <div id="tis-1" class="trust-img-slide ph"></div>
-      <div id="tis-2" class="trust-img-slide ph"></div>
-      <div class="trust-img-overlay"></div>
-      <div class="trust-badge">ISO 9001 Zertifiziert</div>
-    </div>
-    <div class="trust-points reveal-right">
-      <div class="trust-point">
-        <div class="trust-point-num">01</div>
-        <div class="trust-point-body">
-          <h3>Gerichtsverwertbare Ergebnisse</h3>
-          <p>Unsere Ermittlungen und Beweise erfüllen die rechtlichen Anforderungen und sind vor Gericht einsetzbar.</p>
-        </div>
+<!-- ══ 03 LEISTUNGEN – editorial ══ -->
+<section class="section section--tint" id="leistungen" aria-labelledby="services-heading">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <p class="section-label">Leistungen</p>
+        <h2 class="section-title reveal" id="services-heading">Ermittlung und Sicherheit<br>aus einer Hand.</h2>
       </div>
-      <div class="trust-point">
-        <div class="trust-point-num">02</div>
-        <div class="trust-point-body">
-          <h3>Bundesweites Netzwerk</h3>
-          <p>Einsätze im gesamten Bundesgebiet und international — durch ortsansässige Kooperationspartner weltweit.</p>
-        </div>
-      </div>
-      <div class="trust-point">
-        <div class="trust-point-num">03</div>
-        <div class="trust-point-body">
-          <h3>Zertifizierte Qualität</h3>
-          <p>ISO 9001-Zertifizierung, DIN 77200 sowie Mitgliedschaft in führenden Berufsverbänden sichern höchste Standards.</p>
-        </div>
-      </div>
-      <div class="trust-point">
-        <div class="trust-point-num">04</div>
-        <div class="trust-point-body">
-          <h3>Absolute Diskretion</h3>
-          <p>Vertraulichkeit ist für uns nicht nur Versprechen — sie ist die Grundlage unserer Arbeit seit 1996.</p>
-        </div>
-      </div>
+      <p class="section-body reveal reveal--late">Sechs Bereiche, ein Anspruch: gerichtsverwertbare Ergebnisse, geschultes Personal und Diskretion in jeder Phase — für Unternehmen, Anwälte und Privatpersonen.</p>
     </div>
-  </div>
-</section>
 
-<!-- ══ KRIMINALSTATISTIK ══ -->
-<section class="kriminal-section" aria-labelledby="krim-heading">
-  <div class="kriminal-bg-slides" aria-hidden="true">
-    <div id="kbg-0" class="kbg ph active"></div>
-    <div id="kbg-1" class="kbg ph"></div>
-    <div id="kbg-2" class="kbg ph"></div>
-  </div>
-  <div class="kriminal-dimmer"></div>
-  <div class="kriminal-content">
-    <div class="section-label reveal">Polizeiliche Kriminalstatistik 2024</div>
-    <h2 class="section-title reveal" id="krim-heading">Sicherheit ist<br>keine Selbstverständlichkeit.</h2>
-    <!-- Pflege: jährlich gegen die offizielle BKA-PKS prüfen (data-count, Jahr im section-label, Quelle). Nur amtliche Werte eintragen. -->
-    <div class="kriminal-grid">
-      <div class="kriminal-card reveal">
-        <div class="kriminal-num" id="cnt1" data-count="5837445">5.837.445</div>
-        <div class="kriminal-label">Straftaten insgesamt</div>
-      </div>
-      <div class="kriminal-card reveal">
-        <div class="kriminal-num" id="cnt2" data-count="217277">217.277</div>
-        <div class="kriminal-label">Gewalt&shy;kriminalität</div>
-      </div>
-      <div class="kriminal-card reveal">
-        <div class="kriminal-num" id="cnt3" data-count="131391">131.391</div>
-        <div class="kriminal-label">Cybercrime</div>
-      </div>
-      <div class="kriminal-card reveal">
-        <div class="kriminal-num" id="cnt4" data-count="78436">78.436</div>
-        <div class="kriminal-label">Wohnungs&shy;einbruch</div>
-      </div>
+    <div class="services-featured">
+      <article class="feature">
+        <span class="feature__num">01</span>
+        <h3 class="feature__title">Detektei &amp; Ermittlungen</h3>
+        <p class="feature__text">Professionelle Observationen, Recherchen und gerichtsverwertbare Beweissicherung in allen Rechtsbereichen — bundesweit und diskret.</p>
+        <a href="detektei.html" class="link-arrow">Detektei &amp; Ermittlungen</a>
+      </article>
+      <article class="feature">
+        <span class="feature__num">02</span>
+        <h3 class="feature__title">Objektschutz &amp; Bewachung</h3>
+        <p class="feature__text">Gewährleistung der Sicherheit von Objekten durch speziell geschultes Fachpersonal — Streifendienste, Eingangskontrollen, stationäre Bewachung.</p>
+        <a href="objektschutz.html" class="link-arrow">Objektschutz</a>
+      </article>
     </div>
-    <p class="reveal kriminal-source">Quelle: Bundeskriminalamt, <a href="https://www.bka.de/DE/AktuelleInformationen/StatistikenLagebilder/PolizeilicheKriminalstatistik/PKS2024/pks2024_node.html" target="_blank" rel="noopener noreferrer">Polizeiliche Kriminalstatistik 2024<span class="sr-only"> (öffnet neues Fenster)</span></a> &middot; bundesweit erfasste Fälle &middot; Cybercrime: Bundeslagebild Cybercrime 2024 (Inlandstaten)</p>
-  </div>
-</section>
 
-<!-- ══ STANDORTE ══ -->
-<section class="locations-section" id="standorte" aria-labelledby="loc-heading">
-  <div class="section-label reveal">Niederlassungen</div>
-  <h2 class="section-title reveal" id="loc-heading">Unsere Standorte.</h2>
-
-  <div class="locations-grid">
-    <div class="location-card reveal">
-      <div class="location-badge">Hauptsitz</div>
-      <h3>Neuried / München</h3>
-      <address class="location-address">
-        Eichenstraße 15<br />D-82061 Neuried
-      </address>
-      <div class="location-phone">Tel: <a href="tel:+4989720150030">+49&nbsp;(0)&nbsp;89&nbsp;720&nbsp;15&nbsp;030</a></div>
-      <div class="location-phone location-phone--fax">Fax: +49&nbsp;(0)&nbsp;89&nbsp;720&nbsp;15&nbsp;031</div>
-      <a href="https://maps.google.com/?q=Eichenstra%C3%9Fe+15,+82061+Neuried" target="_blank" rel="noopener noreferrer" class="location-map-link" aria-label="Hauptsitz auf Google Maps (neues Fenster)">
-        <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
-        Karte öffnen
+    <div class="rows services-rows">
+      <a href="veranstaltungsschutz.html" class="row">
+        <span class="row__num">03</span>
+        <h3 class="row__title">Veranstaltungsschutz</h3>
+        <p class="row__text">Planung, Durchführung und Absicherung kommerzieller sowie privater Veranstaltungen — damit Ihr Event in Ruhe und geordnet stattfindet.</p>
+        <span class="row__link link-arrow" aria-hidden="true">Mehr</span>
+      </a>
+      <a href="video-sicherheit.html" class="row">
+        <span class="row__num">04</span>
+        <h3 class="row__title">Videosicherheit &amp; Sicherheitszentrale</h3>
+        <p class="row__text">Modernste Videoüberwachung mit 24-Stunden-Live-Monitoring aus unserer Sicherheitszentrale — seit 2008 in Betrieb.</p>
+        <span class="row__link link-arrow" aria-hidden="true">Mehr</span>
+      </a>
+      <a href="sonderdienste.html" class="row">
+        <span class="row__num">05</span>
+        <h3 class="row__title">Sonderdienste</h3>
+        <p class="row__text">Bewaffneter Schutz von Personen, Objekten und Transporten. Spezialisierte Sicherheitsdienstleistungen für erhöhten Schutzbedarf.</p>
+        <span class="row__link link-arrow" aria-hidden="true">Mehr</span>
+      </a>
+      <a href="akademie.html" class="row">
+        <span class="row__num">06</span>
+        <h3 class="row__title">Akademie &amp; Ausbildung</h3>
+        <p class="row__text">ISO 9001 und AZAV zertifizierter Bildungsträger. §34a-Sachkundevorbereitung, Weiterqualifizierung und Speziallehrgänge.</p>
+        <span class="row__link link-arrow" aria-hidden="true">Mehr</span>
       </a>
     </div>
+  </div>
+</section>
 
-    <div class="location-card reveal">
-      <div class="location-badge">Filiale Ost</div>
-      <h3>Merseburg</h3>
-      <address class="location-address">
-        Hallesche Str. 118<br />D-06217 Merseburg
-      </address>
-      <div class="location-phone">Tel: <a href="tel:+4934612492544">+49&nbsp;(0)&nbsp;3461&nbsp;2492544</a></div>
-      <div class="location-phone location-phone--fax">Fax: +49&nbsp;(0)&nbsp;3461&nbsp;2492546</div>
-      <a href="https://maps.google.com/?q=Hallesche+Str.+118,+06217+Merseburg" target="_blank" rel="noopener noreferrer" class="location-map-link">
-        <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
-        Karte öffnen
-      <span class="sr-only"> (öffnet neues Fenster)</span></a>
+<!-- ══ 04 DUNKLER MOMENT – Statistik + Leitsatz ══ -->
+<section class="section section-dark" aria-labelledby="krim-heading">
+  <div class="container statement">
+    <div>
+      <p class="section-label">Polizeiliche Kriminalstatistik 2024</p>
+      <h2 class="section-title reveal" id="krim-heading">Sicherheit ist<br>keine Selbstverständlichkeit.</h2>
+      <!-- Pflege: jährlich gegen die offizielle BKA-PKS prüfen. Nur amtliche Werte eintragen. -->
+      <p class="statement__num reveal reveal--late">5.837.445</p>
+      <p class="statement__caption">Straftaten hat die Polizei 2024 in Deutschland registriert. Wo Vorbeugung, Aufklärung und Beweissicherung professionell zusammenwirken, entsteht Sicherheit — für Unternehmen wie für Privatpersonen.</p>
     </div>
-
-    <div class="location-card reveal">
-      <div class="location-badge">Filiale</div>
-      <h3>Schliersee</h3>
-      <address class="location-address">
-        Bahnhofstraße 8<br />D-83727 Schliersee
-      </address>
-      <div class="location-phone">Tel: <a href="tel:+4989720150030">+49&nbsp;(0)&nbsp;89&nbsp;720&nbsp;15&nbsp;030</a></div>
-      <a href="https://maps.google.com/?q=Bahnhofstra%C3%9Fe+8,+83727+Schliersee" target="_blank" rel="noopener noreferrer" class="location-map-link">
-        <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
-        Karte öffnen
-      <span class="sr-only"> (öffnet neues Fenster)</span></a>
+    <div>
+      <dl class="figures">
+        <div class="figure"><dt class="sr-only">Gewaltkriminalität</dt><dd class="figure__value">217.277</dd><dd class="figure__label">Fälle von Gewaltkriminalität</dd></div>
+        <div class="figure"><dt class="sr-only">Cybercrime</dt><dd class="figure__value">131.391</dd><dd class="figure__label">Cybercrime-Delikte (Inlandstaten)</dd></div>
+        <div class="figure"><dt class="sr-only">Wohnungseinbruch</dt><dd class="figure__value">78.436</dd><dd class="figure__label">Wohnungseinbrüche</dd></div>
+      </dl>
+      <p class="statement__source">Quelle: Bundeskriminalamt, <a href="https://www.bka.de/DE/AktuelleInformationen/StatistikenLagebilder/PolizeilicheKriminalstatistik/PKS2024/pks2024_node.html" target="_blank" rel="noopener noreferrer">Polizeiliche Kriminalstatistik 2024<span class="sr-only"> (öffnet neues Fenster)</span></a> · bundesweit erfasste Fälle · Cybercrime: Bundeslagebild Cybercrime 2024</p>
     </div>
-
-    <div class="location-card reveal">
-      <div class="location-badge">Filiale</div>
-      <h3>Nürnberg</h3>
-      <address class="location-address">
-        Bauvereinstr. 46<br />D-90489 Nürnberg
-      </address>
-      <div class="location-phone">Tel: <a href="tel:+4989720150030">+49&nbsp;(0)&nbsp;89&nbsp;720&nbsp;15&nbsp;030</a></div>
-      <a href="https://maps.google.com/?q=Bauvereinstr.+46,+90489+N%C3%BCrnberg" target="_blank" rel="noopener noreferrer" class="location-map-link">
-        <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
-        Karte öffnen
-      <span class="sr-only"> (öffnet neues Fenster)</span></a>
+    <div class="statement__quote">
+      <div>
+        <blockquote>„Qualität und Diskretion sind für uns die obersten Maximen, um den Anforderungen unserer Auftraggeber gerecht zu werden.“</blockquote>
+        <cite>Detektei Pappenberger, seit 1996</cite>
+      </div>
+      <a href="kontakt.html" class="btn-primary">Erstgespräch vereinbaren</a>
     </div>
   </div>
 </section>
 
-<!-- ══ ZERTIFIKATE & MITGLIEDSCHAFTEN ══ -->
-<section class="certs-section" aria-labelledby="certs-heading">
-  <div class="section-label reveal">Zertifiziert &amp; Anerkannt</div>
-  <h2 class="section-title reveal" id="certs-heading">Zertifikate &amp; Mitgliedschaften.</h2>
-
-  <div class="certs-group-label reveal">Zertifizierungen</div>
-  <div class="certs-bar">
-    <div class="cert-block reveal">
-      <div class="cert-logo"><img src="assets/images/iso-9001.webp" alt="ISO 9001 Zertifizierung" loading="lazy" decoding="async"></div>
-      <div class="cert-name">ISO 9001</div>
-      <div class="cert-sub">Qualitätsmanagement</div>
+<!-- ══ 05 WARUM PAPPENBERGER ══ -->
+<section class="section" aria-labelledby="trust-heading">
+  <div class="container why">
+    <div>
+      <p class="section-label">Vertrauen &amp; Qualität</p>
+      <h2 class="section-title reveal" id="trust-heading">Warum Pappenberger?</h2>
     </div>
-    <div class="cert-block reveal">
-      <div class="cert-logo"><img src="assets/images/iso-14001.webp" alt="ISO 14001 Zertifizierung" loading="lazy" decoding="async"></div>
-      <div class="cert-name">ISO 14001</div>
-      <div class="cert-sub">Umweltmanagement</div>
-    </div>
-    <div class="cert-block reveal">
-      <div class="cert-logo"><img src="assets/images/iso-45001.webp" alt="ISO 45001 Zertifizierung" loading="lazy" decoding="async"></div>
-      <div class="cert-name">ISO 45001</div>
-      <div class="cert-sub">Arbeitsschutzmanagement</div>
-    </div>
-    <div class="cert-block reveal">
-      <div class="cert-logo"><img src="assets/images/din-77200.webp" alt="DIN 77200 Zertifizierung" loading="lazy" decoding="async"></div>
-      <div class="cert-name">DIN 77200</div>
-      <div class="cert-sub">Sicherheitsdienstleistungen</div>
-    </div>
-  </div>
-
-  <div class="certs-group-label reveal">Mitgliedschaften &amp; Partner</div>
-  <div class="certs-bar">
-    <div class="cert-block reveal">
-      <div class="cert-logo"><img src="assets/images/bvsw.webp" alt="BVSW – Bayerischer Verband für Sicherheit in der Wirtschaft" loading="lazy" decoding="async"></div>
-      <div class="cert-name">BVSW</div>
-      <div class="cert-sub">Mitglied im Verband</div>
-    </div>
-    <div class="cert-block reveal">
-      <div class="cert-logo"><img src="assets/images/vesd.webp" alt="VESD – Verband für Sicherheit in der Wirtschaft" loading="lazy" decoding="async"></div>
-      <div class="cert-name">VESD</div>
-      <div class="cert-sub">Verbandsmitglied</div>
-    </div>
-    <div class="cert-block reveal">
-      <div class="cert-logo"><img src="assets/images/dsap.webp" alt="DSAP – Fachverband" loading="lazy" decoding="async"></div>
-      <div class="cert-name">DSAP</div>
-      <div class="cert-sub">Fachverband Mitglied</div>
-    </div>
-    <div class="cert-block reveal">
-      <div class="cert-logo"><img src="assets/images/ihk.webp" alt="IHK – Industrie- und Handelskammer" loading="lazy" decoding="async"></div>
-      <div class="cert-name">IHK</div>
-      <div class="cert-sub">Ausbildungsbetrieb</div>
-    </div>
-    <div class="cert-block reveal">
-      <div class="cert-logo"><img src="assets/images/polizei-helfen.webp" alt="Polizisten helfen e.V." loading="lazy" decoding="async"></div>
-      <div class="cert-name">Polizisten helfen e.V.</div>
-      <div class="cert-sub">Förderer</div>
+    <div class="rows">
+      <div class="row"><span class="row__num">01</span><div><h3 class="row__title">Gerichtsverwertbare Ergebnisse</h3><p class="row__text">Unsere Ermittlungen und Beweise erfüllen die rechtlichen Anforderungen und sind vor Gericht einsetzbar.</p></div></div>
+      <div class="row"><span class="row__num">02</span><div><h3 class="row__title">Bundesweites Netzwerk</h3><p class="row__text">Einsätze im gesamten Bundesgebiet und international — durch ortsansässige Kooperationspartner weltweit.</p></div></div>
+      <div class="row"><span class="row__num">03</span><div><h3 class="row__title">Zertifizierte Qualität</h3><p class="row__text">ISO 9001-Zertifizierung, DIN 77200 sowie Mitgliedschaft in führenden Berufsverbänden sichern höchste Standards.</p></div></div>
+      <div class="row"><span class="row__num">04</span><div><h3 class="row__title">Absolute Diskretion</h3><p class="row__text">Vertraulichkeit ist für uns nicht nur Versprechen — sie ist die Grundlage unserer Arbeit seit 1996.</p></div></div>
     </div>
   </div>
 </section>
 
-<!-- ══ CTA SECTION ══ -->
-<section class="cta-section" aria-labelledby="cta-heading">
-  <div class="cta-bg-slides" aria-hidden="true">
-    <div id="cbg-0" class="cbg ph active"></div>
-    <div id="cbg-1" class="cbg ph"></div>
-    <div id="cbg-2" class="cbg ph"></div>
+<!-- ══ 06 STANDORTE ══ -->
+<section class="section section--tint locations" id="standorte" aria-labelledby="loc-heading">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <p class="section-label">Niederlassungen</p>
+        <h2 class="section-title reveal" id="loc-heading">Unsere Standorte.</h2>
+      </div>
+      <p class="section-body reveal reveal--late">Hauptsitz in Neuried bei München, Niederlassungen in Nürnberg, Schliersee und Merseburg — und ein Netzwerk ortsansässiger Partner für Einsätze im In- und Ausland.</p>
+    </div>
+    <div class="rows">
+      <div class="row">
+        <span class="location-badge">Hauptsitz</span>
+        <h3 class="row__city">Neuried / München</h3>
+        <address class="row__addr">Eichenstraße 15<br>D-82061 Neuried</address>
+        <p class="row__tel">Tel. <a href="tel:+4989720150030">+49&nbsp;(0)&nbsp;89&nbsp;720&nbsp;15&nbsp;030</a><br>Fax +49&nbsp;(0)&nbsp;89&nbsp;720&nbsp;15&nbsp;031</p>
+        <a href="https://maps.google.com/?q=Eichenstra%C3%9Fe+15,+82061+Neuried" target="_blank" rel="noopener noreferrer" class="row__link location-map-link">Karte<span class="sr-only"> Hauptsitz auf Google Maps (öffnet neues Fenster)</span></a>
+      </div>
+      <div class="row">
+        <span class="location-badge">Filiale Ost</span>
+        <h3 class="row__city">Merseburg</h3>
+        <address class="row__addr">Hallesche Str. 118<br>D-06217 Merseburg</address>
+        <p class="row__tel">Tel. <a href="tel:+4934612492544">+49&nbsp;(0)&nbsp;3461&nbsp;2492544</a><br>Fax +49&nbsp;(0)&nbsp;3461&nbsp;2492546</p>
+        <a href="https://maps.google.com/?q=Hallesche+Str.+118,+06217+Merseburg" target="_blank" rel="noopener noreferrer" class="row__link location-map-link">Karte<span class="sr-only"> Merseburg auf Google Maps (öffnet neues Fenster)</span></a>
+      </div>
+      <div class="row">
+        <span class="location-badge">Filiale</span>
+        <h3 class="row__city">Schliersee</h3>
+        <address class="row__addr">Bahnhofstraße 8<br>D-83727 Schliersee</address>
+        <p class="row__tel">Tel. <a href="tel:+4989720150030">+49&nbsp;(0)&nbsp;89&nbsp;720&nbsp;15&nbsp;030</a></p>
+        <a href="https://maps.google.com/?q=Bahnhofstra%C3%9Fe+8,+83727+Schliersee" target="_blank" rel="noopener noreferrer" class="row__link location-map-link">Karte<span class="sr-only"> Schliersee auf Google Maps (öffnet neues Fenster)</span></a>
+      </div>
+      <div class="row">
+        <span class="location-badge">Filiale</span>
+        <h3 class="row__city">Nürnberg</h3>
+        <address class="row__addr">Bauvereinstr. 46<br>D-90489 Nürnberg</address>
+        <p class="row__tel">Tel. <a href="tel:+4989720150030">+49&nbsp;(0)&nbsp;89&nbsp;720&nbsp;15&nbsp;030</a></p>
+        <a href="https://maps.google.com/?q=Bauvereinstr.+46,+90489+N%C3%BCrnberg" target="_blank" rel="noopener noreferrer" class="row__link location-map-link">Karte<span class="sr-only"> Nürnberg auf Google Maps (öffnet neues Fenster)</span></a>
+      </div>
+    </div>
   </div>
-  <div class="cta-overlay"></div>
-  <div class="cta-content reveal">
-    <div class="section-label">Erstberatung</div>
-    <h2 id="cta-heading">Wir sind für Sie da.<br>Diskret und kompetent.</h2>
-    <p>Sprechen Sie uns an — persönlich, vertraulich und unverbindlich. Gemeinsam finden wir die richtige Lösung für Ihr Anliegen.</p>
-    <a href="tel:+498974127886" class="cta-tel">+49&nbsp;(0)&nbsp;89&nbsp;741&nbsp;27&nbsp;886</a>
-    <div class="cta-actions">
-      <a href="kontakt.html" class="btn-primary">Jetzt Kontakt aufnehmen</a>
-      <a href="kontakt.html" class="btn-ghost">Rückruf vereinbaren</a>
+</section>
+
+<!-- ══ 07 RATGEBER – editorial ══ -->
+<section class="section" aria-labelledby="ratgeber-heading">
+  <div class="container stories">
+    <div class="stories__intro">
+      <p class="section-label">Wissenswertes</p>
+      <h2 class="section-title reveal" id="ratgeber-heading">Antworten auf die<br>häufigsten Fragen.</h2>
+      <p class="section-body reveal reveal--late">Ratgeber und Hintergrundwissen rund um Detektei, Recht und Sicherheit — verständlich beantwortet von unseren Ermittlern.</p>
+      <a href="wissenswertes.html" class="link-arrow">Alle Ratgeber</a>
+    </div>
+    <div class="rows">
+      <a href="wissenswertes/was-kostet-ein-detektiv.html" class="story">
+        <span class="label">Kosten</span>
+        <div><h3 class="story__title">Was kostet ein Detektiv?</h3><p class="story__text">Welche Faktoren die Kosten bestimmen, die üblichen Abrechnungsmodelle und die Frage, wann die Gegenseite zahlt.</p></div>
+        <span class="story__arrow" aria-hidden="true">→</span>
+      </a>
+      <a href="wissenswertes/was-darf-ein-detektiv.html" class="story">
+        <span class="label">Recht</span>
+        <div><h3 class="story__title">Was darf ein Detektiv?</h3><p class="story__text">Observation, Fotos, GPS-Tracker: Was erlaubt ist, wo die Grenzen liegen — und warum diese Grenzen Sie schützen.</p></div>
+        <span class="story__arrow" aria-hidden="true">→</span>
+      </a>
+      <a href="wissenswertes/untreue-beweisen-detektiv.html" class="story">
+        <span class="label">Privat</span>
+        <div><h3 class="story__title">Untreue beweisen</h3><p class="story__text">Wie eine diskrete Observation Gewissheit verschafft — Ablauf, Rechtslage und was die Ergebnisse Ihnen bringen.</p></div>
+        <span class="story__arrow" aria-hidden="true">→</span>
+      </a>
+      <a href="wissenswertes/gerichtsverwertbare-beweise.html" class="story">
+        <span class="label">Beweise</span>
+        <div><h3 class="story__title">Gerichtsverwertbare Beweise</h3><p class="story__text">Wann Beweise vor Gericht Bestand haben, welche Fehler sie unbrauchbar machen und wie Profis dokumentieren.</p></div>
+        <span class="story__arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 08 ZERTIFIKATE & MITGLIEDSCHAFTEN – institutionell ══ -->
+<section class="section section--sm section--tint" aria-labelledby="certs-heading">
+  <div class="container memberships">
+    <div>
+      <p class="section-label">Zertifiziert &amp; anerkannt</p>
+      <h2 class="section-title reveal" id="certs-heading">Zertifikate &amp;<br>Mitgliedschaften.</h2>
+    </div>
+    <div>
+      <span class="certs-group-label">Zertifizierungen</span>
+      <ul class="marks">
+        <li class="mark"><span class="mark__logo"><img src="assets/images/iso-9001.webp" alt="ISO 9001 Zertifizierung" width="257" height="400" loading="lazy" decoding="async"></span><span class="mark__name">ISO 9001</span><span class="mark__sub">Qualitätsmanagement</span></li>
+        <li class="mark"><span class="mark__logo"><img src="assets/images/iso-14001.webp" alt="ISO 14001 Zertifizierung" width="400" height="390" loading="lazy" decoding="async"></span><span class="mark__name">ISO 14001</span><span class="mark__sub">Umweltmanagement</span></li>
+        <li class="mark"><span class="mark__logo"><img src="assets/images/iso-45001.webp" alt="ISO 45001 Zertifizierung" width="385" height="400" loading="lazy" decoding="async"></span><span class="mark__name">ISO 45001</span><span class="mark__sub">Arbeitsschutzmanagement</span></li>
+        <li class="mark"><span class="mark__logo"><img src="assets/images/din-77200.webp" alt="DIN 77200 Zertifizierung" width="251" height="400" loading="lazy" decoding="async"></span><span class="mark__name">DIN 77200</span><span class="mark__sub">Sicherheitsdienstleistungen</span></li>
+      </ul>
+      <span class="certs-group-label">Mitgliedschaften &amp; Partner</span>
+      <ul class="marks">
+        <li class="mark"><span class="mark__logo"><img src="assets/images/bvsw.webp" alt="BVSW – Bayerischer Verband für Sicherheit in der Wirtschaft" width="411" height="500" loading="lazy" decoding="async"></span><span class="mark__name">BVSW</span><span class="mark__sub">Mitglied im Verband</span></li>
+        <li class="mark"><span class="mark__logo"><img src="assets/images/vesd.webp" alt="VESD – Verband" width="500" height="134" loading="lazy" decoding="async"></span><span class="mark__name">VESD</span><span class="mark__sub">Verbandsmitglied</span></li>
+        <li class="mark"><span class="mark__logo"><img src="assets/images/dsap.webp" alt="DSAP – Fachverband" width="313" height="400" loading="lazy" decoding="async"></span><span class="mark__name">DSAP</span><span class="mark__sub">Fachverband Mitglied</span></li>
+        <li class="mark"><span class="mark__logo"><img src="assets/images/ihk.webp" alt="IHK – Industrie- und Handelskammer" width="400" height="163" loading="lazy" decoding="async"></span><span class="mark__name">IHK</span><span class="mark__sub">Ausbildungsbetrieb</span></li>
+        <li class="mark"><span class="mark__logo"><img src="assets/images/polizei-helfen.webp" alt="Polizisten helfen e.V." width="488" height="500" loading="lazy" decoding="async"></span><span class="mark__name">Polizisten helfen e.V.</span><span class="mark__sub">Förderer</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 09 CTA – dunkel ══ -->
+<section class="section section-dark" aria-labelledby="cta-heading">
+  <div class="container cta-editorial">
+    <div>
+      <p class="section-label">Erstberatung</p>
+      <h2 id="cta-heading" class="reveal">Wir sind für Sie da.<br>Diskret und kompetent.</h2>
+      <p>Sprechen Sie uns an — persönlich, vertraulich und unverbindlich. Gemeinsam finden wir die richtige Lösung für Ihr Anliegen.</p>
+    </div>
+    <div class="cta-editorial__side">
+      <a href="tel:+498974127886" class="cta-tel">+49&nbsp;(0)&nbsp;89&nbsp;741&nbsp;27&nbsp;886</a>
+      <div class="cta-actions">
+        <a href="kontakt.html" class="btn-primary">Jetzt Kontakt aufnehmen</a>
+        <a href="kontakt.html" class="link-arrow">Rückruf vereinbaren</a>
+      </div>
     </div>
   </div>
 </section>

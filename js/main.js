@@ -1,7 +1,6 @@
 /* =========================================================
    main.js – Detektei Pappenberger v3
-   Theme-Toggle · Nav · Hero-/BG-Slideshows (pausierbar) ·
-   Scroll-Reveal · Counter · Kontaktformular (POST /api/contact)
+   Theme-Toggle · Nav · Reveal (Text/Hairline) · Kontaktformular (POST /api/contact)
    Jedes Modul läuft isoliert (try/catch): ein Fehler legt
    weder Navigation noch Inhalte lahm.
    ========================================================= */
@@ -108,98 +107,13 @@
   });
 
   /* ──────────────────────────────────────
-     SLIDESHOWS (pausierbar, WCAG 2.2.2)
-  ────────────────────────────────────── */
-  var motion = { paused: prefersReducedMotion, players: [] };
-  function setMotionPaused(paused) {
-    motion.paused = paused;
-    document.documentElement.classList.toggle('motion-paused', paused);
-    motion.players.forEach(function (p) { if (paused) p.stop(); else p.start(); });
-  }
-
-  run('hero-slideshow', function () {
-    var slides = document.querySelectorAll('.hero-slide');
-    if (!slides.length) return;
-    var thumbs = document.querySelectorAll('.hero-thumb');
-    var fills  = document.querySelectorAll('.hero-thumb-fill');
-    var numEl  = document.getElementById('heroCurrentNum');
-    var DUR = 6000, TICK = 50;
-    var idx = 0, autoTimer = null, fillTimer = null, fillStart = 0;
-
-    function stopFill() { if (fillTimer) { clearInterval(fillTimer); fillTimer = null; } }
-    function startFill() {
-      stopFill();
-      fillStart = Date.now();
-      if (!fills.length) return;
-      fillTimer = setInterval(function () {
-        var pct = Math.min(100, ((Date.now() - fillStart) / DUR) * 100);
-        fills[idx].style.width = pct + '%';
-        if (pct >= 100) stopFill();
-      }, TICK);
-    }
-    function show(next) {
-      slides[idx].classList.remove('active');
-      if (thumbs[idx]) { thumbs[idx].classList.remove('active'); thumbs[idx].removeAttribute('aria-current'); }
-      if (fills[idx]) fills[idx].style.width = '0%';
-      idx = (next + slides.length) % slides.length;
-      slides[idx].classList.add('active');
-      if (thumbs[idx]) { thumbs[idx].classList.add('active'); thumbs[idx].setAttribute('aria-current', 'true'); }
-      if (numEl) numEl.textContent = (idx + 1 < 10 ? '0' : '') + (idx + 1);
-      if (!motion.paused) startFill();
-    }
-    var player = {
-      start: function () { if (autoTimer) return; startFill(); autoTimer = setInterval(function () { show(idx + 1); }, DUR); },
-      stop:  function () { if (autoTimer) { clearInterval(autoTimer); autoTimer = null; } stopFill(); if (fills[idx]) fills[idx].style.width = '100%'; }
-    };
-    motion.players.push(player);
-    thumbs.forEach(function (t, i) {
-      t.addEventListener('click', function () { player.stop(); show(i); if (!motion.paused) player.start(); });
-    });
-
-    var pauseBtn = document.getElementById('heroPause');
-    function renderPause() {
-      if (!pauseBtn) return;
-      pauseBtn.setAttribute('aria-pressed', motion.paused ? 'true' : 'false');
-      pauseBtn.setAttribute('aria-label', motion.paused ? 'Animationen fortsetzen' : 'Animationen pausieren');
-    }
-    if (pauseBtn) pauseBtn.addEventListener('click', function () { setMotionPaused(!motion.paused); renderPause(); });
-    renderPause();
-    if (motion.paused) { document.documentElement.classList.add('motion-paused'); if (fills[0]) fills[0].style.width = '100%'; }
-    else player.start();
-  });
-
-  run('bg-slideshows', function () {
-    function make(slideSel, dotSel, interval) {
-      var els = document.querySelectorAll(slideSel);
-      if (els.length < 2) return;
-      var dots = dotSel ? document.querySelectorAll(dotSel) : [];
-      var idx = 0, timer = null;
-      function go(next) {
-        els[idx].classList.remove('active');
-        if (dots[idx]) { dots[idx].classList.remove('active'); dots[idx].removeAttribute('aria-current'); }
-        idx = (next + els.length) % els.length;
-        els[idx].classList.add('active');
-        if (dots[idx]) { dots[idx].classList.add('active'); dots[idx].setAttribute('aria-current', 'true'); }
-      }
-      var player = {
-        start: function () { if (!timer) timer = setInterval(function () { go(idx + 1); }, interval); },
-        stop:  function () { if (timer) { clearInterval(timer); timer = null; } }
-      };
-      motion.players.push(player);
-      dots.forEach(function (d, i) { d.addEventListener('click', function () { player.stop(); go(i); if (!motion.paused) player.start(); }); });
-      if (!motion.paused) player.start();
-    }
-    make('#bgs1 .bgs-slide', '#bgs1Dots .bgs-dot', 5000);
-    make('.trust-img-slide', null, 4500);
-    make('.kbg', null, 5500);
-    make('.cbg', null, 6000);
-  });
-
-  /* ──────────────────────────────────────
-     SCROLL REVEAL (nur Effekt – Inhalte sind ohne JS sichtbar)
+     MOTION – wenige begründete Prinzipien
+     a) .reveal: Textblöcke erscheinen dezent nach ihrem Kontextlabel
+     b) .reveal-rule: Hairlines zeichnen sich beim Eintritt in die Sektion
+     Inhalte sind ohne JS vollständig sichtbar (Regeln greifen nur unter html.js).
   ────────────────────────────────────── */
   run('reveal', function () {
-    var els = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    var els = document.querySelectorAll('.reveal, .reveal-rule');
     if (!els.length) return;
     if (prefersReducedMotion || !('IntersectionObserver' in window)) {
       els.forEach(function (el) { el.classList.add('visible'); });
@@ -207,37 +121,8 @@
     }
     var obs = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
     els.forEach(function (el) { obs.observe(el); });
-  });
-
-  /* ──────────────────────────────────────
-     COUNTER (Kriminalstatistik – Werte aus data-count)
-  ────────────────────────────────────── */
-  run('counter', function () {
-    var section = document.querySelector('.kriminal-section');
-    var nums = document.querySelectorAll('.kriminal-num[data-count]');
-    if (!nums.length) return;
-    function fmt(n) { try { return n.toLocaleString('de-DE'); } catch (e) { return String(n); } }
-    function setAll(animate) {
-      nums.forEach(function (el) {
-        var target = parseInt(el.getAttribute('data-count'), 10) || 0;
-        if (!animate || prefersReducedMotion) { el.textContent = fmt(target); return; }
-        var start = null, dur = 2200;
-        (function step(ts) {
-          if (!start) start = ts;
-          var p = Math.min((ts - start) / dur, 1);
-          el.textContent = fmt(Math.floor((1 - Math.pow(1 - p, 3)) * target));
-          if (p < 1) requestAnimationFrame(step);
-        })(performance.now());
-      });
-    }
-    if (section && 'IntersectionObserver' in window) {
-      var obs = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) { if (e.isIntersecting) { setAll(true); obs.disconnect(); } });
-      }, { threshold: 0.2 });
-      obs.observe(section);
-    } else setAll(false);
   });
 
   /* ──────────────────────────────────────
