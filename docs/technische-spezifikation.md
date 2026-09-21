@@ -1,201 +1,152 @@
 # Technische Spezifikation — detektei-weltweit.de
 
-Stand: 2026-09-21 · Branch `feature/dark-light-mode` · Quelle der Wahrheit: `css/main.css` (Tokens in `:root` und `[data-theme="light"]`)
+Stand: 2026-09-21 (Visual System v3 „Investigative Editorial Authority“) · Branch `feature/dark-light-mode` · Quelle der Wahrheit: `css/main.css`
 
 ## 1. Stack
 
 | Bereich | Umsetzung |
 |---|---|
 | Seiten | 20 statische HTML-Dateien (13 Root, `news/` ×2, `wissenswertes/` ×4, `404.html`), kein Framework, kein Build |
-| Styling | `css/main.css` (78 KB roh / 14,8 KB gzip), Custom Properties, Dark-Default + Light via `data-theme` |
-| Script | `js/main.js` (21 KB / 6,3 KB gzip), IIFE, Progressive Enhancement, Module isoliert |
+| Styling | `css/main.css` (~48 KB roh), Custom Properties, Dark-Default + Light via `data-theme`, Sektions-Token-Override für dunkle Sektionen |
+| Script | `js/main.js` (~15 KB), IIFE, Progressive Enhancement, Module isoliert: Theme, Nav, Reveal, Formular |
 | Backend | `api/contact.js` (Vercel Serverless, Node 22, `nodemailer`) |
 | Hosting | Vercel; `vercel.json` (Header, Redirects, Cache); Brotli |
-| Fonts | 8 × WOFF2 self-hosted, `font-display: swap` |
+| Fonts | 8 × WOFF2 self-hosted, `font-display: swap`, metrik-angepasste System-Fallbacks (`size-adjust`) |
 | Icons/Manifest | `favicon.ico` 32, `favicon.svg`, Apple-Touch 180, PNG 192/512, `site.webmanifest` |
-| Theme-Wechsel | Inline-Head-Script (CSP-Hash), `localStorage['dp-theme']`, Fallback `prefers-color-scheme` |
 
-## 2. Farben
+## 2. Gestaltungsgrammatik
 
-### Dark (Standard)
-
-| Token | Wert | Verwendung |
+| Fläche | Bedeutung | Umsetzung |
 |---|---|---|
-| `--black` | `#0a0a0b` | Seitengrund |
-| `--deep` | `#111114` | Sektionen, Intro, Standorte, Footer |
-| `--panel` | `#16161a` | Hover-Flächen |
-| `--border` | `#2a2a30` | Linien, Trenner |
-| `--muted` | `#9a9aa9` | Sekundärtext (≥ 5,4:1 auf Glas-Karten) |
-| `--silver` | `#b8b8c8` | Footer-Links, Copyright |
-| `--light` | `#d8d8e0` | Fließtext |
-| `--white` | `#f2f2f4` | Überschriften |
-| `--gold` | `#3D63B2` | Markenblau als Fläche (Buttons, Linien, Ticker) |
-| `--gold2` | `#5B82D1` | Hover-Fläche |
-| `--accent-text` | `#6A90DA` | Markenblau als Text (≥ 5,2:1 auf Karten) |
+| **Light** (`--bg`) | Information, Lesen, Vergleichen | Standard-Sektionen |
+| **Tint** (`--bg-2`, `.section--tint`) | leichte Gliederung | Leistungen, Standorte, Zertifikate, Seiten-Hero |
+| **Dark** (`.section-dark`, `.cta-section`, `.site-footer`) | Bedeutung, Fokus, Abschluss | Statement/Statistik, CTA, Footer – in **beiden** Themes dunkel |
+| **Blau** (`--brand`, `--brand-text`) | Aktion, Orientierung | Primary-Button, Textlinks, aktiver Nav-Zustand, Fokus, Eyebrow, Hairline-Akzente |
 
-### Light
+Glas (Backdrop-Blur) nur: Header im gescrollten Zustand, Dropdown, Mobile-Navigation. Keine Karten als Standard; Inhalte werden über Hairlines, Raster, Weißraum und Typografie gruppiert.
 
-| Token | Wert |
-|---|---|
-| `--black` | `#F0EEE9` (Ivory-Grund) |
-| `--deep` | `#E7E4DE` |
-| `--panel` | `#DEDBD4` |
-| `--border` | `#C9C5BB` |
-| `--muted` | `#5E5B57` |
-| `--silver` | `#3E3C39` |
-| `--light` | `#1A1917` (Fließtext) |
-| `--white` | `#0A0A0B` (Überschriften) |
-| `--gold` | `#2A4E9E` |
-| `--gold2` | `#3563B5` |
-| `--accent-text` | `#2A4E9E` |
+## 3. Farben
 
-Kontraste: alle Text/Grund-Kombinationen ≥ 4,5:1 (axe WCAG 2.2 AA, beide Themes, 0 Verstöße). Weiß auf Markenblau 5,8:1 (Dark) / 7,8:1 (Light).
+| Token | Dark (Standard) | Light | Dunkle Sektion (beide Themes) |
+|---|---|---|---|
+| `--bg` | `#15161b` | `#F0EEE9` | `#0c0d10` |
+| `--bg-2` | `#1b1c22` | `#E7E4DE` | `#111216` |
+| `--bg-3` | `#22232b` | `#DEDBD4` | `#17181d` |
+| `--line` | `#30313a` | `#CFCBC1` | `#26272f` |
+| `--line-strong` | `#474854` | `#AFAA9E` | `#3b3c46` |
+| `--ink` (Fließtext) | `#e4e4e9` | `#1A1917` | `#e4e4e9` |
+| `--ink-2` (sekundär) | `#b6b7c1` | `#3E3C39` | `#b6b7c1` |
+| `--ink-3` (Meta) | `#9294a0` | `#5E5B57` | `#9a9ba7` |
+| `--heading` | `#f4f4f6` | `#0A0A0B` | `#f6f6f8` |
+| `--brand` (Fläche) | `#3D63B2` | `#2A4E9E` | `#3D63B2` |
+| `--brand-strong` (Hover) | `#2F4F94` | `#213F82` | `#2F4F94` |
+| `--brand-text` (Text) | `#86A8E8` | `#2A4E9E` | `#8FB0EA` |
 
-### Glas-Tokens
+Kontraste: alle Text/Grund-Kombinationen ≥ 4,5:1 (axe WCAG 2.2 AA, beide Themes, 0 Verstöße). Legacy-Aliase (`--black`, `--deep`, `--muted`, `--gold`, …) zeigen auf die neuen Tokens.
 
-| Token | Dark | Light |
+## 4. Typografie
+
+### Schriften (`assets/fonts/`, 8 Dateien à ~23 KB)
+
+| Rolle | Familie | Schnitt |
 |---|---|---|
-| `--glass-bg` | `rgba(255,255,255,.06)` | `rgba(255,255,255,.58)` |
-| `--glass-bg-hover` | `rgba(255,255,255,.10)` | `rgba(255,255,255,.70)` |
-| `--glass-border` | `rgba(255,255,255,.12)` | `rgba(10,26,52,.12)` |
-| `--glass-highlight` (Innenkante oben) | `rgba(255,255,255,.10)` | `rgba(255,255,255,.85)` |
-| `--glass-shadow` | `0 10px 34px rgba(0,0,0,.35)` | `0 10px 34px rgba(0,0,0,.08)` |
-| `--glass-blur` | `blur(18px) saturate(150%)` | gleich |
-| `--glass-radius` | `18px` | gleich |
-| `--glass-accent-bg` (Primary-Button) | `rgba(61,99,178,.30)` | `rgba(42,78,158,.88)` |
-| `--glass-accent-border` | `rgba(91,130,209,.55)` | `rgba(42,78,158,.55)` |
-| `--glass-input-bg` | `rgba(255,255,255,.04)` | `rgba(255,255,255,.55)` |
+| Display / Hero | Cormorant Garamond | 300 |
+| Sektions- und Seitenüberschriften, Einträge | Cormorant Garamond | 400 (600 nur in Ausnahmen) |
+| Fließtext | Barlow | 400 (`strong` 600) |
+| UI / Meta / Navigation / Buttons | Barlow Condensed | 600 (500 Mobile-Sub-Navigation, 700 reserviert) |
 
-Backdrop-Blur nur über Bild/Verlauf (Header, Dropdown, Mobile-Nav, Buttons, CTA-Panel, Statistik-Karten). Karten auf flachem Grund nutzen die Glas-Optik ohne Blur (Performance).
+Fallbacks metrik-angepasst: Georgia 87,5 % / Times 96,8 % → Cormorant; Arial 96,9 % → Barlow; Arial Narrow 90,1 % bzw. Arial 74 % → Condensed. Preload je Seite: `cormorant-garamond-300`, `barlow-400`, `barlow-condensed-600`.
 
-## 3. Typografie
-
-### Schriften (self-hosted, `assets/fonts/`)
-
-| Familie | Schnitte | Rolle |
-|---|---|---|
-| Cormorant Garamond | 300, 400, 600 | Display/Überschriften (Serif) |
-| Barlow | 400, 600 | Fließtext, Meta, `strong` |
-| Barlow Condensed | 500, 600, 700 | Labels, Navigation, Buttons, Zahlen-Labels (Versalien) |
-
-Fallbacks: `Georgia, serif` · `system-ui, sans-serif`. Preload je Seite: `cormorant-garamond-300` + `barlow-400` (Startseite zusätzlich `cormorant-garamond-600`).
-
-### Skala (Tokens)
+### Skala
 
 | Token | Wert | Einsatz |
 |---|---|---|
-| `--text-xs` | 12 px | Labels, Eyebrows, Buttons, Nav, Breadcrumb, Badges |
-| `--text-sm` | 14 px | Karten-Teaser, Footer-Links, Hinweisboxen, Checkbox-Label |
-| `--text-base` | `clamp(16px, .95rem + .2vw, 17px)` | Fließtext, Listen, CTA-Text |
-| `--text-lead` | `clamp(17px, 1rem + .3vw, 19px)` | Hero-Sub, Seiten-Intro, Über-uns |
-| `--lh-body` | 1,7 | Zeilenhöhe Fließtext |
-| `--measure` | 78ch | max. Zeilenlänge (`.prose`: `min(780px, 78ch)`) |
+| `--display` | `clamp(48px, 7vw, 104px)` | Hero-H1 (Kicker 0,34em) |
+| `--h1` | `clamp(38px, 5vw, 68px)` | Seiten-H1 |
+| `--h2` | `clamp(30px, 3.6vw, 50px)` | Sektionen, Prose-H2, CTA |
+| `--h3` | `clamp(22px, 2vw, 28px)` | Zeilen-Titel, Standorte, Stories, Jobs |
+| `--text-lead` | `clamp(17px, 1rem + .35vw, 20px)` | Einleitungen, Seiten-Intro |
+| `--text-base` | `clamp(16px, .95rem + .2vw, 17px)` | Fließtext, Listen |
+| `--text-sm` | 14 px | Teaser, Meta-Zeilen, Footer, Formular-Hinweise |
+| `--text-xs` | 12 px | Labels, Eyebrows, Navigation, Buttons (`--track-ui` 0,12em, Versalien) |
+| `--lh-body` / `--measure` | 1,7 / 74ch | Zeilenhöhe / max. Zeilenlänge |
 
-### Überschriften & Display
+Große Zahlen: Proof-Leiste `clamp(38px, 4vw, 56px)`, Statement `clamp(64px, 9vw, 128px)`, Statistik-Zeilen `clamp(30px, 3vw, 44px)` – alle Cormorant 300.
 
-| Element | Familie/Gewicht | Größe | Zeilenhöhe |
-|---|---|---|---|
-| Hero-H1 (`.hero-title`) | Cormorant 300, Claim in `em` 600 | `clamp(52px, 7.5vw, 96px)`, Kicker 0,4em | 1,0 |
-| Seiten-H1 (`.page-hero h1`) | Cormorant 300 | `clamp(36px, 5vw, 72px)` | 1,1 |
-| Sektions-H2 (`h2.section-title`) | Cormorant 400 | `clamp(34px, 4.5vw, 58px)` (≤ 768: `clamp(28px, 7vw, 42px)`) | 1,1 |
-| Prose-H2 | Cormorant 400 | `clamp(26px, 3vw, 40px)` | – |
-| Prose-H3 | Condensed 600, Versalien, 0,1em | 15 px | – |
-| CTA-H2 | Cormorant 400 | `clamp(32px, 4vw, 52px)` | 1,15 |
-| Zitat | Cormorant 300 | `clamp(24px, 3.5vw, 44px)` | 1,35 |
-| Karten-Titel (Leistung) | Cormorant 600 | 24 px | 1,2 |
-| Karten-Titel (Standort/News/Job) | Cormorant 400 | 22 px | 1,2 |
-| Stats-Zahl / Statistik-Zahl / Jahreszahl | Cormorant 300 | 64 / 60 (≤ 768: 44) / 80 (≤ 768: 56) px | 1 |
-| Telefon CTA (`.cta-tel`) | Condensed 600 | 28 px (≤ 768: 22) | – |
-| Notruf-Leiste | Condensed 700, 0,12em | 13 px | – |
+## 5. Layout & Abstände
 
-Laufweiten: Labels 0,16–0,22em, Nav 0,12em, Buttons 0,16em, Eyebrow 0,2em.
-
-## 4. Layout & Abstände
-
-| Token / Regel | Wert |
+| Token | Wert |
 |---|---|
 | `--container-max` | 1280 px |
-| `--container-pad` (Seitenrand) | `clamp(20px, 4.5vw, 60px)` |
-| `--header-height` | 116 px (≤ 480: 92 px); Header fixed, Glas beim Scrollen |
-| Logo im Header | Höhe 100 px (≤ 480: 74 px), Breite auto (Seitenverhältnis 2,12) |
-| `--section-y` / `-sm` / `-xs` | `clamp(64px, 8.5vw, 120px)` / `clamp(52px, 6.5vw, 100px)` / `clamp(48px, 5vw, 80px)` |
-| `--grid-gap` (2-spaltig) | `clamp(36px, 4.5vw, 60px)` |
-| `--card-pad` | `clamp(32px, 3.4vw, 52px)` |
-| Karten-Abstand in Rastern | 14 px (≤ 768: 12 px) |
-| Hero | `100svh` (Fallback `100vh`), min. 640 px |
-| Zitat-Sektion / CTA-Sektion | 520 px / 540 px (≤ 768: auto), CTA auf Unterseiten 380 px |
-| `scroll-margin-top` für Anker | Header + 16 px |
+| `--pad` (Seitenrand) | `clamp(20px, 4.5vw, 64px)` |
+| `--header-h` | 88 px (≤ 560: 72 px); Logo 60 px (≤ 560: 48 px) |
+| `--section-y` / `--section-y-sm` | `clamp(72px, 9vw, 136px)` / `clamp(56px, 7vw, 104px)` |
+| `--gap` (Spaltenabstand) | `clamp(32px, 4.5vw, 72px)` |
+| `--row-y` (Editorial Rows) | `clamp(24px, 2.6vw, 36px)` |
+| Radien | `--r-ui` 2 px (Buttons, Felder) · `--r-panel` 6 px (Dropdown) · `--r-overlay` 10 px |
 
 ### Breakpoints
 
 | Breite | Änderung |
 |---|---|
-| ≤ 1100 px | Footer 2 Spalten, Stats 2×2, 4er-Kartenraster → 2×2 |
-| ≤ 900 px | Leistungen 2 Spalten, Trust/Intro/Kontakt 1 Spalte, Standorte 2, Statistik 2 |
-| ≤ 768 px | Desktop-Nav → Hamburger + Glas-Overlay, Leistungen/Standorte/Zertifikate 1 Spalte, Job-Karten gestapelt |
-| ≤ 560 px | 4er-Kartenraster 1 Spalte |
-| ≤ 480 px | Header 92 px, Hero-/CTA-Buttons gestapelt, Statistik 1 Spalte |
+| ≤ 1100 px | Footer 2 Spalten, Proof-/Stats-Leiste 2×2, Standort-Zeilen 3 Spalten |
+| ≤ 900 px | Hero, Sektionsköpfe, Statement, Ratgeber, Zertifikate, CTA, Kontakt: 1 Spalte; Rows 2 Spalten (Nummer + Inhalt) |
+| ≤ 768 px | Hamburger-Navigation; Standorte/Stories/Jobs gestapelt; Hero-Fakten 1 Spalte |
+| ≤ 560 px | Header 72 px; Proof-/Stats-Leiste 1 Spalte; Buttons volle Breite; Footer 1 Spalte |
 
-Kartenraster: `repeat(auto-fit, minmax(min(260px, 100%), 1fr))`; Raster mit genau 4 Karten deterministisch 4 → 2×2 → 1 (`:has()`); Abschluss-Elemente (Links/Badges/Untertitel) in allen Karten unten bündig.
+## 6. Komponenten
 
-## 5. Komponenten-Maße
-
-| Komponente | Maße |
+| Komponente | Spezifikation |
 |---|---|
-| Primary-Button | Pille (999 px), 16 × 40 px Innenabstand, 12 px Condensed 700, Glas-Blau + Blur, Hover heller/−1 px |
-| Ghost-Button | wie Primary, Glas-Weiß, max. 250 px |
-| Nav-Pille | 5 × 6 px Innenabstand, Links 10 × 20 px, Radius 999 px, Blur 18 px |
-| Dropdown | 240 px min, Radius 18 px, Blur 24 px, Einträge 11 × 16 px |
-| Theme-Toggle / Pause-Button | 38 × 38 px bzw. 36 × 36 px, rund, Glas |
-| Hero-Slider-Balken | Buttons 36 × 28 px (aktiv 60 px), Balken 3 px, Fortschritt 6 s |
-| Zitat-Punkte | Buttons 24 × 24 px, Punkt 8 px |
-| Karten | Radius 18 px, 1 px Glas-Kante, Schatten `--glass-shadow`, Innenabstand `--card-pad` |
-| Formularfelder | 14 × 16 px Innenabstand, 16 px Text, Radius 12 px, Fokus: blaue Kante + 3 px Ring |
-| Skip-Link | erscheint bei Fokus oben links, Pille, Markenblau |
-| Touch-Ziele | ≥ 24 × 24 px (Footer-/Breadcrumb-Links mit 5–6 px vertikalem Padding) |
+| Primary-Button | Markenblau, weiß, 15 × 26 px, Radius 2 px, Condensed 600 12 px; Hover: dunkleres Blau (keine Verschiebung) |
+| Ghost-Button | Outline 1 px `--line-strong`, Hover: Kante in `--heading` |
+| Textlink (`.link-arrow`) | Condensed 600 12 px, Blau, Pfeil „→“ verschiebt sich 4 px |
+| Navigation | Textlinks, 2-px-Unterstrich in Blau für Hover/aktiv; Kontakt als Primary-Button; Toggle 36 px rund |
+| Dropdown | Panel 6 px Radius, Hairline, Schatten, Blur 14 px |
+| Editorial Row (`.row`) | Grid `56px · 0.9fr · 1.2fr · auto`, Hairline oben/unten, Hover: Titel blau |
+| Story Row (`.story`, `.news-card__body`) | Grid `110px · 1fr · auto`: Label · Titel + Teaser · Pfeil/Link |
+| Proof-/Stats-Leiste | 4 Spalten mit vertikalen Hairlines, Zahl Cormorant 300 + Erklärung |
+| Standort-Zeile | `120px · 0.8fr · 1fr · 0.9fr · auto`: Badge · Ort · Adresse · Telefon · Karte |
+| Zertifikate (`.marks`) | Hairline-Raster `minmax(150px,1fr)`, weiße Logo-Kachel 112 × 64 px, Name + Untertitel, keine Hover-Effekte |
+| Formular | Felder 14 × 16 px, 16 px Text, Radius 2 px, Kante `--line-strong`, Fokus: blaue Kante + 3-px-Ring; Statusbox mit linker 3-px-Kante |
+| Hinweisbox (`.legal-notice`) | linke 2-px-Kante in Blau, kein Hintergrund |
+| Touch-Ziele | ≥ 24 × 24 px |
 
-## 6. Assets
+## 7. Motion
+
+Zwei Prinzipien: `.reveal` (12 px, 600 ms, `cubic-bezier(.2,.7,.2,1)`, optional `--late` +120 ms) für Sektionsköpfe und Textblöcke; `.reveal-rule` (Hairline zeichnet sich, 900 ms). Hover: Farbwechsel, Pfeil 4–6 px. Keine Slider, kein Ticker, keine Zähler, kein Parallax. `prefers-reduced-motion` deaktiviert alles; ohne JavaScript sind alle Inhalte sichtbar.
+
+## 8. Assets
 
 | Datei | Maße | Größe | Zweck |
 |---|---|---|---|
-| `assets/images/logo-full.webp` | 810 × 382 | 88 KB | Header/Footer (transparent; Dark: per Filter weiß) |
-| `assets/images/logo-full-480.webp` | 480 × 227 | 41 KB | `srcset` ≤ 2× DPR |
-| `assets/images/logo-publisher.png` | 600 × 283 | 26 KB | Schema.org `logo` (Raster, weiß) |
-| `assets/images/og-image.png` | 1200 × 630 | 82 KB | Open Graph / Twitter |
-| `assets/images/logo-full.svg`, `logo-badge.svg` | 2800 × 1000 / 700 × 700 | 57 / 25 KB | Vektorquellen (Badge „SEIT 1996“) |
-| Zertifikate/Verbände `*.webp` (9) | 250–500 px | 2,5–29 KB | Trust-Sektion |
-| `assets/icons/favicon.svg` | 700 × 700 | 25 KB | Tab-Icon (modern) |
-| `favicon.ico` | 32 × 32 | 4 KB | Fallback |
-| `assets/icons/apple-touch-icon.png` | 180 × 180 | 9 KB | iOS |
-| `assets/icons/icon-192.png` / `icon-512.png` | 192 / 512 | 9 / 30 KB | Manifest |
-| `assets/fonts/*.woff2` (8) | – | ~23 KB je Datei | Schriften |
+| `assets/images/logo-full.webp` / `-480.webp` | 810 × 382 / 480 × 227 | 88 / 41 KB | Header/Footer (transparent; Dark: Filter weiß) |
+| `assets/images/logo-publisher.png` | 600 × 283 | 26 KB | Schema.org `logo` |
+| `assets/images/og-image.png` | 1200 × 630 | 82 KB | Open Graph |
+| `assets/images/logo-full.svg`, `logo-badge.svg` | Vektor | 57 / 25 KB | Quellen (Badge „SEIT 1996“) |
+| Zertifikate/Verbände `*.webp` (9) | 250–500 px | 2,5–29 KB | Trust-Raster |
+| `assets/icons/*` | 180 / 192 / 512, SVG | 8–30 KB | Icons |
 
-Bildflächen (Hero ×3, Zitat ×3, Trust ×3, Statistik ×3, CTA ×3, Intro): aktuell CSS-Verläufe mit Rasterlinien, theme-abhängig; echte Fotos als `<img>` in die Slide-Container (Hero-Bild 1 `fetchpriority="high"`, weitere `loading="lazy"`).
+Fotografie: derzeit **keine** (keine Stock-/AI-Bilder). Das Layout funktioniert ohne Bilder; vorgesehene Slots: Hero-Bildspalte, Bildpause zwischen Leistungen und Statement, Standorte. Anforderungen bei Lieferung: WebP/AVIF, `srcset`, `width/height`, Hero `fetchpriority="high"`, Rest `loading="lazy"`.
 
-Altbestand ohne Referenz (kann entfernt werden): `bvsw.png`, `iso-45001.png`, `polizei-helfen.png`, `vesd.png`, `*.jpg` der Zertifikatslogos.
+Altbestand ohne Referenz (löschbar): `bvsw.png`, `iso-45001.png`, `polizei-helfen.png`, `vesd.png`, `*.jpg` der Zertifikatslogos.
 
-## 7. Performance
+## 9. Performance (Lighthouse mobil, lokal mit gzip)
 
-| Messung (Lighthouse, mobil, Vercel-Preview) | Wert |
-|---|---|
-| Startseite / Detektei / Kontakt Performance | 99 / 100 / 99 |
-| LCP | 1,9 s |
-| CLS | 0–0,013 |
-| Transfer Startseite | ~260 KB (davon Fonts ~160 KB, Logo 41 KB, CSS 15 KB, JS 6 KB) |
-| Requests Startseite | ≤ 16, nur First-Party |
+| Seite | Perf | LCP | CLS |
+|---|---|---|---|
+| `/` | 98–99 | 2,1–2,3 s | 0 |
+| `/detektei.html` | 98 | 2,3 s | 0,001 |
+| `/kontakt.html` | 98 | 2,3 s | 0 |
 
-Caching (`vercel.json`): Fonts 1 Jahr immutable · Bilder/Icons 7 Tage + SWR · CSS/JS 1 h + SWR · API `no-store`.
+Transfer Startseite ~196 KB, 11 Requests, nur First-Party. Caching (`vercel.json`): Fonts 1 Jahr immutable · Bilder/Icons 7 Tage + SWR · CSS/JS 1 h + SWR · API `no-store`.
 
-## 8. Sicherheit
+## 10. Sicherheit & Barrierefreiheit
 
-CSP: `default-src 'self'; script-src 'self' 'sha256-Vn2Ot0A3rUY/cvc4PTUgYrDYyp+qyRf2BpD9q84ZqFI='; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; manifest-src 'self'; upgrade-insecure-requests` · HSTS 2 Jahre inkl. Subdomains (ohne preload) · `X-Content-Type-Options: nosniff` · `X-Frame-Options: DENY` · `Referrer-Policy: strict-origin-when-cross-origin` · `Permissions-Policy` (Kamera, Mikro, Geo, Payment, USB aus) · COOP `same-origin`. Keine Inline-Styles, kein `unsafe-inline`.
+CSP `default-src 'self'; script-src 'self' 'sha256-…'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; manifest-src 'self'; upgrade-insecure-requests` · HSTS · nosniff · DENY · Referrer strict-origin-when-cross-origin · Permissions-Policy · COOP. Keine Inline-Styles.
 
-Formular: Client- und Server-Validierung, Honeypot, Zeitfenster ≥ 3 s, Rate-Limit 5/10 min pro IP, Origin-Prüfung, Payload ≤ 32 KB, Versand nur nach Bestätigung des Mailservers.
+WCAG 2.2 AA: Skip-Link, Landmarks, `aria-current`, sichtbarer Fokus (2 px Blau), Links im Fließtext unterstrichen, Formular mit `aria-invalid`/`aria-describedby`/`role="status"`, Touch-Ziele ≥ 24 px, Kontraste AA in beiden Themes, Reduced Motion.
 
-## 9. Barrierefreiheit
+## 11. Browser-Support
 
-WCAG 2.2 AA orientiert: Skip-Link, semantische Landmarks, `aria-current` in der Navigation, Slider als `<button>` mit Labels und Pause/Play (`aria-pressed`), `prefers-reduced-motion` (CSS + JS), Formular mit `aria-invalid`/`aria-describedby`/`role="status"`, sichtbarer Fokusring 2 px Markenblau, Links im Fließtext unterstrichen, Touch-Ziele ≥ 24 px, Kontraste AA in beiden Themes.
-
-## 10. Browser-Support
-
-Chrome/Edge ≥ 105, Safari ≥ 15.4 (iOS 15.4+), Firefox ≥ 121. Verwendete Features: `backdrop-filter` (mit `-webkit-`), `:has()` (nur für 4er-Raster, Fallback auto-fit), `clamp()`, `100svh` (Fallback `100vh`), `:focus-visible`, `inset`, `padding-block`. Ohne JavaScript: alle Inhalte sichtbar, Formular sendet per klassischem POST mit HTML-Antwort.
+Chrome/Edge ≥ 105, Safari ≥ 15.4, Firefox ≥ 121. Features: `backdrop-filter` (mit Prefix), `clamp()`, `size-adjust`, `:focus-visible`, `inset`. Ohne JavaScript: alle Inhalte sichtbar, Formular sendet per klassischem POST mit HTML-Antwort.

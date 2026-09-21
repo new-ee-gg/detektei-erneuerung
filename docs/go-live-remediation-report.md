@@ -222,3 +222,21 @@ Offizielles Logo `DSS_Pappenberger_30Jahre_Logo.jpg` (2898×1368, weißer Hinter
 
 ## 16. Typografie-Pass (2026-09-21)
 Tokens `--text-xs/sm/base/lead`, `--lh-body`, `--measure` in `css/main.css`. Fließtext 16–17 px / Gewicht 400 (vorher 15 px / 300), Zeilenlänge ≤ 78 Zeichen, Einleitungen 17–19 px, Labels/Buttons/Nav 12 px (vorher 11), Meta/Karten-Teaser 14 px, Eingabefelder 16 px (kein iOS-Auto-Zoom). Barlow 300 entfernt (8 Font-Dateien). axe: 0 Verstöße Dark + Light.
+
+## 17. Visual System v3 – Art Direction „Investigative Editorial Authority“ (2026-09-21)
+
+**Phase 1 Audit (systemische Ursachen):** Glas-Karte mit 18-px-Radius für jede Information (14 Komponententypen), Pill-Form bei Nav/Buttons/Inputs/Badges, jede Sektion = Eyebrow + Serif-H2 + Kartenraster, 15 Slider-Slides + Ticker + Reveal-Stagger, kein tonaler Rhythmus (Dark-Theme komplett dunkel, Light-Theme komplett hell), Verläufe/Raster statt Material.
+
+**Phase 2 Governance:** semantische Tokens (`--bg/--bg-2/--ink/--brand/--brand-text`), Sektionslogik LIGHT = Information / TINT = Gliederung / DARK = Bedeutung (Token-Override, in beiden Themes dunkel) / BLAU = Aktion; Radien 2/6/10 px; Glas nur Header (gescrollt), Dropdown, Mobile-Nav; Button-System Primary (solid Blau) / Ghost (Outline) / Textlink mit Pfeil; Editorial Row + Story Row + Proof-Leiste als Grundmuster; Motion = Reveal 12 px + Hairline.
+
+**Phase 3 Startseite (Referenz):** Hero typografisch-asymmetrisch (Meta-Zeile, H1, rechts Lead + CTA + operative Fakten: 24h-Nummer, Hauptsitz, Einsatzgebiet, Qualität) → Positionierung + Proof-Leiste → Leistungen (2 Featured + 4 Rows) → dunkles Statement (PKS-Zahl mit Kontext, 3 Nebenzahlen, Leitsatz, CTA) → Warum Pappenberger (Rows) → Standorte (Tabelle) → Ratgeber (Story Rows) → Zertifikate (Hairline-Raster) → dunkler CTA → Footer. Entfernt: Hero-Slider, Ticker, 4 Hintergrund-Slider, Zähler-Animation, Kartenwand, Icons. Kein Inhalt erfunden; Kennzahlen unverändert (∞ nur noch als Text „weltweites Netzwerk“ in der Proof-Leiste durch „4 Standorte“ ersetzt – bestehende Angabe).
+
+**Phase 4/5:** Responsive 1440/1024/768/390/320 geprüft (scrollWidth = Viewport); Unterseiten über gemeinsame Komponenten überführt (Stats-Leiste, Story Rows, Jobs, CTA, Formular), Slide-Markup aus 14 Unterseiten entfernt.
+
+**Phase 6 Motion:** nur `.reveal`/`.reveal-rule`, Hover als Farb-/Pfeilreaktion.
+
+**Phase 7 QA:** axe 0 Verstöße (3 Seiten × 2 Themes), html-validate 0 relevante Meldungen, Lighthouse mobil 98–99 / A11y 100 / SEO 100, CLS 0–0,001 (metrik-angepasste Fallback-Fonts), Formular-Tests 18/18, Links 0 defekt.
+
+**Anti-AI-Selbsttest:** ohne Animation gestaltet ✓ · ohne Schatten Hierarchie klar ✓ (keine Schatten außer Dropdown) · ohne Radien gruppiert ✓ (Hairlines) · ohne Fotografie funktioniert ✓ · ohne Blau Hierarchie lesbar ✓ (Typografie/Hairlines) · 5-Sekunden-Test: Firma, Leistung, Zielgruppe, Ort, nächster Schritt im Hero ✓ · 5 Sektionen in Folge unterschiedlich (Hero/Proof/Featured+Rows/Dark/Rows-2-spaltig) ✓ · „Premium“-Dekoration entfernt ✓ · ohne Dark Mode Detektei-Charakter ✓ · ohne Glas hochwertig ✓.
+
+**Offen (nicht durch Engineering lösbar):** Fotografie (Slots vorbereitet, keine Stock-/AI-Bilder eingesetzt) – CUSTOMER; Kennzahlen „∞/16/100 %“ auf Unterseiten – CUSTOMER (F-24).
