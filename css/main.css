@@ -123,7 +123,7 @@
    2. Reset & Basis
    --------------------------------------------------------- */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { font-size: 16px; scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html { font-size: 16px; scroll-behavior: smooth; -webkit-text-size-adjust: 100%; background: var(--bg); }
 body {
   font-family: var(--font-sans); font-size: var(--text-base); line-height: var(--lh-body);
   background: var(--bg); color: var(--ink); overflow-x: hidden;
@@ -650,15 +650,24 @@ a.row:hover .row__title { color: var(--brand-text); }
   .page-hero--media .page-hero__media img { height: clamp(220px, 50vw, 360px); min-height: 0; }
 }
 
-/* Hero mit zurückhaltendem Hintergrundfoto: Bild liegt hinter dem Text, stark zurückgenommen */
-/* Fixiertes Hintergrundbild: bleibt beim Scrollen stehen, der Hero-Ausschnitt wandert darüber (clip-path statt background-attachment – funktioniert auch auf iOS) */
-.hero-editorial.has-image { position: relative; isolation: isolate; clip-path: inset(0); }
-.hero-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; height: 100svh; z-index: -1; margin: 0; overflow: hidden; }
-@media (prefers-reduced-motion: reduce) {
-  .hero-editorial.has-image { clip-path: none; }
-  .hero-bg { position: absolute; inset: 0; height: 100%; }
-}
-.hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: 62% 45%; opacity: 0.48; filter: saturate(0.7); }
-.hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(21,22,27,0.90) 0%, rgba(21,22,27,0.50) 48%, rgba(21,22,27,0.18) 100%); }
-[data-theme="light"] .hero-bg img { opacity: 0.38; filter: saturate(0.6); }
-[data-theme="light"] .hero-bg::after { background: linear-gradient(90deg, rgba(240,238,233,0.92) 0%, rgba(240,238,233,0.58) 48%, rgba(240,238,233,0.22) 100%); }
+/* Seitenweites, fixiertes Hintergrundfoto (Siegestor): liegt hinter allen Sektionen, Sektionen sind
+   halbtransparente Flächen, sodass das Motiv in jedem Abschnitt durchscheint. position:fixed statt
+   background-attachment – funktioniert auch auf iOS. Deckkraft der Sektionsflächen hält den Textkontrast. */
+.page-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; height: 100svh; z-index: -1; margin: 0; overflow: hidden; pointer-events: none; }
+.page-bg img { width: 100%; height: 100%; object-fit: cover; object-position: 62% 45%; opacity: 0.55; filter: saturate(0.7); }
+.page-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(21,22,27,0.55) 0%, rgba(21,22,27,0.25) 48%, rgba(21,22,27,0.05) 100%); }
+[data-theme="light"] .page-bg img { opacity: 0.5; filter: saturate(0.45) brightness(1.18) contrast(0.92); }
+[data-theme="light"] .page-bg::after { background: linear-gradient(90deg, rgba(240,238,233,0.55) 0%, rgba(240,238,233,0.25) 48%, rgba(240,238,233,0.05) 100%); }
+
+/* Sektionsflächen über dem Foto: hell/tint leicht durchscheinend, dunkle Flächen als dunkler Schleier */
+body.has-page-bg { background: transparent; }
+.has-page-bg .hero-editorial { background: transparent; }
+.has-page-bg .section { background: rgba(21,22,27,0.72); }
+.has-page-bg .section--tint { background: rgba(27,28,34,0.80); }
+.has-page-bg .section-dark, .has-page-bg .cta-section { background: rgba(12,13,16,0.84); }
+.has-page-bg .site-footer { background: rgba(12,13,16,0.90); }
+[data-theme="light"] .has-page-bg .section { background: rgba(240,238,233,0.76); }
+[data-theme="light"] .has-page-bg .section--tint { background: rgba(231,228,222,0.82); }
+[data-theme="light"] .has-page-bg .section-dark, [data-theme="light"] .has-page-bg .cta-section { background: rgba(12,13,16,0.84); }
+[data-theme="light"] .has-page-bg .site-footer { background: rgba(12,13,16,0.90); }
+@media (prefers-reduced-motion: reduce) { .page-bg { position: absolute; } }
