@@ -847,10 +847,10 @@ h2.section-title {
   --accent-text: #2A4E9E; /* 5.7–6.8:1 auf hellen Flächen (AA) */
 
   /* Glas-Tokens (Light) */
-  --glass-bg:        rgba(255,255,255,0.48);
+  --glass-bg:        rgba(255,255,255,0.58);
   --glass-bg-hover:  rgba(255,255,255,0.70);
-  --glass-border:    rgba(0,0,0,0.10);
-  --glass-highlight: rgba(255,255,255,0.80);
+  --glass-border:    rgba(10,26,52,0.12);
+  --glass-highlight: rgba(255,255,255,0.85);
   --glass-shadow:    0 10px 34px rgba(0,0,0,0.08);
   --glass-accent-bg:        rgba(42,78,158,0.88);
   --glass-accent-bg-hover:  rgba(42,78,158,1);
@@ -912,44 +912,72 @@ h2.section-title {
 [data-theme="light"] .service-desc { color: var(--light); }
 [data-theme="light"] h2.section-title { color: var(--white); }
 
-/* ── ALWAYS-DARK SECTIONS: Text erzwingen ────────────────────
-   bg-slider-section, kriminal-section und cta-section haben
-   immer dunkle Foto-Hintergründe. Die globale Light-Mode-Regel
-   macht --white zu #0A0A0B → schwarzer Text auf dunklem Bild.
-   Hier werden die originalen Dunkel-Modus-Farben fest gesetzt.
+/* ── LIGHT-MODE: Hero, Zitat, Statistik, CTA und Bildflächen HELL ──────────
+   Platzhalter-Verläufe hell, dunkle Typo, blaue Akzente, Glas in Hell-Tokens.
+   (Bei echten Fotos ggf. Overlays anpassen.)
    ──────────────────────────────────────────────────────────── */
+[data-theme="light"] .hero-slide, [data-theme="light"] .bgs-slide, [data-theme="light"] .trust-img-slide,
+[data-theme="light"] .kbg, [data-theme="light"] .cbg { background-color: #E7E4DE; }
+[data-theme="light"] #slide-0, [data-theme="light"] #bgs1-0, [data-theme="light"] #tis-0, [data-theme="light"] #kbg-0, [data-theme="light"] #cbg-0 { background-image: radial-gradient(120% 80% at 18% 22%, #d6e0f4 0%, #e8e9ec 45%, #F0EEE9 100%); }
+[data-theme="light"] #slide-1, [data-theme="light"] #bgs1-1, [data-theme="light"] #tis-1, [data-theme="light"] #kbg-1, [data-theme="light"] #cbg-1 { background-image: radial-gradient(110% 90% at 82% 28%, #dbe3f3 0%, #eae9e5 50%, #F0EEE9 100%); }
+[data-theme="light"] #slide-2, [data-theme="light"] #bgs1-2, [data-theme="light"] #tis-2, [data-theme="light"] #kbg-2, [data-theme="light"] #cbg-2 { background-image: linear-gradient(160deg, #dfe5f2 0%, #ebeae6 55%, #F0EEE9 100%); }
+[data-theme="light"] .ph::after { background-image: linear-gradient(rgba(10,26,52,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(10,26,52,0.06) 1px, transparent 1px); }
+[data-theme="light"] .intro-image--placeholder { background: radial-gradient(90% 70% at 70% 40%, #d6e0f4 0%, #e8e9ec 50%, #E7E4DE 100%); }
+[data-theme="light"] .intro-image--placeholder::after { background-image: linear-gradient(rgba(10,26,52,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(10,26,52,0.07) 1px, transparent 1px); }
 
-/* BG Slider – Zitat-Sektion */
-[data-theme="light"] .bg-slider-section .bgs-text blockquote { color: #f2f2f4; }
-[data-theme="light"] .bg-slider-section .bgs-text cite        { color: #5B82D1; }
-[data-theme="light"] .bg-slider-section .btn-primary          { background: rgba(61,99,178,0.35); border-color: rgba(91,130,209,0.6); color: #fff; }
-[data-theme="light"] .bg-slider-section .btn-primary:hover    { background: rgba(61,99,178,0.55); }
+/* Hero */
+[data-theme="light"] .hero-overlay  { background: linear-gradient(to top, rgba(240,238,233,0.96) 0%, rgba(240,238,233,0.55) 40%, rgba(240,238,233,0.12) 100%); }
+[data-theme="light"] .hero-overlay2 { background: linear-gradient(100deg, rgba(240,238,233,0.55) 0%, transparent 55%); }
+[data-theme="light"] .hero-title          { color: var(--white); }
+[data-theme="light"] .hero-title em       { color: var(--accent-text); }
+[data-theme="light"] .hero-sub            { color: var(--light); }
+[data-theme="light"] .hero-eyebrow        { color: var(--accent-text); }
+[data-theme="light"] .hero-eyebrow::before { background: var(--accent-text); }
+[data-theme="light"] .hero-slide-count    { color: var(--muted); }
+[data-theme="light"] .hero-slide-count span { color: var(--white); }
+[data-theme="light"] .hero-thumb::before  { background: rgba(10,26,52,0.22); }
+[data-theme="light"] .hero .hero-pause    { background: var(--glass-bg); border-color: var(--glass-border); color: var(--light); box-shadow: var(--glass-shadow), inset 0 1px 0 var(--glass-highlight); }
+[data-theme="light"] .hero .hero-pause:hover { color: var(--accent-text); border-color: var(--glass-accent-border); }
+[data-theme="light"] .hero .btn-ghost     { color: var(--white); background: var(--glass-bg); border-color: var(--glass-border); }
+[data-theme="light"] .hero .btn-ghost:hover { color: var(--accent-text); border-color: var(--glass-accent-border); background: var(--glass-bg-hover); }
+[data-theme="light"] .site-header :focus-visible, [data-theme="light"] .hero :focus-visible { outline-color: var(--accent-text); }
 
-/* Kriminal-Statistik-Sektion */
-[data-theme="light"] .kriminal-section h2.section-title  { color: #f2f2f4; }
-[data-theme="light"] .kriminal-section .section-label    { color: #5B82D1; }
-[data-theme="light"] .kriminal-section .kriminal-num     { color: #f2f2f4; }
-[data-theme="light"] .kriminal-section .kriminal-label   { color: #5B82D1; }
+/* Zitat-Sektion */
+[data-theme="light"] .bgs-overlay      { background: rgba(240,238,233,0.62); }
+[data-theme="light"] .bgs-overlay-grad { background: linear-gradient(to right, rgba(240,238,233,0.88) 0%, rgba(240,238,233,0.25) 50%, rgba(240,238,233,0.88) 100%); }
+[data-theme="light"] .bg-slider-section .bgs-text blockquote { color: var(--white); }
+[data-theme="light"] .bg-slider-section .bgs-text cite        { color: var(--accent-text); }
+[data-theme="light"] .bgs-dot::before  { background: rgba(10,26,52,0.28); }
+[data-theme="light"] .bg-slider-section .btn-primary       { background: var(--glass-accent-bg); border-color: var(--glass-accent-border); color: #fff; }
+[data-theme="light"] .bg-slider-section .btn-primary:hover { background: var(--glass-accent-bg-hover); }
+
+/* Kriminalstatistik */
+[data-theme="light"] .kriminal-dimmer { background: rgba(240,238,233,0.78); }
+[data-theme="light"] .kriminal-section h2.section-title { color: var(--white); }
+[data-theme="light"] .kriminal-section .section-label   { color: var(--accent-text); }
+[data-theme="light"] .kriminal-section .section-label::before { background: var(--accent-text); }
+[data-theme="light"] .kriminal-section .kriminal-num    { color: var(--white); }
+[data-theme="light"] .kriminal-section .kriminal-label  { color: var(--accent-text); }
+[data-theme="light"] .kriminal-source   { color: var(--muted); }
+[data-theme="light"] .kriminal-source a { color: var(--accent-text); }
+[data-theme="light"] .kriminal-card { background: var(--glass-bg); border-color: var(--glass-border); box-shadow: var(--glass-shadow), inset 0 1px 0 var(--glass-highlight); }
+[data-theme="light"] .kriminal-card:hover { background: var(--glass-bg-hover); }
 
 /* CTA-Sektion */
-[data-theme="light"] .cta-section .cta-content h2       { color: #f2f2f4; }
-[data-theme="light"] .cta-section .cta-content p        { color: #d8d8e0; }
-[data-theme="light"] .cta-section .cta-content .section-label { color: #5B82D1; }
-[data-theme="light"] .cta-section .cta-tel              { color: #5B82D1; }
-[data-theme="light"] .cta-section .btn-primary          { background: rgba(61,99,178,0.35); border-color: rgba(91,130,209,0.6); color: #fff; }
-[data-theme="light"] .cta-section .btn-primary:hover    { background: rgba(61,99,178,0.55); }
-[data-theme="light"] .cta-section .btn-ghost            { color: #f2f2f4; background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.18); }
-[data-theme="light"] .cta-section .btn-ghost:hover      { color: #5B82D1; border-color: #5B82D1; }
+[data-theme="light"] .cta-overlay { background: linear-gradient(90deg, rgba(240,238,233,0.75) 0%, rgba(240,238,233,0.30) 100%); }
+[data-theme="light"] .cta-content { background: rgba(255,255,255,0.55); border-color: rgba(0,0,0,0.08); box-shadow: 0 24px 60px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.9); }
+[data-theme="light"] .cta-section .cta-content h2  { color: var(--white); }
+[data-theme="light"] .cta-section .cta-content p   { color: var(--light); }
+[data-theme="light"] .cta-section .cta-content .section-label { color: var(--accent-text); }
+[data-theme="light"] .cta-section .cta-content .section-label::before { background: var(--accent-text); }
+[data-theme="light"] .cta-section .cta-tel         { color: var(--accent-text); }
+[data-theme="light"] .cta-section .btn-primary       { background: var(--glass-accent-bg); border-color: var(--glass-accent-border); color: #fff; }
+[data-theme="light"] .cta-section .btn-primary:hover { background: var(--glass-accent-bg-hover); }
+[data-theme="light"] .cta-section .btn-ghost         { color: var(--white); background: var(--glass-bg); border-color: var(--glass-border); }
+[data-theme="light"] .cta-section .btn-ghost:hover   { color: var(--accent-text); border-color: var(--glass-accent-border); }
 
-/* Hero-Sektion (Animation-Startfarbe sichern) */
-[data-theme="light"] .hero-title          { color: #f2f2f4; }
-[data-theme="light"] .hero-title em       { color: #5B82D1; }
-[data-theme="light"] .hero-sub            { color: #d8d8e0; }
-[data-theme="light"] .hero-eyebrow        { color: #5B82D1; }
-[data-theme="light"] .hero-slide-count    { color: #d8d8e0; }
-[data-theme="light"] .hero-slide-count span { color: #f2f2f4; }
-[data-theme="light"] .hero .btn-ghost { color: #f2f2f4; background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.18); }
-[data-theme="light"] .hero .btn-ghost:hover { color: #5B82D1; border-color: #5B82D1; }
+/* Trust-Bildfläche */
+[data-theme="light"] .trust-img-overlay { background: linear-gradient(to top, rgba(240,238,233,0.55) 0%, rgba(240,238,233,0.05) 60%); filter: none; }
 
 /* Trust Section */
 [data-theme="light"] .trust { background: var(--black); }
@@ -1223,8 +1251,6 @@ body.nav-open .site-header { background: rgba(10,10,11,0.58); -webkit-backdrop-f
   -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
 }
 .kriminal-card:hover { background: var(--glass-bg-hover); }
-[data-theme="light"] .kriminal-card { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.14); box-shadow: 0 10px 34px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.10); }
-[data-theme="light"] .kriminal-card:hover { background: rgba(255,255,255,0.12); }
 
 /* CTA-Panel über Bild */
 .cta-content {
