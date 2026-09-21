@@ -4,6 +4,23 @@
    ========================================================= */
 
 /* ---------------------------------------------------------
+   0. SELBST-GEHOSTETE SCHRIFTEN (DSGVO – keine Google-Server)
+   woff2 kombiniert (latin + latin-ext), font-display: swap
+   --------------------------------------------------------- */
+@font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 300; font-display: swap; src: url('../assets/fonts/cormorant-garamond-300.woff2') format('woff2'); }
+@font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 400; font-display: swap; src: url('../assets/fonts/cormorant-garamond-400.woff2') format('woff2'); }
+@font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 500; font-display: swap; src: url('../assets/fonts/cormorant-garamond-500.woff2') format('woff2'); }
+@font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 600; font-display: swap; src: url('../assets/fonts/cormorant-garamond-600.woff2') format('woff2'); }
+@font-face { font-family: 'Barlow'; font-style: normal; font-weight: 300; font-display: swap; src: url('../assets/fonts/barlow-300.woff2') format('woff2'); }
+@font-face { font-family: 'Barlow'; font-style: normal; font-weight: 400; font-display: swap; src: url('../assets/fonts/barlow-400.woff2') format('woff2'); }
+@font-face { font-family: 'Barlow'; font-style: normal; font-weight: 500; font-display: swap; src: url('../assets/fonts/barlow-500.woff2') format('woff2'); }
+@font-face { font-family: 'Barlow'; font-style: normal; font-weight: 600; font-display: swap; src: url('../assets/fonts/barlow-600.woff2') format('woff2'); }
+@font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 400; font-display: swap; src: url('../assets/fonts/barlow-condensed-400.woff2') format('woff2'); }
+@font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 500; font-display: swap; src: url('../assets/fonts/barlow-condensed-500.woff2') format('woff2'); }
+@font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 600; font-display: swap; src: url('../assets/fonts/barlow-condensed-600.woff2') format('woff2'); }
+@font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 700; font-display: swap; src: url('../assets/fonts/barlow-condensed-700.woff2') format('woff2'); }
+
+/* ---------------------------------------------------------
    THEME TOGGLE BUTTON
    --------------------------------------------------------- */
 .theme-toggle {
@@ -15,7 +32,7 @@
   border-radius: 50%;
   background: transparent;
   border: 1px solid var(--border);
-  color: var(--silver);
+  color: var(--light);
   cursor: pointer;
   transition: border-color 0.2s, color 0.2s, background 0.2s;
   flex-shrink: 0;
@@ -40,20 +57,29 @@
   --deep:   #111114;
   --panel:  #16161a;
   --border: #2a2a30;
-  --muted:  #5a5a65;
-  --silver: #9a9aaa;
+  --muted:  #8a8a9a;
+  --silver: #b8b8c8;
   --light:  #d8d8e0;
   --white:  #f2f2f4;
-  --gold:   #b8985a;
-  --gold2:  #d4b578;
+  --gold:   #3D63B2;
+  --gold2:  #5B82D1;
 
   --font-serif:     'Cormorant Garamond', Georgia, serif;
   --font-sans:      'Barlow', system-ui, sans-serif;
   --font-condensed: 'Barlow Condensed', 'Barlow', sans-serif;
 
-  --header-height: 72px;
+  --header-height: 116px;
   --container-max: 1280px;
-  --container-pad: 60px;
+
+  /* Fluid horizontal gutter — scales smooth 20→60px, no breakpoint jumps */
+  --container-pad: clamp(20px, 4.5vw, 60px);
+
+  /* Fluid vertical rhythm */
+  --section-y:    clamp(64px, 8.5vw, 120px);  /* große Sektionen */
+  --section-y-sm: clamp(52px, 6.5vw, 100px);  /* Prose / Content */
+  --section-y-xs: clamp(48px, 5vw, 80px);     /* kompakte Sektionen */
+  --grid-gap:     clamp(36px, 4.5vw, 60px);   /* zweispaltige Grids */
+  --card-pad:     clamp(32px, 3.4vw, 52px);   /* Karten-Innenabstand */
 }
 
 /* ---------------------------------------------------------
@@ -126,12 +152,19 @@ button { cursor: pointer; border: none; background: none; }
 
 /* Logo */
 .site-logo {
+  display: flex; align-items: center;
   font-family: var(--font-condensed);
   font-size: 15px; font-weight: 600; letter-spacing: 0.18em;
   text-transform: uppercase; color: var(--white);
   white-space: nowrap;
 }
 .site-logo span { color: var(--gold); }
+.site-logo__img {
+  height: 100px; width: auto; display: block;
+  /* Logo ist navy; im Dark-Mode auf Weiß umfärben */
+  filter: brightness(0) invert(1) drop-shadow(0 2px 6px rgba(0,0,0,0.45));
+  transition: filter 0.3s;
+}
 
 /* Desktop nav links */
 .site-nav { display: flex; align-items: center; gap: 0; }
@@ -140,7 +173,7 @@ button { cursor: pointer; border: none; background: none; }
   display: block; padding: 8px 20px;
   font-family: var(--font-condensed);
   font-size: 11px; font-weight: 500; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--silver);
+  text-transform: uppercase; color: var(--light);
   transition: color 0.2s; position: relative;
 }
 .site-nav__link::after {
@@ -161,13 +194,17 @@ button { cursor: pointer; border: none; background: none; }
   border: 1px solid var(--border); padding: 8px 0;
   box-shadow: 0 12px 32px rgba(0,0,0,0.5);
 }
+/* Unsichtbare Brücke über die 4px-Lücke: hält den Hover beim Hinübergleiten aufrecht */
+.site-nav__dropdown::before {
+  content: ''; position: absolute; top: -10px; left: 0; right: 0; height: 12px;
+}
 .site-nav__item--has-dropdown:hover .site-nav__dropdown,
 .site-nav__item--has-dropdown:focus-within .site-nav__dropdown { display: block; }
 .site-nav__dropdown-link {
   display: block; padding: 10px 20px;
   font-family: var(--font-condensed);
   font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--silver); transition: color 0.2s, background 0.2s;
+  color: var(--light); transition: color 0.2s, background 0.2s;
 }
 .site-nav__dropdown-link:hover { color: var(--white); background: rgba(255,255,255,0.04); }
 
@@ -179,7 +216,7 @@ button { cursor: pointer; border: none; background: none; }
   border: 1px solid var(--gold); padding: 10px 24px;
   transition: background 0.25s, color 0.25s; white-space: nowrap;
 }
-.nav-cta:hover { background: var(--gold); color: var(--black); }
+.nav-cta:hover { background: var(--gold); color: #fff; }
 
 /* Hamburger */
 .nav-toggle {
@@ -243,11 +280,12 @@ button { cursor: pointer; border: none; background: none; }
 .hero-slide.active { opacity: 1; transform: scale(1.0); }
 .hero-slide.leaving { opacity: 0; transform: scale(1.04); transition: opacity 1.6s ease, transform 4s ease; }
 
-#slide-0 { background-image: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1800&q=80'); }
-#slide-1 { background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1800&q=80'); }
-#slide-2 { background-image: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1800&q=80'); }
-#slide-3 { background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1800&q=80'); }
-#slide-4 { background-image: url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1800&q=80'); }
+/* Branchen-Bilder: Sicherheit / Überwachung / Ermittlung / Detektei – Deutschland-Bezug (München) */
+#slide-0 { background-image: url('https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=1800&q=80'); } /* Überwachungskameras */
+#slide-1 { background-image: url('https://images.unsplash.com/photo-1716908331958-dfe8e734e560?w=1800&q=80'); } /* München Stachus bei Nacht */
+#slide-2 { background-image: url('https://images.unsplash.com/photo-1652739758426-56a564265f9e?w=1800&q=80'); } /* Sicherheitskraft mit SECURITY-Warnweste */
+#slide-3 { background-image: url('https://images.unsplash.com/photo-1781665790125-81ffedbdbecc?w=1800&q=80'); } /* Ermittlungstafel / Detektei */
+#slide-4 { background-image: url('https://images.unsplash.com/photo-1758518729685-f88df7890776?w=1800&q=80'); } /* Beratung / Team */
 
 .hero-overlay {
   position: absolute; inset: 0; z-index: 2;
@@ -275,7 +313,7 @@ button { cursor: pointer; border: none; background: none; }
 .hero-slide-count span { color: var(--white); }
 .hero-content {
   position: relative; z-index: 5;
-  padding: 0 var(--container-pad) 100px; max-width: 800px;
+  padding: 0 var(--container-pad) clamp(72px, 8vw, 100px); max-width: 800px;
 }
 .hero-eyebrow {
   display: flex; align-items: center; gap: 14px;
@@ -295,7 +333,7 @@ button { cursor: pointer; border: none; background: none; }
 }
 .hero-title em { font-style: normal; font-weight: 600; color: var(--gold); display: block; }
 .hero-sub {
-  font-size: 16px; font-weight: 300; line-height: 1.75; color: var(--silver);
+  font-size: 16px; font-weight: 300; line-height: 1.75; color: var(--light);
   max-width: 500px; margin-bottom: 48px;
   opacity: 0; transform: translateY(20px);
   animation: fadeUp 0.9s 0.8s forwards;
@@ -312,7 +350,7 @@ button { cursor: pointer; border: none; background: none; }
    7. Buttons
    --------------------------------------------------------- */
 .btn-primary {
-  display: inline-block; background: var(--gold); color: var(--black);
+  display: inline-block; background: var(--gold); color: #fff;
   font-family: var(--font-condensed);
   font-size: 11px; font-weight: 700; letter-spacing: 0.16em;
   text-transform: uppercase; padding: 16px 40px;
@@ -322,11 +360,13 @@ button { cursor: pointer; border: none; background: none; }
 .btn-ghost {
   display: inline-block; color: var(--white);
   font-family: var(--font-condensed);
-  font-size: 11px; font-weight: 500; letter-spacing: 0.14em;
-  text-transform: uppercase; border-bottom: 1px solid var(--border); padding-bottom: 4px;
-  transition: border-color 0.2s, color 0.2s;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.16em;
+  text-transform: uppercase; padding: 16px 40px; max-width: 250px;
+  border: 1px solid var(--border); background: transparent;
+  transition: border-color 0.25s, color 0.25s, background 0.25s, transform 0.2s;
+  white-space: nowrap;
 }
-.btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold); background: rgba(255,255,255,0.04); transform: translateY(-1px); }
 
 /* ---------------------------------------------------------
    8. Ticker
@@ -339,7 +379,7 @@ button { cursor: pointer; border: none; background: none; }
 .ticker-track span {
   font-family: var(--font-condensed);
   font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
-  text-transform: uppercase; color: var(--black); padding: 0 36px;
+  text-transform: uppercase; color: #fff; padding: 0 36px;
 }
 .ticker-track span::before { content: '◆'; margin-right: 36px; opacity: 0.35; }
 @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
@@ -360,7 +400,7 @@ h2.section-title {
   font-weight: 400; line-height: 1.1; color: var(--white); margin-bottom: 20px;
 }
 .section-body {
-  font-size: 16px; font-weight: 300; line-height: 1.8; color: var(--silver); max-width: 540px;
+  font-size: 16px; font-weight: 300; line-height: 1.8; color: var(--light); max-width: 540px;
 }
 
 /* ---------------------------------------------------------
@@ -370,8 +410,8 @@ h2.section-title {
   display: grid; grid-template-columns: 1fr 1fr;
   background: var(--deep); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
 }
-.intro-text { padding: 100px 80px; display: flex; flex-direction: column; justify-content: center; }
-.intro-image { position: relative; overflow: hidden; min-height: 580px; }
+.intro-text { padding: var(--section-y-sm) clamp(32px, 5vw, 80px); display: flex; flex-direction: column; justify-content: center; }
+.intro-image { position: relative; overflow: hidden; min-height: clamp(360px, 42vw, 580px); }
 .intro-image img {
   width: 100%; height: 100%; object-fit: cover;
   filter: brightness(0.5) grayscale(15%);
@@ -391,7 +431,7 @@ h2.section-title {
    --------------------------------------------------------- */
 .stats-bar { background: var(--deep); border-bottom: 1px solid var(--border); }
 .stats-inner { display: grid; grid-template-columns: repeat(4, 1fr); }
-.stat-block { padding: 52px 40px; border-right: 1px solid var(--border); text-align: center; }
+.stat-block { padding: clamp(36px, 4vw, 52px) clamp(20px, 3vw, 40px); border-right: 1px solid var(--border); text-align: center; }
 .stat-block:last-child { border-right: none; }
 .stat-big { font-family: var(--font-serif); font-size: 64px; font-weight: 300; color: var(--white); line-height: 1; margin-bottom: 10px; }
 .stat-big sup { font-size: 24px; color: var(--gold); vertical-align: super; }
@@ -400,13 +440,13 @@ h2.section-title {
 /* ---------------------------------------------------------
    12. Services
    --------------------------------------------------------- */
-.services { padding: 120px var(--container-pad); background: var(--black); }
+.services { padding: var(--section-y) var(--container-pad); background: var(--black); }
 .services-grid {
   display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 72px;
+  gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: clamp(44px, 5vw, 72px);
 }
 .service-card {
-  background: var(--deep); padding: 52px 44px;
+  background: var(--deep); padding: var(--card-pad) clamp(28px, 3vw, 44px);
   position: relative; overflow: hidden;
   transition: background 0.3s; cursor: pointer;
 }
@@ -418,9 +458,9 @@ h2.section-title {
 .service-card:hover { background: var(--panel); }
 .service-card:hover::before { transform: scaleX(1); }
 .service-num { font-family: var(--font-condensed); font-size: 11px; font-weight: 600; letter-spacing: 0.18em; color: var(--muted); margin-bottom: 28px; }
-.service-icon { width: 44px; height: 44px; margin-bottom: 24px; opacity: 0.7; }
+.service-icon { width: 44px; height: 44px; margin-bottom: 24px; opacity: 0.7; stroke: var(--gold); }
 .service-name { font-family: var(--font-serif); font-size: 24px; font-weight: 500; color: var(--white); margin-bottom: 16px; line-height: 1.2; }
-.service-desc { font-size: 14px; font-weight: 300; line-height: 1.7; color: var(--muted); }
+.service-desc { font-size: 14px; font-weight: 300; line-height: 1.7; color: var(--light); }
 .service-link {
   display: inline-flex; align-items: center; gap: 8px; margin-top: 32px;
   font-family: var(--font-condensed);
@@ -440,16 +480,16 @@ h2.section-title {
   opacity: 0; transition: opacity 2s ease; will-change: opacity;
 }
 .bgs-slide.active { opacity: 1; }
-#bgs1-0 { background-image: url('https://images.unsplash.com/photo-1574027542338-98e75acfd385?w=1600&q=80'); }
-#bgs1-1 { background-image: url('https://images.unsplash.com/photo-1582281298055-e25b84a30b0b?w=1600&q=80'); }
-#bgs1-2 { background-image: url('https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=1600&q=80'); }
-#bgs1-3 { background-image: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1600&q=80'); }
+#bgs1-0 { background-image: url('https://images.unsplash.com/photo-1563920443079-783e5c786b83?w=1600&q=80'); } /* CCTV-Kameras */
+#bgs1-1 { background-image: url('https://images.unsplash.com/photo-1485230405346-71acb9518d9c?w=1600&q=80'); } /* Objektschutz / Bewachung (abgedunkelt) */
+#bgs1-2 { background-image: url('https://images.unsplash.com/photo-1606152536277-5aa1fd33e150?w=1600&q=80'); } /* Straße bei Nacht */
+#bgs1-3 { background-image: url('https://images.unsplash.com/photo-1530151928300-3864d0e5d178?w=1600&q=80'); } /* Überwachungskameras Wand */
 .bgs-overlay { position: absolute; inset: 0; z-index: 2; background: rgba(10,10,11,0.70); }
 .bgs-overlay-grad {
   position: absolute; inset: 0; z-index: 3;
   background: linear-gradient(to right, rgba(10,10,11,0.85) 0%, rgba(10,10,11,0.2) 50%, rgba(10,10,11,0.85) 100%);
 }
-.bgs-content { position: relative; z-index: 10; height: 100%; display: flex; align-items: center; padding: 0 80px; justify-content: space-between; }
+.bgs-content { position: relative; z-index: 10; height: 100%; display: flex; align-items: center; padding: 0 var(--container-pad); justify-content: space-between; gap: clamp(32px, 5vw, 64px); }
 .bgs-text { max-width: 600px; }
 .bgs-text blockquote { font-family: var(--font-serif); font-size: clamp(24px, 3.5vw, 44px); font-weight: 300; color: var(--white); line-height: 1.35; margin-bottom: 24px; }
 .bgs-text cite { font-family: var(--font-condensed); font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); font-style: normal; }
@@ -460,37 +500,37 @@ h2.section-title {
 /* ---------------------------------------------------------
    14. Trust
    --------------------------------------------------------- */
-.trust { padding: 120px var(--container-pad); background: var(--black); }
-.trust-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 72px; align-items: center; }
-.trust-imgslider { position: relative; overflow: hidden; border: 1px solid var(--border); height: 480px; }
+.trust { padding: var(--section-y) var(--container-pad); background: var(--black); }
+.trust-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--grid-gap); margin-top: clamp(44px, 5vw, 72px); align-items: center; }
+.trust-imgslider { position: relative; overflow: hidden; border: 1px solid var(--border); height: clamp(300px, 36vw, 480px); }
 .trust-img-slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.8s ease; }
 .trust-img-slide.active { opacity: 1; }
-#tis-0 { background-image: url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=900&q=80'); }
-#tis-1 { background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=80'); }
-#tis-2 { background-image: url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=900&q=80'); }
+#tis-0 { background-image: url('https://images.unsplash.com/photo-1618371690240-e0d46eead4b8?w=900&q=80'); } /* Personenschutz */
+#tis-1 { background-image: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?w=900&q=80'); } /* Handschlag / Vertrauen */
+#tis-2 { background-image: url('https://images.unsplash.com/photo-1758518727929-4506fc031e1c?w=900&q=80'); } /* Team / Qualität */
 .trust-img-overlay { position: absolute; inset: 0; z-index: 2; background: linear-gradient(to top, rgba(10,10,11,0.75) 0%, rgba(10,10,11,0.1) 60%); filter: brightness(0.6); }
-.trust-badge { position: absolute; bottom: 28px; left: 28px; z-index: 3; background: var(--gold); color: var(--black); font-family: var(--font-condensed); font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; padding: 10px 18px; }
+.trust-badge { position: absolute; bottom: 28px; left: 28px; z-index: 3; background: var(--gold); color: #fff; font-family: var(--font-condensed); font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; padding: 10px 18px; }
 .trust-points { display: flex; flex-direction: column; gap: 0; }
-.trust-point { display: flex; gap: 24px; align-items: flex-start; padding: 32px 0; border-bottom: 1px solid var(--border); }
+.trust-point { display: flex; gap: clamp(16px, 2vw, 24px); align-items: flex-start; padding: clamp(24px, 2.6vw, 32px) 0; border-bottom: 1px solid var(--border); }
 .trust-point:first-child { padding-top: 0; }
 .trust-point:last-child { border-bottom: none; }
 .trust-point-num { font-family: var(--font-condensed); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; color: var(--gold); min-width: 24px; padding-top: 3px; }
-.trust-point-body h4 { font-size: 16px; font-weight: 500; color: var(--white); margin-bottom: 8px; }
+.trust-point-body h3 { font-size: 16px; font-weight: 500; color: var(--white); margin-bottom: 8px; }
 .trust-point-body p { font-size: 14px; font-weight: 300; line-height: 1.7; color: var(--muted); }
 
 /* ---------------------------------------------------------
    15. Kriminalstatistik Section
    --------------------------------------------------------- */
-.kriminal-section { position: relative; overflow: hidden; padding: 120px var(--container-pad); }
+.kriminal-section { position: relative; overflow: hidden; padding: var(--section-y) var(--container-pad); }
 .kriminal-bg-slides .kbg { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 2.2s ease; will-change: opacity; }
 .kriminal-bg-slides .kbg.active { opacity: 1; }
-#kbg-0 { background-image: url('https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?w=1600&q=80'); }
-#kbg-1 { background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80'); }
-#kbg-2 { background-image: url('https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=1600&q=80'); }
+#kbg-0 { background-image: url('https://images.unsplash.com/photo-1735599308342-7ea38adabfd5?w=1600&q=80'); } /* München Siegestor bei Nacht */
+#kbg-1 { background-image: url('https://images.unsplash.com/photo-1626616640275-8231e8f83b40?w=1600&q=80'); } /* Polizei Deutschland (Mercedes, Nacht) */
+#kbg-2 { background-image: url('https://images.unsplash.com/photo-1673460655608-e75424d9dfa8?w=1600&q=80'); } /* München Isarbrücke Dämmerung */
 .kriminal-dimmer { position: absolute; inset: 0; z-index: 1; background: rgba(10,10,11,0.82); }
 .kriminal-content { position: relative; z-index: 2; }
-.kriminal-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 60px; background: var(--border); border: 1px solid var(--border); }
-.kriminal-card { background: rgba(10,10,11,0.7); padding: 52px 36px; text-align: center; backdrop-filter: blur(6px); transition: background 0.3s; }
+.kriminal-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: clamp(40px, 4.5vw, 60px); background: var(--border); border: 1px solid var(--border); }
+.kriminal-card { background: rgba(10,10,11,0.7); padding: var(--card-pad) clamp(20px, 2.6vw, 36px); text-align: center; backdrop-filter: blur(6px); transition: background 0.3s; }
 .kriminal-card:hover { background: rgba(22,22,26,0.85); }
 .kriminal-num { font-family: var(--font-serif); font-size: 60px; font-weight: 300; color: var(--white); line-height: 1; margin-bottom: 12px; }
 .kriminal-label { font-family: var(--font-condensed); font-size: 11px; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); line-height: 1.5; }
@@ -498,14 +538,14 @@ h2.section-title {
 /* ---------------------------------------------------------
    16. Standorte
    --------------------------------------------------------- */
-.locations-section { padding: 120px var(--container-pad); background: var(--deep); border-top: 1px solid var(--border); }
-.locations-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 72px; }
-.location-card { background: var(--black); padding: 44px 36px; transition: background 0.3s; }
+.locations-section { padding: var(--section-y) var(--container-pad); background: var(--deep); border-top: 1px solid var(--border); }
+.locations-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: clamp(44px, 5vw, 72px); }
+.location-card { background: var(--black); padding: clamp(32px, 3.4vw, 44px) clamp(24px, 2.6vw, 36px); transition: background 0.3s; }
 .location-card:hover { background: var(--panel); }
 .location-badge { font-family: var(--font-condensed); font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
 .location-card h3 { font-family: var(--font-serif); font-size: 22px; font-weight: 400; color: var(--white); margin-bottom: 16px; }
 .location-address { font-size: 14px; font-weight: 300; line-height: 1.7; color: var(--muted); margin-bottom: 12px; }
-.location-phone { font-family: var(--font-condensed); font-size: 13px; font-weight: 500; letter-spacing: 0.04em; color: var(--silver); }
+.location-phone { font-family: var(--font-condensed); font-size: 13px; font-weight: 500; letter-spacing: 0.04em; color: var(--light); }
 .location-phone a { color: inherit; transition: color 0.2s; }
 .location-phone a:hover { color: var(--gold); }
 .location-map-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; font-family: var(--font-condensed); font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); transition: color 0.2s; }
@@ -514,13 +554,25 @@ h2.section-title {
 /* ---------------------------------------------------------
    17. Zertifikate
    --------------------------------------------------------- */
-.certs-section { padding: 80px var(--container-pad); background: var(--black); border-top: 1px solid var(--border); }
-.certs-bar { display: flex; gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 60px; }
-.cert-block { flex: 1; background: var(--deep); padding: 36px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; transition: background 0.3s; }
+.certs-section { padding: var(--section-y-xs) var(--container-pad); background: var(--black); border-top: 1px solid var(--border); }
+.certs-group-label { font-family: var(--font-condensed); font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-top: clamp(40px, 4.5vw, 56px); margin-bottom: 18px; }
+.certs-bar { display: flex; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+.cert-block { flex: 1; background: var(--deep); padding: 32px 24px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; transition: background 0.3s; }
 .cert-block:hover { background: var(--panel); }
-.cert-mark { font-family: var(--font-condensed); font-size: 13px; font-weight: 700; letter-spacing: 0.08em; color: var(--gold); border: 1px solid var(--border); padding: 8px 14px; width: 60px; text-align: center; }
-.cert-name { font-family: var(--font-condensed); font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--silver); line-height: 1.4; }
+.cert-logo { width: 100%; max-width: 132px; height: 76px; display: flex; align-items: center; justify-content: center; background: #fff; border-radius: 10px; padding: 12px 14px; }
+.cert-logo img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
+.cert-name { font-family: var(--font-condensed); font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--light); line-height: 1.4; }
 .cert-sub { font-size: 11px; font-weight: 300; color: var(--muted); line-height: 1.4; }
+
+/* Footer-Logo: volles Logo wie in der Nav. Footer wechselt mit dem Theme
+   (dunkel ↔ hell) → Logo dark-mode weiß gefiltert, light-mode navy Original. */
+.footer-logo { display: inline-block; margin-bottom: 22px; }
+.footer-logo__img {
+  height: 92px; width: auto; max-width: 100%; display: block;
+  filter: brightness(0) invert(1);
+  transition: filter 0.3s;
+}
+[data-theme="light"] .footer-logo__img { filter: none; }
 
 /* ---------------------------------------------------------
    18. CTA Section
@@ -528,13 +580,13 @@ h2.section-title {
 .cta-section { position: relative; overflow: hidden; height: 540px; display: flex; align-items: center; }
 .cta-bg-slides .cbg { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 2s ease; will-change: opacity; }
 .cta-bg-slides .cbg.active { opacity: 1; }
-#cbg-0 { background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&q=80'); filter: brightness(0.28) grayscale(20%); }
-#cbg-1 { background-image: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1600&q=80'); filter: brightness(0.28) grayscale(20%); }
-#cbg-2 { background-image: url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1600&q=80'); filter: brightness(0.28) grayscale(20%); }
+#cbg-0 { background-image: url('https://images.unsplash.com/photo-1512386923336-1440f4afe1d9?w=1600&q=80'); filter: brightness(0.28) grayscale(20%); } /* Straße Nacht Silhouette */
+#cbg-1 { background-image: url('https://images.unsplash.com/photo-1518135714426-c18f5ffb6f4d?w=1600&q=80'); filter: brightness(0.28) grayscale(20%); } /* Handschlag */
+#cbg-2 { background-image: url('https://images.unsplash.com/photo-1586165877141-3dbcfc059283?w=1600&q=80'); filter: brightness(0.28) grayscale(20%); } /* Straße Nacht Laternen */
 .cta-overlay { position: absolute; inset: 0; z-index: 2; background: linear-gradient(90deg, rgba(10,10,11,0.88) 0%, rgba(10,10,11,0.4) 100%); }
-.cta-content { position: relative; z-index: 5; padding: 0 80px; max-width: 680px; }
+.cta-content { position: relative; z-index: 5; padding: var(--section-y-xs) var(--container-pad); max-width: 680px; }
 .cta-content h2 { font-family: var(--font-serif); font-size: clamp(32px, 4vw, 52px); font-weight: 400; color: var(--white); margin-bottom: 20px; line-height: 1.15; }
-.cta-content p { font-size: 16px; font-weight: 300; color: var(--silver); margin-bottom: 36px; line-height: 1.75; }
+.cta-content p { font-size: 16px; font-weight: 300; color: var(--light); margin-bottom: 36px; line-height: 1.75; }
 .cta-tel { font-family: var(--font-condensed); font-size: 28px; font-weight: 600; color: var(--gold); margin-bottom: 32px; display: block; letter-spacing: 0.04em; transition: color 0.2s; }
 .cta-tel:hover { color: var(--gold2); }
 .cta-actions { display: flex; gap: 20px; flex-wrap: wrap; }
@@ -544,32 +596,32 @@ h2.section-title {
    --------------------------------------------------------- */
 .site-footer {
   background: var(--deep); border-top: 1px solid var(--border);
-  padding: 72px var(--container-pad) 40px;
+  padding: clamp(48px, 5.5vw, 72px) var(--container-pad) clamp(32px, 3vw, 40px);
 }
 .footer-top {
   display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 60px; padding-bottom: 60px; border-bottom: 1px solid var(--border);
+  gap: clamp(36px, 4.5vw, 60px); padding-bottom: clamp(40px, 4.5vw, 60px); border-bottom: 1px solid var(--border);
 }
 .footer-brand { font-family: var(--font-condensed); font-size: 18px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--white); margin-bottom: 16px; }
 .footer-brand span { color: var(--gold); }
-.footer-about { font-size: 13px; font-weight: 300; line-height: 1.8; color: var(--muted); }
+.footer-about { font-size: 13px; font-weight: 400; line-height: 1.8; color: var(--light); }
 .footer-col-title { font-family: var(--font-condensed); font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; }
 .footer-links { list-style: none; }
 .footer-links li { margin-bottom: 12px; }
-.footer-links a { font-size: 13px; font-weight: 300; color: var(--muted); transition: color 0.2s; }
+.footer-links a { font-size: 13px; font-weight: 400; color: var(--silver); transition: color 0.2s; }
 .footer-links a:hover { color: var(--white); }
 .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 32px; flex-wrap: wrap; gap: 16px; }
-.footer-copy { font-size: 12px; font-weight: 300; color: var(--muted); }
+.footer-copy { font-size: 12px; font-weight: 400; color: var(--silver); }
 .footer-legal { display: flex; gap: 32px; }
-.footer-legal a { font-family: var(--font-condensed); font-size: 11px; font-weight: 300; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); transition: color 0.2s; }
+.footer-legal a { font-family: var(--font-condensed); font-size: 11px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--silver); transition: color 0.2s; }
 .footer-legal a:hover { color: var(--white); }
 
 /* ---------------------------------------------------------
    20. Page Hero (Unterseiten)
    --------------------------------------------------------- */
 .page-hero {
-  padding-top: calc(var(--header-height) + 80px);
-  padding-bottom: 80px;
+  padding-top: calc(var(--header-height) + clamp(48px, 5vw, 80px));
+  padding-bottom: clamp(48px, 5vw, 80px);
   padding-inline: var(--container-pad);
   background: var(--deep); border-bottom: 1px solid var(--border);
 }
@@ -579,20 +631,20 @@ h2.section-title {
 .breadcrumb__sep { color: var(--border); }
 .page-hero h1 { font-family: var(--font-serif); font-size: clamp(36px, 5vw, 72px); font-weight: 300; line-height: 1.1; color: var(--white); margin-bottom: 24px; }
 .page-hero-divider { width: 48px; height: 1px; background: var(--gold); margin-bottom: 20px; }
-.page-hero p { font-size: 16px; font-weight: 300; color: var(--silver); max-width: 580px; line-height: 1.75; }
+.page-hero p { font-size: 16px; font-weight: 300; color: var(--light); max-width: 580px; line-height: 1.75; }
 
 /* ---------------------------------------------------------
    21. Content / Prose (Unterseiten)
    --------------------------------------------------------- */
-.content-section { padding: 100px var(--container-pad); background: var(--black); }
+.content-section { padding: var(--section-y-sm) var(--container-pad); background: var(--black); }
 .prose { max-width: 780px; }
 .prose h2 { font-family: var(--font-serif); font-size: clamp(26px, 3vw, 40px); font-weight: 400; color: var(--white); margin-top: 60px; margin-bottom: 20px; }
 .prose h2:first-child { margin-top: 0; }
 .prose h3 { font-family: var(--font-condensed); font-size: 15px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-top: 40px; margin-bottom: 12px; }
-.prose p { font-size: 15px; font-weight: 300; color: var(--silver); margin-bottom: 20px; line-height: 1.8; }
+.prose p { font-size: 15px; font-weight: 300; color: var(--light); margin-bottom: 20px; line-height: 1.8; }
 .prose ul, .prose ol { margin-bottom: 20px; }
 .prose ul { list-style: none; }
-.prose ul li, .prose ol li { font-size: 15px; font-weight: 300; color: var(--silver); line-height: 1.7; margin-bottom: 8px; padding-left: 20px; position: relative; }
+.prose ul li, .prose ol li { font-size: 15px; font-weight: 300; color: var(--light); line-height: 1.7; margin-bottom: 8px; padding-left: 20px; position: relative; }
 .prose ul li::before { content: '–'; position: absolute; left: 0; color: var(--gold); }
 .prose a { color: var(--gold); border-bottom: 1px solid transparent; transition: border-color 0.2s; }
 .prose a:hover { border-color: var(--gold); }
@@ -601,10 +653,10 @@ h2.section-title {
 /* ---------------------------------------------------------
    22. Kontaktformular
    --------------------------------------------------------- */
-.contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-.contact-form { border: 1px solid var(--border); padding: 52px; background: var(--deep); }
+.contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 5vw, 80px); align-items: start; }
+.contact-form { border: 1px solid var(--border); padding: var(--card-pad); background: var(--deep); }
 .form-group { margin-bottom: 24px; }
-.form-label { display: block; font-family: var(--font-condensed); font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--silver); margin-bottom: 10px; }
+.form-label { display: block; font-family: var(--font-condensed); font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--light); margin-bottom: 10px; }
 .form-required { color: var(--gold); margin-left: 2px; }
 .form-input, .form-textarea {
   width: 100%; padding: 14px 16px;
@@ -624,15 +676,15 @@ h2.section-title {
 .contact-info h3 { font-family: var(--font-serif); font-size: 28px; font-weight: 400; color: var(--white); margin-bottom: 24px; }
 .contact-info-block { margin-bottom: 40px; }
 .contact-info-block h4 { font-family: var(--font-condensed); font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
-.contact-info-block p { font-size: 14px; font-weight: 300; color: var(--silver); line-height: 1.7; }
-.contact-info-block a { color: var(--silver); transition: color 0.2s; }
+.contact-info-block p { font-size: 14px; font-weight: 300; color: var(--light); line-height: 1.7; }
+.contact-info-block a { color: var(--light); transition: color 0.2s; }
 .contact-info-block a:hover { color: var(--gold); }
 
 /* ---------------------------------------------------------
    23. Jobs / Karriere
    --------------------------------------------------------- */
-.jobs-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 60px; }
-.job-card { background: var(--deep); padding: 32px 44px; display: flex; align-items: center; justify-content: space-between; gap: 24px; transition: background 0.3s; }
+.jobs-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: clamp(40px, 4.5vw, 60px); }
+.job-card { background: var(--deep); padding: clamp(24px, 2.6vw, 32px) clamp(28px, 3vw, 44px); display: flex; align-items: center; justify-content: space-between; gap: 24px; transition: background 0.3s; }
 .job-card:hover { background: var(--panel); }
 .job-card h3 { font-family: var(--font-serif); font-size: 22px; font-weight: 400; color: var(--white); margin-bottom: 6px; }
 .job-meta { font-family: var(--font-condensed); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
@@ -640,20 +692,22 @@ h2.section-title {
 /* ---------------------------------------------------------
    24. News Cards
    --------------------------------------------------------- */
-.news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 60px; }
+.news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: clamp(40px, 4.5vw, 60px); }
 .news-card { background: var(--deep); transition: background 0.3s; }
 .news-card:hover { background: var(--panel); }
 .news-card__img-placeholder { height: 200px; background: var(--panel); display: flex; align-items: center; justify-content: center; font-family: var(--font-condensed); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--border); }
-.news-card__body { padding: 36px 36px 40px; }
+.news-card__body { padding: clamp(28px, 3vw, 36px) clamp(28px, 3vw, 36px) clamp(32px, 3.4vw, 40px); }
 .news-card__date { font-family: var(--font-condensed); font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
 .news-card__body h3 { font-family: var(--font-serif); font-size: 22px; font-weight: 400; color: var(--white); margin-bottom: 12px; line-height: 1.2; }
 .news-card__body p { font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.7; }
+.news-card .service-link { opacity: 1; transform: none; margin-top: 20px; }
+.article-meta { font-family: var(--font-condensed); font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-top: 18px; }
 
 /* ---------------------------------------------------------
    25. Legal / Pflichtseiten
    --------------------------------------------------------- */
 .legal-notice { background: var(--deep); border: 1px solid var(--border); padding: 24px 28px; margin-bottom: 40px; }
-.legal-notice p { font-size: 13px; font-weight: 300; color: var(--silver); line-height: 1.6; }
+.legal-notice p { font-size: 13px; font-weight: 300; color: var(--light); line-height: 1.6; }
 
 /* ---------------------------------------------------------
    26. Accessibility
@@ -664,91 +718,76 @@ h2.section-title {
 /* ---------------------------------------------------------
    27. Responsive
    --------------------------------------------------------- */
+/* Spacing skaliert fluid via clamp() (Abschnitt 1) — hier nur noch
+   Layoutwechsel (Grid-Spalten, Nav, Typo), keine festen Abstände mehr. */
+
 @media (max-width: 1100px) {
-  :root { --container-pad: 40px; }
   .footer-top { grid-template-columns: 1fr 1fr; }
-  .intro-text { padding: 80px 60px; }
   .stats-inner { grid-template-columns: repeat(2, 1fr); }
   .stat-block:nth-child(2) { border-right: none; }
 }
 
 @media (max-width: 900px) {
+  /* Seitliche Reveal-Animation → vertikal, sonst ragt translateX(±44px)
+     über den schmalen Gutter hinaus und erzeugt horizontalen Überlauf. */
+  .reveal-left, .reveal-right { transform: translateY(32px); }
+  .reveal-left.visible, .reveal-right.visible { transform: none; }
+
   .services-grid { grid-template-columns: 1fr 1fr; }
   .trust-grid { grid-template-columns: 1fr; }
-  .trust-imgslider { height: 340px; }
   .kriminal-grid { grid-template-columns: repeat(2, 1fr); }
   .locations-grid { grid-template-columns: repeat(2, 1fr); }
   .certs-bar { flex-wrap: wrap; }
   .cert-block { flex: 1 1 calc(33% - 2px); }
-  .contact-layout { grid-template-columns: 1fr; gap: 48px; }
+  .contact-layout { grid-template-columns: 1fr; }
   .news-grid { grid-template-columns: 1fr 1fr; }
   .intro { grid-template-columns: 1fr; }
-  .intro-image { min-height: 400px; }
-  .bgs-content { padding: 0 40px; flex-direction: column; justify-content: center; gap: 32px; }
-  .cta-content { padding: 0 40px; }
+  .bgs-content { flex-direction: column; justify-content: center; }
+  .bgs-text { max-width: 100%; }
 }
 
 @media (max-width: 768px) {
-  :root { --container-pad: 24px; }
-
   /* Hide desktop nav */
   .site-nav, .nav-cta { display: none; }
   .nav-toggle { display: flex; }
 
-  .hero-content { padding: 0 var(--container-pad) 80px; }
   .hero-controls { right: var(--container-pad); bottom: 28px; }
   .hero-title { font-size: clamp(40px, 10vw, 64px); }
 
-  .intro-text { padding: 60px var(--container-pad); }
   .intro-year { font-size: 56px; }
 
   .stats-inner { grid-template-columns: 1fr 1fr; }
-  .stat-block { padding: 36px 24px; }
 
-  .services { padding: 80px var(--container-pad); }
   .services-grid { grid-template-columns: 1fr; }
-  .service-card { padding: 40px 32px; }
 
   .bg-slider-section { height: auto; }
-  .bgs-content { padding: 60px var(--container-pad); flex-direction: column; gap: 32px; }
+  .bgs-content { padding-block: var(--section-y-xs); }
 
-  .trust { padding: 80px var(--container-pad); }
-  .trust-grid { grid-template-columns: 1fr; gap: 40px; }
-  .trust-imgslider { height: 280px; }
+  .trust-grid { grid-template-columns: 1fr; }
 
-  .kriminal-section { padding: 80px var(--container-pad); }
   .kriminal-grid { grid-template-columns: 1fr 1fr; }
-  .kriminal-card { padding: 36px 20px; }
   .kriminal-num { font-size: 44px; }
 
-  .locations-section { padding: 80px var(--container-pad); }
   .locations-grid { grid-template-columns: 1fr; }
 
-  .certs-section { padding: 60px var(--container-pad); }
   .certs-bar { flex-direction: column; }
 
   .cta-section { height: auto; }
-  .cta-content { padding: 80px var(--container-pad); max-width: 100%; }
+  .cta-content { max-width: 100%; }
   .cta-tel { font-size: 22px; }
 
-  .site-footer { padding: 60px var(--container-pad) 32px; }
-  .footer-top { grid-template-columns: 1fr; gap: 40px; }
+  .footer-top { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
 
-  .page-hero { padding-top: calc(var(--header-height) + 48px); padding-bottom: 48px; }
-  .content-section { padding: 60px var(--container-pad); }
-
-  .contact-form { padding: 36px 28px; }
-
   .news-grid { grid-template-columns: 1fr; }
-  .jobs-list { }
   .job-card { flex-direction: column; align-items: flex-start; gap: 16px; }
 
   h2.section-title { font-size: clamp(28px, 7vw, 42px); }
 }
 
 @media (max-width: 480px) {
-  :root { --container-pad: 20px; }
+  :root { --header-height: 92px; }
+  .site-logo__img { height: 74px; }
   .kriminal-grid { grid-template-columns: 1fr; }
   .locations-grid { grid-template-columns: 1fr; }
   .hero-actions { flex-direction: column; align-items: flex-start; }
@@ -775,10 +814,10 @@ h2.section-title {
   --light:  #1A1917;
   --white:  #0A0A0B;
 
-  /* --gold war #8A7232 → 4.10:1 auf --panel (fail).
-     Neu #705D28 → 4.63:1 auf --panel, 5.89:1 auf --black (WCAG AA ✓) */
-  --gold:   #705D28;
-  --gold2:  #7D6830;  /* hover-Zustand: nur als Button-Hintergrund, nicht als Textfarbe */
+  /* Königsblau als Akzent-Text auf hellen Panels.
+     #2A4E9E → ca. 5.6:1 auf --panel, höher auf --black (WCAG AA ✓) */
+  --gold:   #2A4E9E;
+  --gold2:  #3563B5;  /* hover-Zustand: nur als Button-Hintergrund, nicht als Textfarbe */
 }
 
 /* Body-Hintergrund und Basis-Textfarbe */
@@ -796,11 +835,12 @@ h2.section-title {
 }
 [data-theme="light"] .site-logo { color: var(--white); }
 [data-theme="light"] .site-logo span { color: var(--gold); }
-[data-theme="light"] .site-nav__link { color: var(--silver); }
+[data-theme="light"] .site-logo__img { filter: none; }
+[data-theme="light"] .site-nav__link { color: var(--light); }
 [data-theme="light"] .site-nav__link:hover,
 [data-theme="light"] .site-nav__link.active { color: var(--white); }
 [data-theme="light"] .site-nav__dropdown { background: var(--deep); border-color: var(--border); }
-[data-theme="light"] .site-nav__dropdown-link { color: var(--silver); }
+[data-theme="light"] .site-nav__dropdown-link { color: var(--light); }
 [data-theme="light"] .site-nav__dropdown-link:hover { color: var(--white); background: rgba(0,0,0,0.05); }
 [data-theme="light"] .nav-toggle__bar { background: var(--light); }
 [data-theme="light"] .mobile-nav { background: var(--black); }
@@ -815,7 +855,7 @@ h2.section-title {
 
 /* Intro Split */
 [data-theme="light"] .intro { background: var(--deep); }
-[data-theme="light"] .intro-text .section-body { color: var(--silver); }
+[data-theme="light"] .intro-text .section-body { color: var(--light); }
 
 /* Stats Bar */
 [data-theme="light"] .stats-bar { background: var(--deep); border-color: var(--border); }
@@ -829,7 +869,7 @@ h2.section-title {
 [data-theme="light"] .service-card { background: var(--deep); }
 [data-theme="light"] .service-card:hover { background: var(--panel); }
 [data-theme="light"] .service-name { color: var(--white); }
-[data-theme="light"] .service-desc { color: var(--muted); }
+[data-theme="light"] .service-desc { color: var(--light); }
 [data-theme="light"] h2.section-title { color: var(--white); }
 
 /* ── ALWAYS-DARK SECTIONS: Text erzwingen ────────────────────
@@ -841,40 +881,40 @@ h2.section-title {
 
 /* BG Slider – Zitat-Sektion */
 [data-theme="light"] .bg-slider-section .bgs-text blockquote { color: #f2f2f4; }
-[data-theme="light"] .bg-slider-section .bgs-text cite        { color: #b8985a; }
-[data-theme="light"] .bg-slider-section .btn-primary          { background: #b8985a; color: #0a0a0b; }
-[data-theme="light"] .bg-slider-section .btn-primary:hover    { background: #d4b578; }
+[data-theme="light"] .bg-slider-section .bgs-text cite        { color: #3D63B2; }
+[data-theme="light"] .bg-slider-section .btn-primary          { background: #3D63B2; color: #fff; }
+[data-theme="light"] .bg-slider-section .btn-primary:hover    { background: #5B82D1; }
 
 /* Kriminal-Statistik-Sektion */
 [data-theme="light"] .kriminal-section h2.section-title  { color: #f2f2f4; }
-[data-theme="light"] .kriminal-section .section-label    { color: #b8985a; }
+[data-theme="light"] .kriminal-section .section-label    { color: #3D63B2; }
 [data-theme="light"] .kriminal-section .kriminal-num     { color: #f2f2f4; }
-[data-theme="light"] .kriminal-section .kriminal-label   { color: #b8985a; }
+[data-theme="light"] .kriminal-section .kriminal-label   { color: #3D63B2; }
 
 /* CTA-Sektion */
 [data-theme="light"] .cta-section .cta-content h2       { color: #f2f2f4; }
-[data-theme="light"] .cta-section .cta-content p        { color: #9a9aaa; }
-[data-theme="light"] .cta-section .cta-content .section-label { color: #b8985a; }
-[data-theme="light"] .cta-section .cta-tel              { color: #b8985a; }
-[data-theme="light"] .cta-section .btn-primary          { background: #b8985a; color: #0a0a0b; }
-[data-theme="light"] .cta-section .btn-primary:hover    { background: #d4b578; }
+[data-theme="light"] .cta-section .cta-content p        { color: #d8d8e0; }
+[data-theme="light"] .cta-section .cta-content .section-label { color: #3D63B2; }
+[data-theme="light"] .cta-section .cta-tel              { color: #3D63B2; }
+[data-theme="light"] .cta-section .btn-primary          { background: #3D63B2; color: #fff; }
+[data-theme="light"] .cta-section .btn-primary:hover    { background: #5B82D1; }
 [data-theme="light"] .cta-section .btn-ghost            { color: #f2f2f4; border-color: rgba(255,255,255,0.25); }
-[data-theme="light"] .cta-section .btn-ghost:hover      { color: #b8985a; border-color: #b8985a; }
+[data-theme="light"] .cta-section .btn-ghost:hover      { color: #3D63B2; border-color: #3D63B2; }
 
 /* Hero-Sektion (Animation-Startfarbe sichern) */
 [data-theme="light"] .hero-title          { color: #f2f2f4; }
-[data-theme="light"] .hero-title em       { color: #b8985a; }
-[data-theme="light"] .hero-sub            { color: #9a9aaa; }
-[data-theme="light"] .hero-eyebrow        { color: #b8985a; }
-[data-theme="light"] .hero-slide-count    { color: #9a9aaa; }
+[data-theme="light"] .hero-title em       { color: #3D63B2; }
+[data-theme="light"] .hero-sub            { color: #d8d8e0; }
+[data-theme="light"] .hero-eyebrow        { color: #3D63B2; }
+[data-theme="light"] .hero-slide-count    { color: #d8d8e0; }
 [data-theme="light"] .hero-slide-count span { color: #f2f2f4; }
-[data-theme="light"] .hero .btn-ghost     { color: #f2f2f4; border-color: rgba(255,255,255,0.25); }
-[data-theme="light"] .hero .btn-ghost:hover { color: #b8985a; border-color: #b8985a; }
+[data-theme="light"] .btn-ghost { color: var(--white); border-color: var(--silver); }
+[data-theme="light"] .hero .btn-ghost:hover { color: #3D63B2; border-color: #3D63B2; }
 
 /* Trust Section */
 [data-theme="light"] .trust { background: var(--black); }
 [data-theme="light"] .trust-point { border-color: var(--border); }
-[data-theme="light"] .trust-point-body h4 { color: var(--white); }
+[data-theme="light"] .trust-point-body h3 { color: var(--white); }
 [data-theme="light"] .trust-point-body p { color: var(--muted); }
 
 /* Kriminal Section bleibt dunkel — eigene Bilder */
@@ -894,25 +934,25 @@ h2.section-title {
 [data-theme="light"] .certs-bar { background: var(--border); border-color: var(--border); }
 [data-theme="light"] .cert-block { background: var(--deep); }
 [data-theme="light"] .cert-block:hover { background: var(--panel); }
-[data-theme="light"] .cert-mark { border-color: var(--border); color: var(--gold); }
-[data-theme="light"] .cert-name { color: var(--silver); }
+[data-theme="light"] .certs-group-label { color: var(--gold); }
+[data-theme="light"] .cert-name { color: var(--light); }
 [data-theme="light"] .cert-sub { color: var(--muted); }
 
 /* Footer */
 [data-theme="light"] .site-footer { background: var(--deep); border-color: var(--border); }
 [data-theme="light"] .footer-top { border-color: var(--border); }
 [data-theme="light"] .footer-brand { color: var(--white); }
-[data-theme="light"] .footer-about { color: var(--muted); }
-[data-theme="light"] .footer-links a { color: var(--muted); }
+[data-theme="light"] .footer-about { color: var(--light); }
+[data-theme="light"] .footer-links a { color: var(--silver); }
 [data-theme="light"] .footer-links a:hover { color: var(--white); }
-[data-theme="light"] .footer-copy { color: var(--muted); }
-[data-theme="light"] .footer-legal a { color: var(--muted); }
+[data-theme="light"] .footer-copy { color: var(--silver); }
+[data-theme="light"] .footer-legal a { color: var(--silver); }
 [data-theme="light"] .footer-legal a:hover { color: var(--white); }
 
 /* Page Hero (Unterseiten) */
 [data-theme="light"] .page-hero { background: var(--deep); border-color: var(--border); }
 [data-theme="light"] .page-hero h1 { color: var(--white); }
-[data-theme="light"] .page-hero p { color: var(--silver); }
+[data-theme="light"] .page-hero p { color: var(--light); }
 [data-theme="light"] .breadcrumb { color: var(--muted); }
 [data-theme="light"] .breadcrumb a { color: var(--muted); }
 
@@ -921,7 +961,7 @@ h2.section-title {
 [data-theme="light"] .prose h2 { color: var(--white); }
 [data-theme="light"] .prose h3 { color: var(--gold); }
 [data-theme="light"] .prose p,
-[data-theme="light"] .prose li { color: var(--silver); }
+[data-theme="light"] .prose li { color: var(--light); }
 [data-theme="light"] .prose strong { color: var(--light); }
 
 /* Kontaktformular */
@@ -932,12 +972,12 @@ h2.section-title {
    opacity auf 1 setzen, damit --muted (#5E5B57) ungedämpft gilt: 6.23:1 ✓ */
 [data-theme="light"] .form-input::placeholder,
 [data-theme="light"] .form-textarea::placeholder { color: var(--muted); opacity: 1; }
-[data-theme="light"] .form-label { color: var(--silver); }
+[data-theme="light"] .form-label { color: var(--light); }
 [data-theme="light"] .form-checkbox-label { color: var(--muted); }
 [data-theme="light"] .form-note { color: var(--muted); }
 [data-theme="light"] .contact-info h3 { color: var(--white); }
 [data-theme="light"] .contact-info-block h4 { color: var(--gold); }
-[data-theme="light"] .contact-info-block p { color: var(--silver); }
+[data-theme="light"] .contact-info-block p { color: var(--light); }
 
 /* Jobs */
 [data-theme="light"] .jobs-list { background: var(--border); border-color: var(--border); }
@@ -998,3 +1038,24 @@ body,
 .news-card, .contact-form, .form-input, .form-textarea {
   transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease;
 }
+
+/* Barrierefreiheit: Bewegung reduzieren respektieren.
+   Animationen/Transitions praktisch aus, Reveal-Elemente sofort sichtbar,
+   Auto-Slideshows werden zusätzlich per JS gestoppt (main.js). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal,
+  .reveal-left,
+  .reveal-right {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+

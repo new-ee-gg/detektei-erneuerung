@@ -7,14 +7,25 @@
 (function () {
   'use strict';
 
+  // Respektiert die System-Einstellung „Bewegung reduzieren": schaltet Auto-Slideshows
+  // und Zähler-Animationen ab (Endzustand wird direkt gesetzt).
+  var prefersReducedMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
   /* ──────────────────────────────────────
      DARK / LIGHT MODE TOGGLE
   ────────────────────────────────────── */
   var THEME_KEY = 'dp-theme';
 
-  function applyTheme(theme) {
+  function systemTheme() {
+    return (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches)
+      ? 'light' : 'dark';
+  }
+
+  // persist = true nur bei bewusstem Umschalten; System-Default wird NICHT gespeichert,
+  // damit spätere OS-Wechsel weiter greifen.
+  function applyTheme(theme, persist) {
     document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem(THEME_KEY, theme);
+    if (persist) localStorage.setItem(THEME_KEY, theme);
   }
 
   function injectToggleButton() {
@@ -36,7 +47,7 @@
 
     btn.addEventListener('click', function () {
       var current = document.documentElement.getAttribute('data-theme');
-      applyTheme(current === 'light' ? 'dark' : 'light');
+      applyTheme(current === 'light' ? 'dark' : 'light', true);
     });
 
     // Einfügen: vor dem nav-cta oder am Ende des Headers
@@ -48,10 +59,23 @@
     }
   }
 
-  // Gespeichertes Theme laden (Standard: dark)
-  var savedTheme = localStorage.getItem(THEME_KEY) || 'dark';
-  applyTheme(savedTheme);
+  // Gespeichertes Theme laden; ohne Auswahl → System-Präferenz.
+  // (Inline-Snippet im <head> setzt data-theme bereits vor dem Paint = kein FOUC.)
+  var stored = localStorage.getItem(THEME_KEY);
+  var savedTheme = (stored === 'light' || stored === 'dark') ? stored : systemTheme();
+  applyTheme(savedTheme, false);
   injectToggleButton();
+
+  // Solange keine bewusste Auswahl getroffen wurde: OS-Wechsel live übernehmen.
+  if (window.matchMedia) {
+    var mq = window.matchMedia('(prefers-color-scheme: light)');
+    var onSchemeChange = function (e) {
+      if (localStorage.getItem(THEME_KEY)) return; // Nutzerwahl hat Vorrang
+      applyTheme(e.matches ? 'light' : 'dark', false);
+    };
+    if (mq.addEventListener) mq.addEventListener('change', onSchemeChange);
+    else if (mq.addListener) mq.addListener(onSchemeChange);
+  }
 
   /* ──────────────────────────────────────
      NAV SCROLL EFFECT
@@ -149,14 +173,14 @@
   if (heroSlides.length) {
     // start fill for slide 0
     heroFillStart = Date.now();
-    if (heroFills.length) {
+    if (heroFills.length && !prefersReducedMotion) {
       heroFillIv = setInterval(function () {
         var pct = Math.min(100, ((Date.now() - heroFillStart) / HERO_DUR) * 100);
         heroFills[0].style.width = pct + '%';
         if (pct >= 100) clearInterval(heroFillIv);
       }, 40);
     }
-    heroAutoTimer = setInterval(heroGo, HERO_DUR);
+    if (!prefersReducedMotion) heroAutoTimer = setInterval(heroGo, HERO_DUR);
 
     heroThumbs.forEach(function (t, i) {
       t.addEventListener('click', function () {
@@ -182,7 +206,7 @@
       els[idx].classList.add('active');
       if (dots.length) dots[idx].classList.add('active');
     }
-    setInterval(go, interval);
+    if (!prefersReducedMotion) setInterval(go, interval);
     dots.forEach(function (d, i) {
       d.addEventListener('click', function () { go(i); });
     });
@@ -217,6 +241,7 @@
   ────────────────────────────────────── */
   function animateCounter(el, target) {
     if (!el) return;
+    if (prefersReducedMotion) { el.textContent = target.toLocaleString('de-DE'); return; }
     var start = null;
     var dur = 2200;
     function step(ts) {
@@ -229,20 +254,29 @@
     requestAnimationFrame(step);
   }
 
+  // Kriminalstatistik: Zielwerte kommen aus data-count im HTML (eine Pflegestelle,
+  // keine hartkodierten Zahlen mehr). Jährlich in index.html aktualisieren.
   var krimSection = document.querySelector('.kriminal-section');
-  if (krimSection && 'IntersectionObserver' in window) {
+  var krimNums = document.querySelectorAll('.kriminal-num[data-count]');
+  function setKrimTargets(animate) {
+    krimNums.forEach(function (el) {
+      var target = parseInt(el.getAttribute('data-count'), 10) || 0;
+      if (animate) animateCounter(el, target);
+      else el.textContent = target.toLocaleString('de-DE');
+    });
+  }
+  if (krimSection && krimNums.length && 'IntersectionObserver' in window) {
     var cntObs = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         if (e.isIntersecting) {
-          animateCounter(document.getElementById('cnt1'), 133882);
-          animateCounter(document.getElementById('cnt2'),  95210);
-          animateCounter(document.getElementById('cnt3'), 217654);
-          animateCounter(document.getElementById('cnt4'), 156030);
+          setKrimTargets(true);
           cntObs.disconnect();
         }
       });
     }, { threshold: 0.2 });
     cntObs.observe(krimSection);
+  } else if (krimNums.length) {
+    setKrimTargets(false);
   }
 
   /* ──────────────────────────────────────
@@ -288,6 +322,44 @@
       }
     });
   }
+
+  /* ──────────────────────────────────────
+     BEWERBUNGS-KONTEXT (Deep-Link von der Karriereseite:
+     kontakt.html?bewerbung=<Position> → Formular auf Bewerber umstellen)
+  ────────────────────────────────────── */
+  (function initBewerbungContext() {
+    var params;
+    try { params = new URLSearchParams(window.location.search); } catch (e) { return; }
+    if (!params.has('bewerbung')) return;
+
+    var pos = (params.get('bewerbung') || '').trim();
+    var isInitiativ = !pos || pos === '1' || /initiativ/i.test(pos);
+
+    var betreff     = document.getElementById('betreff');
+    var msg         = document.getElementById('nachricht');
+    var formHeading = document.getElementById('kontakt-heading');
+    var heroH1      = document.querySelector('.page-hero h1');
+    var heroLead    = document.querySelector('.page-hero p');
+    var note        = document.querySelector('.form-note');
+
+    if (heroH1)      heroH1.textContent = 'Bewerbung';
+    if (heroLead)    heroLead.textContent = 'Senden Sie uns Ihre Bewerbung – alle Angaben werden streng vertraulich behandelt. Wir melden uns zeitnah bei Ihnen.';
+    if (formHeading) formHeading.textContent = 'Ihre Bewerbung';
+    if (betreff)     betreff.value = isInitiativ ? 'Initiativbewerbung' : ('Bewerbung: ' + pos);
+
+    if (msg && !msg.value) {
+      msg.value =
+        (isInitiativ ? 'Initiativbewerbung\n\n' : ('Bewerbung als ' + pos + '\n\n')) +
+        'Kurz zu mir:\n' +
+        '• Verfügbar ab: \n' +
+        '• §34a-Sachkunde vorhanden: ja / nein\n' +
+        '• Führerschein Klasse B: ja / nein\n\n' +
+        'Über mich:\n';
+    }
+    if (note) {
+      note.textContent = 'Lebenslauf und Zeugnisse können Sie nach erster Rückmeldung per E-Mail nachreichen. Mit * gekennzeichnete Felder sind Pflichtfelder.';
+    }
+  })();
 
   function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
 

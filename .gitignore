@@ -1,5 +1,21 @@
+# OS / Editor
 .DS_Store
 Thumbs.db
 *.log
+
+# Dependencies / Build
 node_modules/
+.vercel/
 .env
+.env.*
+!.env.example
+
+# Internes Keyword-Tool (eigenes Projekt, enthält Secrets/DB)
+seo-tool/
+
+# Interne Kunden-/Freigabedokumente – nie veröffentlichen
+FREIGABE.md
+/*.pdf
+/*.jpg
+/*.jpeg
+/*.png
