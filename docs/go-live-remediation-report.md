@@ -219,3 +219,6 @@ Header-Nav-Pille, Dropdown, Theme-Toggle, Kontakt-CTA, Mobile-Nav, alle Buttons 
 ## 15. Logo-Übernahme (Kundendatei 2026-09-21)
 Offizielles Logo `DSS_Pappenberger_30Jahre_Logo.jpg` (2898×1368, weißer Hintergrund) übernommen: freigestellt als WebP mit Alpha (810/480 px), Publisher-PNG, Favicons/Apple-Touch/Manifest-Icons aus dem Badge. SVG-Varianten auf Originalstand (1996) zurückgesetzt.
 **Entschieden (Kunde, 2026-09-21): Logo ist Single Source of Truth → Gründungsjahr 1996.** Alle 45 Textstellen (Hero, Ticker, Footer, Intro-Jahreszahl, News-Meilensteine, Descriptions, JSON-LD `foundingDate`, Manifest) auf 1996 umgestellt; „30 Jahre“/„30+“ bleibt korrekt (1996→2026). F-26 damit FIXED. Hinweis: `FREIGABE.md` (07/2026) nannte 1995 – überholt.
+
+## 16. Typografie-Pass (2026-09-21)
+Tokens `--text-xs/sm/base/lead`, `--lh-body`, `--measure` in `css/main.css`. Fließtext 16–17 px / Gewicht 400 (vorher 15 px / 300), Zeilenlänge ≤ 78 Zeichen, Einleitungen 17–19 px, Labels/Buttons/Nav 12 px (vorher 11), Meta/Karten-Teaser 14 px, Eingabefelder 16 px (kein iOS-Auto-Zoom). Barlow 300 entfernt (8 Font-Dateien). axe: 0 Verstöße Dark + Light.
