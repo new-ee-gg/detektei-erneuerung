@@ -5,17 +5,14 @@
 
 /* ---------------------------------------------------------
    0. SELBST-GEHOSTETE SCHRIFTEN (DSGVO – keine Google-Server)
-   woff2 kombiniert (latin + latin-ext), font-display: swap
+   woff2 (latin + latin-ext), font-display: swap · 9 Schnitte: Cormorant 300/400/600, Barlow 300/400/600, Condensed 500/600/700
    --------------------------------------------------------- */
 @font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 300; font-display: swap; src: url('../assets/fonts/cormorant-garamond-300.woff2') format('woff2'); }
 @font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 400; font-display: swap; src: url('../assets/fonts/cormorant-garamond-400.woff2') format('woff2'); }
-@font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 500; font-display: swap; src: url('../assets/fonts/cormorant-garamond-500.woff2') format('woff2'); }
 @font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 600; font-display: swap; src: url('../assets/fonts/cormorant-garamond-600.woff2') format('woff2'); }
 @font-face { font-family: 'Barlow'; font-style: normal; font-weight: 300; font-display: swap; src: url('../assets/fonts/barlow-300.woff2') format('woff2'); }
 @font-face { font-family: 'Barlow'; font-style: normal; font-weight: 400; font-display: swap; src: url('../assets/fonts/barlow-400.woff2') format('woff2'); }
-@font-face { font-family: 'Barlow'; font-style: normal; font-weight: 500; font-display: swap; src: url('../assets/fonts/barlow-500.woff2') format('woff2'); }
 @font-face { font-family: 'Barlow'; font-style: normal; font-weight: 600; font-display: swap; src: url('../assets/fonts/barlow-600.woff2') format('woff2'); }
-@font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 400; font-display: swap; src: url('../assets/fonts/barlow-condensed-400.woff2') format('woff2'); }
 @font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 500; font-display: swap; src: url('../assets/fonts/barlow-condensed-500.woff2') format('woff2'); }
 @font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 600; font-display: swap; src: url('../assets/fonts/barlow-condensed-600.woff2') format('woff2'); }
 @font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 700; font-display: swap; src: url('../assets/fonts/barlow-condensed-700.woff2') format('woff2'); }
@@ -326,30 +323,31 @@ button { cursor: pointer; border: none; background: none; }
   font-size: 11px; font-weight: 500; letter-spacing: 0.2em;
   text-transform: uppercase; color: var(--accent-text); margin-bottom: 28px;
   opacity: 0; transform: translateY(20px);
-  animation: fadeUp 0.8s 0.4s forwards;
+  animation: fadeUp 0.8s 0.1s forwards;
 }
 .hero-eyebrow::before { content: ''; display: block; width: 40px; height: 1px; background: var(--gold); }
 .hero-title {
   font-family: var(--font-serif);
   font-size: clamp(52px, 7.5vw, 96px);
   font-weight: 300; line-height: 1.0; color: var(--white); margin-bottom: 32px;
-  opacity: 0; transform: translateY(24px);
-  animation: fadeUp 0.9s 0.6s forwards;
+  transform: translateY(24px);
+  animation: slideUp 0.8s 0.15s forwards;
 }
 .hero-title em { font-style: normal; font-weight: 600; color: var(--accent-text); display: block; }
 .hero-sub {
   font-size: 16px; font-weight: 300; line-height: 1.75; color: var(--light);
   max-width: 500px; margin-bottom: 48px;
   opacity: 0; transform: translateY(20px);
-  animation: fadeUp 0.9s 0.8s forwards;
+  animation: fadeUp 0.9s 0.45s forwards;
 }
 .hero-actions {
   display: flex; gap: 20px; align-items: center; flex-wrap: wrap;
   opacity: 0; transform: translateY(20px);
-  animation: fadeUp 0.9s 1.0s forwards;
+  animation: fadeUp 0.9s 0.6s forwards;
 }
 
 @keyframes fadeUp { to { opacity: 1; transform: none; } }
+@keyframes slideUp { to { transform: none; } }
 
 /* ---------------------------------------------------------
    7. Buttons
@@ -440,7 +438,7 @@ h2.section-title {
 .stat-block:last-child { border-right: none; }
 .stat-big { font-family: var(--font-serif); font-size: 64px; font-weight: 300; color: var(--white); line-height: 1; margin-bottom: 10px; }
 .stat-big sup { font-size: 24px; color: var(--accent-text); vertical-align: super; }
-.stat-desc { font-family: var(--font-condensed); font-size: 11px; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); line-height: 1.5; }
+.stat-desc { font-family: var(--font-condensed); font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); line-height: 1.5; }
 
 /* ---------------------------------------------------------
    12. Services
@@ -464,7 +462,7 @@ h2.section-title {
 .service-card:hover::before { transform: scaleX(1); }
 .service-num { font-family: var(--font-condensed); font-size: 11px; font-weight: 600; letter-spacing: 0.18em; color: var(--muted); margin-bottom: 28px; }
 .service-icon { width: 44px; height: 44px; margin-bottom: 24px; opacity: 0.7; stroke: var(--gold); }
-.service-name { font-family: var(--font-serif); font-size: 24px; font-weight: 500; color: var(--white); margin-bottom: 16px; line-height: 1.2; }
+.service-name { font-family: var(--font-serif); font-size: 24px; font-weight: 600; color: var(--white); margin-bottom: 16px; line-height: 1.2; }
 .service-desc { font-size: 14px; font-weight: 300; line-height: 1.7; color: var(--light); }
 .service-link {
   display: inline-flex; align-items: center; gap: 8px; margin-top: 32px; padding: 6px 0;
@@ -517,7 +515,7 @@ h2.section-title {
 .trust-point:first-child { padding-top: 0; }
 .trust-point:last-child { border-bottom: none; }
 .trust-point-num { font-family: var(--font-condensed); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; color: var(--accent-text); min-width: 24px; padding-top: 3px; }
-.trust-point-body h3 { font-size: 16px; font-weight: 500; color: var(--white); margin-bottom: 8px; }
+.trust-point-body h3 { font-size: 16px; font-weight: 600; color: var(--white); margin-bottom: 8px; }
 .trust-point-body p { font-size: 14px; font-weight: 300; line-height: 1.7; color: var(--muted); }
 
 /* ---------------------------------------------------------
@@ -532,7 +530,7 @@ h2.section-title {
 .kriminal-card { background: rgba(10,10,11,0.7); padding: var(--card-pad) clamp(20px, 2.6vw, 36px); text-align: center; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); transition: background 0.3s; }
 .kriminal-card:hover { background: rgba(22,22,26,0.85); }
 .kriminal-num { font-family: var(--font-serif); font-size: 60px; font-weight: 300; color: var(--white); line-height: 1; margin-bottom: 12px; }
-.kriminal-label { font-family: var(--font-condensed); font-size: 11px; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-text); line-height: 1.5; }
+.kriminal-label { font-family: var(--font-condensed); font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-text); line-height: 1.5; }
 
 /* ---------------------------------------------------------
    16. Standorte
@@ -609,7 +607,7 @@ h2.section-title {
 .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 32px; flex-wrap: wrap; gap: 16px; }
 .footer-copy { font-size: 12px; font-weight: 400; color: var(--silver); }
 .footer-legal { display: flex; gap: 32px; }
-.footer-legal a { font-family: var(--font-condensed); font-size: 11px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--silver); transition: color 0.2s; }
+.footer-legal a { font-family: var(--font-condensed); font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--silver); transition: color 0.2s; }
 .footer-legal a:hover { color: var(--white); }
 
 /* ---------------------------------------------------------
@@ -644,7 +642,7 @@ h2.section-title {
 .prose ul li::before { content: '–'; position: absolute; left: 0; color: var(--accent-text); }
 .prose a { color: var(--accent-text); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; transition: color 0.2s; }
 .prose a:hover { color: var(--white); }
-.prose strong { color: var(--light); font-weight: 500; }
+.prose strong { color: var(--light); font-weight: 600; }
 
 /* ---------------------------------------------------------
    22. Kontaktformular
