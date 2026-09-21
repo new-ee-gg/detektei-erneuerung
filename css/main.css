@@ -57,7 +57,7 @@
   --deep:   #111114;
   --panel:  #16161a;
   --border: #2a2a30;
-  --muted:  #8a8a9a;
+  --muted:  #9a9aa9;   /* ≥5.5:1 auch auf Glas-Karten */
   --silver: #b8b8c8;
   --light:  #d8d8e0;
   --white:  #f2f2f4;
@@ -1060,7 +1060,7 @@ h2.section-title {
 [data-theme="light"] .content-section div[style*="background:var(--deep)"] p { color: var(--silver); }
 
 /* Intro-Jahrezahl: dekorativ + aria-hidden → bleibt bewusst schwach sichtbar */
-[data-theme="light"] .intro-year { color: var(--border); }
+[data-theme="light"] .intro-year { color: #8a857b; }
 
 /* Prose-Links */
 [data-theme="light"] .prose a { color: var(--accent-text); }
