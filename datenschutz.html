@@ -3,31 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Datenschutzerklärung | Detektei Pappenberger Security Service</title>
+  <title>Datenschutz | Detektei Pappenberger</title>
   <meta name="description" content="Datenschutzerklärung der Detektei Security Service Pappenberger gemäß DSGVO." />
   <meta name="robots" content="noindex, follow" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="canonical" href="https://www.detektei-weltweit.de/datenschutz.html" />
+  <meta name="theme-color" content="#0a0a0b" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#F0EEE9" media="(prefers-color-scheme: light)" />
+  <script>(function(){var d=document.documentElement;d.className+=' js';var t=null;try{t=localStorage.getItem('dp-theme');}catch(e){}if(t!=='light'&&t!=='dark'){try{t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';}catch(e){t='dark';}}d.setAttribute('data-theme',t);})();</script>
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/cormorant-garamond-300.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/barlow-400.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/barlow-condensed-600.woff2" crossorigin />
   <link rel="stylesheet" href="css/main.css" />
 </head>
 <body>
+<a class="skip-link" href="#main-content">Zum Inhalt springen</a>
 
-<header class="site-header" id="site-header" role="banner">
-  <a href="index.html" class="site-logo" aria-label="Detektei Pappenberger – Startseite">
-    Detektei <span>Pappenberger</span>
-  </a>
+
+
+<header class="site-header" id="site-header">
+  <a href="/" class="site-logo" aria-label="Detektei Pappenberger – Startseite"><img class="site-logo__img" fetchpriority="high" src="assets/images/logo-full.webp" srcset="assets/images/logo-full-480.webp 480w, assets/images/logo-full.webp 810w" sizes="(max-width: 480px) 180px, 240px" alt="Detektei Security Service Pappenberger" width="810" height="382"></a>
   <nav class="site-nav" aria-label="Hauptnavigation">
     <div class="site-nav__item site-nav__item--has-dropdown">
-      <a href="index.html#leistungen" class="site-nav__link" aria-haspopup="true">Leistungen</a>
-      <div class="site-nav__dropdown" role="menu">
-        <a href="detektei.html"             class="site-nav__dropdown-link" role="menuitem">Detektei &amp; Ermittlungen</a>
-        <a href="objektschutz.html"         class="site-nav__dropdown-link" role="menuitem">Objektschutz</a>
-        <a href="veranstaltungsschutz.html" class="site-nav__dropdown-link" role="menuitem">Veranstaltungsschutz</a>
-        <a href="video-sicherheit.html"     class="site-nav__dropdown-link" role="menuitem">Video Sicherheit</a>
-        <a href="sonderdienste.html"        class="site-nav__dropdown-link" role="menuitem">Sonderdienste</a>
-        <a href="akademie.html"             class="site-nav__dropdown-link" role="menuitem">Akademie</a>
+      <a href="/#leistungen" class="site-nav__link">Leistungen</a>
+      <div class="site-nav__dropdown">
+        <a href="detektei.html"             class="site-nav__dropdown-link">Detektei &amp; Ermittlungen</a>
+        <a href="objektschutz.html"         class="site-nav__dropdown-link">Objektschutz</a>
+        <a href="veranstaltungsschutz.html" class="site-nav__dropdown-link">Veranstaltungsschutz</a>
+        <a href="video-sicherheit.html"     class="site-nav__dropdown-link">Video Sicherheit</a>
+        <a href="sonderdienste.html"        class="site-nav__dropdown-link">Sonderdienste</a>
+        <a href="akademie.html"             class="site-nav__dropdown-link">Akademie</a>
       </div>
     </div>
     <div class="site-nav__item"><a href="news.html"          class="site-nav__link">News</a></div>
@@ -35,7 +43,7 @@
     <div class="site-nav__item"><a href="wissenswertes.html" class="site-nav__link">Wissenswertes</a></div>
   </nav>
   <a href="kontakt.html" class="nav-cta">Kontakt</a>
-  <button class="nav-toggle" aria-label="Navigation öffnen" aria-expanded="false" aria-controls="mobile-nav">
+  <button class="nav-toggle" type="button" aria-label="Navigation öffnen" aria-expanded="false" aria-controls="mobile-nav">
     <span class="nav-toggle__bar"></span>
     <span class="nav-toggle__bar"></span>
     <span class="nav-toggle__bar"></span>
@@ -43,18 +51,28 @@
 </header>
 
 <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile Navigation">
-  <a href="index.html"            class="mobile-nav__link">Startseite</a>
-  <a href="index.html#leistungen" class="mobile-nav__link">Leistungen</a>
+  <a href="/"                     class="mobile-nav__link">Startseite</a>
+  <a href="/#leistungen"          class="mobile-nav__link">Leistungen</a>
+  <div class="mobile-nav__sub">
+    <a href="detektei.html"             class="mobile-nav__sub-link">Detektei &amp; Ermittlungen</a>
+    <a href="objektschutz.html"         class="mobile-nav__sub-link">Objektschutz</a>
+    <a href="veranstaltungsschutz.html" class="mobile-nav__sub-link">Veranstaltungsschutz</a>
+    <a href="video-sicherheit.html"     class="mobile-nav__sub-link">Video Sicherheit</a>
+    <a href="sonderdienste.html"        class="mobile-nav__sub-link">Sonderdienste</a>
+    <a href="akademie.html"             class="mobile-nav__sub-link">Akademie</a>
+  </div>
   <a href="news.html"             class="mobile-nav__link">News</a>
   <a href="karriere.html"         class="mobile-nav__link">Karriere</a>
+  <a href="wissenswertes.html"    class="mobile-nav__link">Wissenswertes</a>
   <a href="kontakt.html"          class="mobile-nav__link">Kontakt</a>
+  <a href="tel:+498974127886"     class="mobile-nav__phone">24h:&nbsp;+49&nbsp;(0)&nbsp;89&nbsp;741&nbsp;27&nbsp;886</a>
 </nav>
 
-<main id="main-content">
+<main id="main-content" tabindex="-1">
 
   <div class="page-hero">
     <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="index.html">Startseite</a>
+      <a href="/">Startseite</a>
       <span class="breadcrumb__sep" aria-hidden="true">/</span>
       <span aria-current="page">Datenschutzerklärung</span>
     </nav>
@@ -63,48 +81,166 @@
   </div>
 
   <section class="content-section">
-    <!--
-      ⚠ PFLICHTINHALT – VOR GO-LIVE ERFORDERLICH:
-      DSGVO-konforme Datenschutzerklärung vom Kunden / Datenschutzbeauftragten liefern.
-      Enthält u.a.:
-      - Verantwortlicher
-      - Datenerhebung (Server-Logs, Kontaktformular)
-      - Google Fonts (externe IP-Übermittlung – DSGVO-relevant)
-      - Betroffenenrechte (Art. 13/14 DSGVO)
-      - Beschwerderecht bei Aufsichtsbehörde
-    -->
-    <div class="legal-notice">
-      <p>
-        <strong style="color:var(--gold);">⚠ Pflichtinhalt ausstehend:</strong> Die vollständige und DSGVO-konforme Datenschutzerklärung muss vor dem Go-Live vom Kunden bzw. einem Datenschutzbeauftragten geliefert werden. Hinweis: Die eingebundenen Google Fonts werden derzeit extern geladen – dies muss in der Datenschutzerklärung dokumentiert oder auf lokales Hosting umgestellt werden.
-      </p>
-    </div>
-
     <div class="prose">
       <h2>1. Verantwortlicher</h2>
       <p>
-        <strong>Detektei Security Service Pappenberger</strong><br />
+        Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:<br /><br />
+        <strong>DETEKTEI-SECURITY-SERVICE JÖRG PAPPENBERGER e.&nbsp;K.</strong><br />
+        Inhaber: Jörg Pappenberger<br />
         Eichenstraße 15, D-82061 Neuried<br />
-        Tel: <a href="tel:+4989720150030">+49 (0) 89 720 15 030</a><br />
-        E-Mail: <!-- ⚠ E-Mail eintragen -->
+        Telefon: <a href="tel:+498974127886">+49&nbsp;(0)&nbsp;89&nbsp;741&nbsp;27&nbsp;886</a><br />
+        Fax: +49&nbsp;(0)&nbsp;89&nbsp;741&nbsp;27&nbsp;885<br />
+        E-Mail: <a href="mailto:info@sicherheitszentrale-muc.de">info@sicherheitszentrale-muc.de</a>
       </p>
-      <h2>2. Erhebung und Verarbeitung personenbezogener Daten</h2>
-      <p><!-- ⚠ Vollständige Datenschutzerklärung eintragen --></p>
-      <h2>3. Kontaktformular</h2>
-      <p><!-- ⚠ Informationen zur Verarbeitung der Kontaktformulardaten: Zweck, Rechtsgrundlage, Speicherdauer --></p>
-      <h2>4. Ihre Rechte</h2>
-      <p><!-- ⚠ Betroffenenrechte gemäß DSGVO: Auskunft, Berichtigung, Löschung, Widerspruch, Beschwerderecht --></p>
-      <h2>5. Externe Dienste</h2>
-      <p>Diese Website lädt Schriftarten (Google Fonts) von externen Servern. Dabei wird Ihre IP-Adresse an Google übermittelt. <!-- ⚠ Rechtsgrundlage und Opt-out eintragen --></p>
+      <p>
+        Nachfolgend informieren wir Sie über den Datenschutz auf unserer Website sowie über Art,
+        Umfang und Zweck der von uns erhobenen, genutzten und verarbeiteten personenbezogenen
+        Daten. Personenbezogene Daten werden teilweise automatisch beim Besuch unserer Website
+        verarbeitet oder dann, wenn Sie uns freiwillig Informationen bereitstellen.
+      </p>
+
+      <h2>2. Ihre Rechte als betroffene Person</h2>
+      <p>Sie haben bezüglich der Sie betreffenden personenbezogenen Daten folgende Rechte:</p>
+      <ul>
+        <li>unentgeltliche Auskunft über Herkunft, Empfänger und Zweck der verarbeiteten Daten (Art. 15 DSGVO),</li>
+        <li>Berichtigung unrichtiger oder Vervollständigung Ihrer Daten (Art. 16 DSGVO),</li>
+        <li>Löschung Ihrer bei uns gespeicherten Daten (Art. 17 DSGVO),</li>
+        <li>Einschränkung der Datenverarbeitung (Art. 18 DSGVO),</li>
+        <li>Datenübertragbarkeit (Art. 20 DSGVO),</li>
+        <li>Widerruf einer erteilten Einwilligung mit Wirkung für die Zukunft (Art. 7 Abs. 3 DSGVO),</li>
+        <li>Beschwerde bei der zuständigen Datenschutz-Aufsichtsbehörde (Art. 77 DSGVO).</li>
+      </ul>
+
+      <h2>3. Verarbeitung im Rahmen erbrachter Leistungen</h2>
+      <p>
+        Art und Umfang der Verarbeitung richten sich nach den bestehenden vertraglichen oder
+        vorvertraglichen Beziehungen. Verarbeitet werden insbesondere Bestandsdaten (z.&nbsp;B.
+        Namen, Adressen), Kontaktdaten (z.&nbsp;B. E-Mail, Telefon), Vertragsdaten (z.&nbsp;B.
+        Vertragsgegenstand, Vertragsdauer) sowie Zahlungsdaten (z.&nbsp;B. Bankverbindung,
+        Rechnungen).
+      </p>
+      <p>
+        <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung).<br />
+        <strong>Speicherdauer:</strong> Die Daten werden gelöscht, sobald sie für den jeweiligen
+        Zweck nicht mehr erforderlich sind bzw. nach Beendigung der vertraglichen Beziehung.
+        Gesetzliche Aufbewahrungsfristen bleiben unberührt.
+      </p>
+
+      <h2>4. Aufruf der Website – Server-Logfiles</h2>
+      <p>Beim Besuch unserer Website werden folgende Daten in Server-Logfiles verarbeitet:</p>
+      <ul>
+        <li>Referrer-URL</li>
+        <li>Name der abgerufenen Datei</li>
+        <li>Datum und Uhrzeit der Anfrage</li>
+        <li>Browsertyp, Browserversion und Betriebssystem</li>
+        <li>IP-Adresse des anfragenden Rechners</li>
+        <li>Zugriffsstatus und übertragene Datenmenge</li>
+      </ul>
+      <p>
+        Die IP-Adressen werden nach spätestens 7 Tagen gelöscht bzw. anonymisiert. Zwecke sind
+        der ordnungsgemäße Verbindungsaufbau, die komfortable Nutzung der Website sowie die
+        Auswertung der Systemsicherheit und -stabilität.<br />
+        <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse).
+      </p>
+
+      <h2>5. Kontaktaufnahme per E-Mail, Fax oder Telefon</h2>
+      <p>
+        Nehmen Sie per E-Mail, Fax oder Telefon Kontakt mit uns auf, werden Ihre Angaben
+        einschließlich der personenbezogenen Daten zum Zweck der Bearbeitung Ihrer Anfrage
+        gespeichert. Eine Weitergabe an Dritte erfolgt ohne Ihre Einwilligung nicht.<br />
+        <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO (vertraglicher Zusammenhang),
+        Art. 6 Abs. 1 lit. a DSGVO (Einwilligung) und/oder Art. 6 Abs. 1 lit. f DSGVO
+        (berechtigtes Interesse).<br />
+        <strong>Speicherdauer:</strong> Löschung nach abschließender Bearbeitung, sofern keine
+        gesetzlichen Aufbewahrungspflichten bestehen.
+      </p>
+
+      <h2>6. Kontakt- und Bewerbungsformular</h2>
+      <p>
+        Über das Kontaktformular übermittelte Daten (u.&nbsp;a. Name, E-Mail-Adresse, Telefon,
+        Betreff und Nachricht) verwenden wir ausschließlich zur Beantwortung Ihrer Anfrage. Eine
+        Weitergabe an Dritte findet nicht statt.<br />
+        <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO bzw. Art. 6 Abs. 1 lit. a DSGVO.<br />
+        <strong>Speicherdauer:</strong> Löschung nach abschließender Bearbeitung, sofern keine
+        Aufbewahrungspflichten bestehen.
+      </p>
+
+      <h2>7. Bewerbungsunterlagen</h2>
+      <p>
+        Im Rahmen von Bewerbungen übermittelte Daten nutzen wir ausschließlich zur
+        Bewerbungsentscheidung und geben sie nicht an Dritte weiter. Bitte beachten Sie, dass eine
+        Übersendung von Bewerbungsunterlagen per E-Mail derzeit unverschlüsselt erfolgt.<br />
+        <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a und b DSGVO.<br />
+        <strong>Speicherdauer:</strong> Bei einer Absage werden die Unterlagen spätestens 6 Monate
+        nach Bekanntgabe der Absageentscheidung automatisch gelöscht, sofern keine sonstigen
+        berechtigten Interessen entgegenstehen.
+      </p>
+
+      <h2>8. Werbung und Widerspruchsrecht</h2>
+      <p>
+        Auf Grundlage des § 7 Abs. 3 UWG behalten wir uns vor, Ihnen zu ähnlichen Leistungen
+        Angebote per E-Mail zuzusenden, sofern Sie dem nicht widersprochen haben. Ebenso können
+        Name und Postanschrift aus Aufträgen für postalische Werbung genutzt werden.<br />
+        <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse).<br />
+        Sie können der werblichen Nutzung Ihrer Daten jederzeit widersprechen – eine Nachricht an
+        die oben genannten Kontaktdaten genügt. Nach dem Widerspruch werden die betreffenden Daten
+        für Werbezwecke nicht mehr verarbeitet.
+      </p>
+
+      <h2>9. Externe Links (Google Maps)</h2>
+      <p>
+        Auf unserer Website sind keine Karten- oder Social-Media-Dienste eingebettet. Die
+        Standort-Angaben enthalten lediglich Verweise auf Google Maps, die in einem neuen Fenster
+        geöffnet werden. Erst mit dem Anklicken verlassen Sie unsere Website; die Verarbeitung
+        Ihrer Daten erfolgt dann durch Google Ireland Limited nach deren Datenschutzbestimmungen
+        (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">policies.google.com/privacy<span class="sr-only"> (öffnet neues Fenster)</span></a>).
+      </p>
+
+      <h2>10. Datensicherheit – SSL-Verschlüsselung</h2>
+      <p>
+        Diese Website nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher
+        Inhalte eine SSL-/TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie an der
+        Zeichenfolge „https://“ in der Adresszeile und am Schloss-Symbol Ihres Browsers.
+      </p>
+
+      <h2>11. Weitergabe von Daten</h2>
+      <p>
+        Eine Übermittlung Ihrer personenbezogenen Daten an Dritte erfolgt nur, wenn Sie
+        ausdrücklich eingewilligt haben (Art. 6 Abs. 1 lit. a DSGVO), die Weitergabe zur
+        Vertragserfüllung erforderlich ist (lit. b), eine gesetzliche Verpflichtung besteht
+        (lit. c) oder die Wahrung berechtigter Interessen dies erfordert und Ihre Interessen nicht
+        überwiegen (lit. f).
+      </p>
+
+      <h2>12. Widerspruchsrecht (Art. 21 DSGVO)</h2>
+      <p>
+        Soweit wir Ihre personenbezogenen Daten auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO zur
+        Wahrung berechtigter Interessen verarbeiten, haben Sie das Recht, aus Gründen, die sich
+        aus Ihrer besonderen Situation ergeben, jederzeit Widerspruch einzulegen. Erfolgt die
+        Verarbeitung zu Zwecken der Direktwerbung, können Sie dieses Recht jederzeit ohne Angabe
+        von Gründen ausüben. Eine E-Mail an uns genügt.
+      </p>
+
+      <h2>13. Keine automatisierte Entscheidungsfindung</h2>
+      <p>Auf unserer Website findet keine automatisierte Entscheidungsfindung oder ein Profiling statt.</p>
+
+      <h2>14. Stand und Änderung dieser Datenschutzerklärung</h2>
+      <p>
+        Durch die Weiterentwicklung unserer Website und Angebote oder aufgrund geänderter
+        gesetzlicher bzw. behördlicher Vorgaben kann es notwendig werden, diese
+        Datenschutzerklärung anzupassen.
+      </p>
+      <p><em>Stand: Juli 2026. Grundlage: Datenschutzerklärung erstellt von RA Markus v. Hohenhau (www.e-anwalt.de), angepasst an die überarbeitete Website.</em></p>
     </div>
   </section>
 
 </main>
 
-<footer class="site-footer" role="contentinfo">
+<footer class="site-footer">
   <div class="footer-top">
-    <div>
-      <div class="footer-brand">Detektei <span>Pappenberger</span></div>
-      <p class="footer-about">Seit 1995 Ihr Spezialist für Ermittlung und Sicherheit in München und bundesweit.</p>
+    <div class="footer-brand-col">
+      <a href="/" class="footer-logo" aria-label="Detektei Security Service Pappenberger – Startseite"><img class="footer-logo__img" src="assets/images/logo-full.webp" srcset="assets/images/logo-full-480.webp 480w, assets/images/logo-full.webp 810w" sizes="(max-width: 480px) 180px, 240px" alt="Detektei Security Service Pappenberger" width="810" height="382"></a>
+      <p class="footer-about">Seit 1996 Ihr Spezialist für Ermittlung und Sicherheit in München und bundesweit.</p>
     </div>
     <div>
       <div class="footer-col-title">Leistungen</div>
@@ -127,8 +263,8 @@
     <div>
       <div class="footer-col-title">Kontakt</div>
       <ul class="footer-links">
-        <li><a href="tel:+4989720150030">+49 (0) 89 720 15 030</a></li>
-        <li><a href="tel:+498974127886">24h: +49 (0) 89 741 27 886</a></li>
+        <li><a href="tel:+4989720150030">+49&nbsp;(0)&nbsp;89&nbsp;720&nbsp;15&nbsp;030</a></li>
+        <li><a href="tel:+498974127886">24h:&nbsp;+49&nbsp;(0)&nbsp;89&nbsp;741&nbsp;27&nbsp;886</a></li>
       </ul>
     </div>
   </div>

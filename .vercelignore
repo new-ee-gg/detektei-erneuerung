@@ -1,0 +1,16 @@
+# Nie deployen: interne Doku, Kundenmaterial, Tooling, Secrets
+docs/
+FREIGABE.md
+seo-tool/
+scripts/
+*.pdf
+/*.jpg
+/*.jpeg
+/*.png
+.git/
+.claude/
+.github/
+README.md
+.env
+.env.*
+node_modules/

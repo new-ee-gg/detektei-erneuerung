@@ -3,31 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Impressum | Detektei Pappenberger Security Service</title>
+  <title>Impressum | Detektei Pappenberger</title>
   <meta name="description" content="Impressum der Detektei Security Service Pappenberger." />
   <meta name="robots" content="noindex, follow" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="canonical" href="https://www.detektei-weltweit.de/impressum.html" />
+  <meta name="theme-color" content="#0a0a0b" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#F0EEE9" media="(prefers-color-scheme: light)" />
+  <script>(function(){var d=document.documentElement;d.className+=' js';var t=null;try{t=localStorage.getItem('dp-theme');}catch(e){}if(t!=='light'&&t!=='dark'){try{t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';}catch(e){t='dark';}}d.setAttribute('data-theme',t);})();</script>
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/cormorant-garamond-300.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/barlow-400.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/barlow-condensed-600.woff2" crossorigin />
   <link rel="stylesheet" href="css/main.css" />
 </head>
 <body>
+<a class="skip-link" href="#main-content">Zum Inhalt springen</a>
 
-<header class="site-header" id="site-header" role="banner">
-  <a href="index.html" class="site-logo" aria-label="Detektei Pappenberger – Startseite">
-    Detektei <span>Pappenberger</span>
-  </a>
+
+
+<header class="site-header" id="site-header">
+  <a href="/" class="site-logo" aria-label="Detektei Pappenberger – Startseite"><img class="site-logo__img" fetchpriority="high" src="assets/images/logo-full.webp" srcset="assets/images/logo-full-480.webp 480w, assets/images/logo-full.webp 810w" sizes="(max-width: 480px) 180px, 240px" alt="Detektei Security Service Pappenberger" width="810" height="382"></a>
   <nav class="site-nav" aria-label="Hauptnavigation">
     <div class="site-nav__item site-nav__item--has-dropdown">
-      <a href="index.html#leistungen" class="site-nav__link" aria-haspopup="true">Leistungen</a>
-      <div class="site-nav__dropdown" role="menu">
-        <a href="detektei.html"             class="site-nav__dropdown-link" role="menuitem">Detektei &amp; Ermittlungen</a>
-        <a href="objektschutz.html"         class="site-nav__dropdown-link" role="menuitem">Objektschutz</a>
-        <a href="veranstaltungsschutz.html" class="site-nav__dropdown-link" role="menuitem">Veranstaltungsschutz</a>
-        <a href="video-sicherheit.html"     class="site-nav__dropdown-link" role="menuitem">Video Sicherheit</a>
-        <a href="sonderdienste.html"        class="site-nav__dropdown-link" role="menuitem">Sonderdienste</a>
-        <a href="akademie.html"             class="site-nav__dropdown-link" role="menuitem">Akademie</a>
+      <a href="/#leistungen" class="site-nav__link">Leistungen</a>
+      <div class="site-nav__dropdown">
+        <a href="detektei.html"             class="site-nav__dropdown-link">Detektei &amp; Ermittlungen</a>
+        <a href="objektschutz.html"         class="site-nav__dropdown-link">Objektschutz</a>
+        <a href="veranstaltungsschutz.html" class="site-nav__dropdown-link">Veranstaltungsschutz</a>
+        <a href="video-sicherheit.html"     class="site-nav__dropdown-link">Video Sicherheit</a>
+        <a href="sonderdienste.html"        class="site-nav__dropdown-link">Sonderdienste</a>
+        <a href="akademie.html"             class="site-nav__dropdown-link">Akademie</a>
       </div>
     </div>
     <div class="site-nav__item"><a href="news.html"          class="site-nav__link">News</a></div>
@@ -35,7 +43,7 @@
     <div class="site-nav__item"><a href="wissenswertes.html" class="site-nav__link">Wissenswertes</a></div>
   </nav>
   <a href="kontakt.html" class="nav-cta">Kontakt</a>
-  <button class="nav-toggle" aria-label="Navigation öffnen" aria-expanded="false" aria-controls="mobile-nav">
+  <button class="nav-toggle" type="button" aria-label="Navigation öffnen" aria-expanded="false" aria-controls="mobile-nav">
     <span class="nav-toggle__bar"></span>
     <span class="nav-toggle__bar"></span>
     <span class="nav-toggle__bar"></span>
@@ -43,19 +51,28 @@
 </header>
 
 <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile Navigation">
-  <a href="index.html"            class="mobile-nav__link">Startseite</a>
-  <a href="index.html#leistungen" class="mobile-nav__link">Leistungen</a>
+  <a href="/"                     class="mobile-nav__link">Startseite</a>
+  <a href="/#leistungen"          class="mobile-nav__link">Leistungen</a>
+  <div class="mobile-nav__sub">
+    <a href="detektei.html"             class="mobile-nav__sub-link">Detektei &amp; Ermittlungen</a>
+    <a href="objektschutz.html"         class="mobile-nav__sub-link">Objektschutz</a>
+    <a href="veranstaltungsschutz.html" class="mobile-nav__sub-link">Veranstaltungsschutz</a>
+    <a href="video-sicherheit.html"     class="mobile-nav__sub-link">Video Sicherheit</a>
+    <a href="sonderdienste.html"        class="mobile-nav__sub-link">Sonderdienste</a>
+    <a href="akademie.html"             class="mobile-nav__sub-link">Akademie</a>
+  </div>
   <a href="news.html"             class="mobile-nav__link">News</a>
   <a href="karriere.html"         class="mobile-nav__link">Karriere</a>
   <a href="wissenswertes.html"    class="mobile-nav__link">Wissenswertes</a>
   <a href="kontakt.html"          class="mobile-nav__link">Kontakt</a>
+  <a href="tel:+498974127886"     class="mobile-nav__phone">24h:&nbsp;+49&nbsp;(0)&nbsp;89&nbsp;741&nbsp;27&nbsp;886</a>
 </nav>
 
-<main id="main-content">
+<main id="main-content" tabindex="-1">
 
   <div class="page-hero">
     <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="index.html">Startseite</a>
+      <a href="/">Startseite</a>
       <span class="breadcrumb__sep" aria-hidden="true">/</span>
       <span aria-current="page">Impressum</span>
     </nav>
@@ -64,45 +81,119 @@
   </div>
 
   <section class="content-section">
-    <!--
-      ⚠ PFLICHTINHALT – VOR GO-LIVE ERFORDERLICH:
-      Vollständiger Impressumstext gemäß § 5 TMG vom Kunden liefern.
-      Enthält: Unternehmensname, Adresse, Kontakt, USt-IdNr., zuständige Aufsichtsbehörde,
-      Verantwortlicher gemäß § 55 Abs. 2 RStV
-    -->
-    <div class="legal-notice">
-      <p>
-        <strong style="color:var(--gold);">⚠ Pflichtinhalt ausstehend:</strong> Der vollständige und rechtlich geprüfte Impressumstext muss vom Kunden vor dem Go-Live geliefert werden.
-      </p>
-    </div>
-
     <div class="prose">
       <h2>Angaben gemäß § 5 TMG</h2>
       <p>
-        <strong>Detektei Security Service Pappenberger</strong><br />
+        <strong>DETEKTEI-SECURITY-SERVICE JÖRG PAPPENBERGER e.&nbsp;K.</strong><br />
+        Inhaber: Jörg Pappenberger<br />
+        Rechtsform: Einzelunternehmen (e.&nbsp;K.)<br />
         Eichenstraße 15<br />
         D-82061 Neuried
       </p>
-      <h3>Kontakt</h3>
+
+      <h3>Kontakt &amp; Standorte</h3>
       <p>
-        Telefon: <a href="tel:+4989720150030">+49 (0) 89 720 15 030</a><br />
-        Fax: +49 (0) 89 720 15 031<br />
-        E-Mail: <!-- ⚠ E-Mail vom Kunden eintragen -->
+        <strong>Video-Sicherheitszentrale (24h-Hotline)</strong><br />
+        Eichenstraße 15, D-82061 Neuried<br />
+        Telefon: <a href="tel:+498974127886">+49&nbsp;(0)&nbsp;89&nbsp;741&nbsp;27&nbsp;886</a><br />
+        Fax: +49&nbsp;(0)&nbsp;89&nbsp;741&nbsp;27&nbsp;885<br />
+        E-Mail: <a href="mailto:info@sicherheitszentrale-muc.de">info@sicherheitszentrale-muc.de</a><br />
+        Web: <a href="https://www.sicherheitszentrale-muc.de" target="_blank" rel="noopener noreferrer">www.sicherheitszentrale-muc.de<span class="sr-only"> (öffnet neues Fenster)</span></a>
       </p>
-      <!-- ⚠ Weitere Pflichtangaben: USt-IdNr., Handelsregistereintrag, Aufsichtsbehörde,
-           Berufsrechtliche Regelungen, Verantwortlicher gemäß § 55 RStV -->
-      <h3>Haftungshinweis</h3>
-      <p><!-- ⚠ Vom Kunden / Rechtsanwalt eintragen --></p>
+      <p>
+        <strong>Büro Ost</strong><br />
+        Eislebenerstraße 43a, D-06246 Bad Lauchstädt<br />
+        Telefon: <a href="tel:+4934636757151">+49&nbsp;(0)&nbsp;34636&nbsp;757151</a><br />
+        Fax: +49&nbsp;(0)&nbsp;34636&nbsp;757152<br />
+        E-Mail: <a href="mailto:info@detektei-weltweit.de">info@detektei-weltweit.de</a><br />
+        Web: <a href="https://www.detektei-weltweit.de" target="_blank" rel="noopener noreferrer">www.detektei-weltweit.de<span class="sr-only"> (öffnet neues Fenster)</span></a>
+      </p>
+      <p>
+        <strong>Sicherheitsakademie</strong><br />
+        Eichenstraße 15, D-82061 Neuried<br />
+        Telefon: <a href="tel:+4989720150030">+49&nbsp;(0)&nbsp;89&nbsp;720&nbsp;15&nbsp;030</a><br />
+        Fax: +49&nbsp;(0)&nbsp;89&nbsp;720&nbsp;15&nbsp;031<br />
+        E-Mail: <a href="mailto:info@sicherheits-akademie.eu">info@sicherheits-akademie.eu</a><br />
+        Web: <a href="https://www.sicherheits-akademie.eu" target="_blank" rel="noopener noreferrer">www.sicherheits-akademie.eu<span class="sr-only"> (öffnet neues Fenster)</span></a>
+      </p>
+
+      <h3>Umsatzsteuer-Identifikationsnummer</h3>
+      <p>
+        Umsatzsteuer-Identifikationsnummer gemäß § 27&nbsp;a Umsatzsteuergesetz:<br />
+        DE 182 777 318
+      </p>
+
+      <h3>Handelsregister</h3>
+      <p>Amtsgericht München, HRA 107583</p>
+
+      <h3>Aufsichtsbehörde</h3>
+      <p>
+        Landratsamt München<br />
+        Mariahilfplatz 17, 81541 München
+      </p>
+
+      <h3>Zuständige Kammer</h3>
+      <p>IHK für München und Oberbayern</p>
+
+      <h3>Berufsrechtliche Regelungen</h3>
+      <p>
+        Bewachungsgewerbe gemäß § 34a Gewerbeordnung (GewO) in Verbindung mit der
+        Bewachungsverordnung (BewachV). Die Regelungen sind einsehbar unter
+        <a href="https://www.gesetze-im-internet.de" target="_blank" rel="noopener noreferrer">www.gesetze-im-internet.de<span class="sr-only"> (öffnet neues Fenster)</span></a>.
+      </p>
+
+      <h3>Berufshaftpflichtversicherung</h3>
+      <p>
+        AXA Versicherung AG<br />
+        Industrie- und Firmendirektion Süd, Postfach 92&nbsp;01&nbsp;48, 51151 Köln<br />
+        Räumlicher Geltungsbereich: Deutschland
+      </p>
+
+      <h3>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h3>
+      <p>Jörg Pappenberger, Anschrift wie oben.</p>
+
+      <h3>Haftung für Inhalte</h3>
+      <p>
+        Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten
+        nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als
+        Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde
+        Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige
+        Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von
+        Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine
+        diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten
+        Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden
+        wir diese Inhalte umgehend entfernen.
+      </p>
+
+      <h3>Haftung für Links</h3>
+      <p>
+        Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen
+        Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen.
+        Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der
+        Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf
+        mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der
+        Verlinkung nicht erkennbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige
+        Links umgehend entfernen.
+      </p>
+
+      <h3>Urheberrecht</h3>
+      <p>
+        Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen
+        dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art
+        der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen
+        Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind
+        nur für den privaten, nicht kommerziellen Gebrauch gestattet.
+      </p>
     </div>
   </section>
 
 </main>
 
-<footer class="site-footer" role="contentinfo">
+<footer class="site-footer">
   <div class="footer-top">
-    <div>
-      <div class="footer-brand">Detektei <span>Pappenberger</span></div>
-      <p class="footer-about">Seit 1995 Ihr Spezialist für Ermittlung und Sicherheit in München und bundesweit.</p>
+    <div class="footer-brand-col">
+      <a href="/" class="footer-logo" aria-label="Detektei Security Service Pappenberger – Startseite"><img class="footer-logo__img" src="assets/images/logo-full.webp" srcset="assets/images/logo-full-480.webp 480w, assets/images/logo-full.webp 810w" sizes="(max-width: 480px) 180px, 240px" alt="Detektei Security Service Pappenberger" width="810" height="382"></a>
+      <p class="footer-about">Seit 1996 Ihr Spezialist für Ermittlung und Sicherheit in München und bundesweit.</p>
     </div>
     <div>
       <div class="footer-col-title">Leistungen</div>
@@ -125,8 +216,8 @@
     <div>
       <div class="footer-col-title">Kontakt</div>
       <ul class="footer-links">
-        <li><a href="tel:+4989720150030">+49 (0) 89 720 15 030</a></li>
-        <li><a href="tel:+498974127886">24h: +49 (0) 89 741 27 886</a></li>
+        <li><a href="tel:+4989720150030">+49&nbsp;(0)&nbsp;89&nbsp;720&nbsp;15&nbsp;030</a></li>
+        <li><a href="tel:+498974127886">24h:&nbsp;+49&nbsp;(0)&nbsp;89&nbsp;741&nbsp;27&nbsp;886</a></li>
       </ul>
     </div>
   </div>

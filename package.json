@@ -1,0 +1,16 @@
+{
+  "name": "detektei-weltweit",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Website Detektei Security Service Pappenberger – statische Seiten + Serverless-Kontaktformular (Vercel)",
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "dev": "vercel dev",
+    "preview": "python3 -m http.server 8000 --bind 127.0.0.1"
+  },
+  "dependencies": {
+    "nodemailer": "^7.0.0"
+  }
+}
