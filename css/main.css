@@ -649,3 +649,11 @@ a.row:hover .row__title { color: var(--brand-text); }
   .page-hero--media { grid-template-columns: 1fr; }
   .page-hero--media .page-hero__media img { height: clamp(220px, 50vw, 360px); min-height: 0; }
 }
+
+/* Hero mit zurückhaltendem Hintergrundfoto: Bild liegt hinter dem Text, stark zurückgenommen */
+.hero-editorial.has-image { position: relative; isolation: isolate; }
+.hero-bg { position: absolute; inset: 0; z-index: -1; margin: 0; overflow: hidden; }
+.hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: 62% 45%; opacity: 0.48; filter: saturate(0.7); }
+.hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(21,22,27,0.90) 0%, rgba(21,22,27,0.50) 48%, rgba(21,22,27,0.18) 100%); }
+[data-theme="light"] .hero-bg img { opacity: 0.38; filter: saturate(0.6); }
+[data-theme="light"] .hero-bg::after { background: linear-gradient(90deg, rgba(240,238,233,0.92) 0%, rgba(240,238,233,0.58) 48%, rgba(240,238,233,0.22) 100%); }
