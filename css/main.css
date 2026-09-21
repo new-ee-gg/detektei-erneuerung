@@ -719,7 +719,15 @@ h2.section-title {
 /* ---------------------------------------------------------
    24. News Cards
    --------------------------------------------------------- */
-.news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: clamp(40px, 4.5vw, 60px); }
+/* Kartenraster ohne Waisenzeile: Spaltenzahl folgt dem Platz (4 → 2×2 → 1), min. 260px je Karte */
+.news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 14px; margin-top: clamp(40px, 4.5vw, 60px); }
+.news-card { min-width: 0; display: flex; flex-direction: column; }
+.news-card__body { display: flex; flex-direction: column; flex: 1; }
+.news-card .service-link { margin-top: auto; padding-top: 20px; }
+/* Genau 4 Karten: nie 3 Spalten (sonst Einzelkarte in letzter Zeile) → 4 / 2×2 / 1 */
+.news-grid:has(> .news-card:nth-child(4):last-child) { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 1100px) { .news-grid:has(> .news-card:nth-child(4):last-child) { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px)  { .news-grid:has(> .news-card:nth-child(4):last-child) { grid-template-columns: 1fr; } }
 .news-card { background: var(--deep); transition: background 0.3s; }
 .news-card:hover { background: var(--panel); }
 .news-card__img-placeholder { height: 200px; background: var(--panel); display: flex; align-items: center; justify-content: center; font-family: var(--font-condensed); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--border); }
@@ -767,7 +775,6 @@ h2.section-title {
   .certs-bar { flex-wrap: wrap; }
   .cert-block { flex: 1 1 calc(33% - 14px); }
   .contact-layout { grid-template-columns: 1fr; }
-  .news-grid { grid-template-columns: 1fr 1fr; }
   .intro { grid-template-columns: 1fr; }
   .bgs-content { flex-direction: column; justify-content: center; }
   .bgs-text { max-width: 100%; }
@@ -806,7 +813,6 @@ h2.section-title {
   .footer-top { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
 
-  .news-grid { grid-template-columns: 1fr; }
   .job-card { flex-direction: column; align-items: flex-start; gap: 16px; }
 
   h2.section-title { font-size: clamp(28px, 7vw, 42px); }
