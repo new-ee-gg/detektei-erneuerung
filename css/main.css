@@ -63,7 +63,7 @@
   --white:  #f2f2f4;
   --gold:   #3D63B2;
   --gold2:  #5B82D1;
-  --accent-text: #5B82D1;   /* Akzent als TEXT auf dunklen Flächen: 4.8–5.2:1 (AA) */
+  --accent-text: #6A90DA;   /* Akzent als TEXT auf dunklen Flächen: ≥5.2:1 auch auf Glas-Karten (AA) */
 
   /* Glas-Tokens (Dark) */
   --glass-bg:        rgba(255,255,255,0.06);
