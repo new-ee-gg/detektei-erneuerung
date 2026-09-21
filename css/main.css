@@ -1060,7 +1060,7 @@ h2.section-title {
 [data-theme="light"] .content-section div[style*="background:var(--deep)"] p { color: var(--silver); }
 
 /* Intro-Jahrezahl: dekorativ + aria-hidden → bleibt bewusst schwach sichtbar */
-[data-theme="light"] .intro-year { color: #8a857b; }
+[data-theme="light"] .intro-year { color: #7d786e; }
 
 /* Prose-Links */
 [data-theme="light"] .prose a { color: var(--accent-text); }
