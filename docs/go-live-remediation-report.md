@@ -215,3 +215,7 @@ Technische Realität, die der Text abdecken muss (Stand nach Remediation):
 
 ## 14. Nachträgliche Design-Änderung (Kundenwunsch 2026-09-21): Glasmorphismus
 Header-Nav-Pille, Dropdown, Theme-Toggle, Kontakt-CTA, Mobile-Nav, alle Buttons (Primary/Ghost/Pause), Formularfelder + Formularbox, Karten (Leistungen, Standorte, Zertifikate, Stats, Statistik, News, Jobs, Kontakt-Info), Notruf-Leiste, Ticker, Trust-Badge, CTA-Panel, Hinweisboxen. Zentrale Tokens `--glass-*` (Dark/Light). Backdrop-Blur nur über Bild/Verlauf (Header, CTA-Panel, Statistik-Karten, Buttons); Karten auf flachem Grund ohne Blur (Performance). Kontraste geprüft (weiß auf Glas-Blau ≥ 5:1). Regression: Lighthouse-Lauf nach Änderung siehe Commit-Historie.
+
+## 15. Logo-Übernahme (Kundendatei 2026-09-21)
+Offizielles Logo `DSS_Pappenberger_30Jahre_Logo.jpg` (2898×1368, weißer Hintergrund) übernommen: freigestellt als WebP mit Alpha (810/480 px), Publisher-PNG, Favicons/Apple-Touch/Manifest-Icons aus dem Badge. SVG-Varianten auf Originalstand (1996) zurückgesetzt.
+**CUSTOMER CONFIRMATION:** Logo trägt „SEIT 1996“ (30 Jahre in 2026), Website-Texte und JSON-LD (`foundingDate`) sagen „seit 1995“ (Freigabe 07/2026). Eine Angabe ist falsch – bitte Gründungsjahr final bestätigen; danach Texte (Hero, Ticker, Footer, Intro „1995“, News „30 Jahre“, Stats „30+“) bzw. Logo angleichen.
