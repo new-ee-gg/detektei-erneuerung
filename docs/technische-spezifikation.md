@@ -127,7 +127,15 @@ Zwei Prinzipien: `.reveal` (12 px, 600 ms, `cubic-bezier(.2,.7,.2,1)`, optional 
 | Zertifikate/Verbände `*.webp` (9) | 250–500 px | 2,5–29 KB | Trust-Raster |
 | `assets/icons/*` | 180 / 192 / 512, SVG | 8–30 KB | Icons |
 
-Fotografie: derzeit **keine** (keine Stock-/AI-Bilder). Das Layout funktioniert ohne Bilder; vorgesehene Slots: Hero-Bildspalte, Bildpause zwischen Leistungen und Statement, Standorte. Anforderungen bei Lieferung: WebP/AVIF, `srcset`, `width/height`, Hero `fetchpriority="high"`, Rest `loading="lazy"`.
+Fotografie (`assets/images/photos/`, **Platzhalter** unter Unsplash-Lizenz, selbst gehostet – vor Launch durch eigene Fotos ersetzen oder Freigabe dokumentieren):
+
+| Datei | Motiv | Quelle (Unsplash-ID) | Einsatz |
+|---|---|---|---|
+| `muenchen-siegestor-{800,1200,1800}.webp` | Siegestor München bei Nacht | photo-1735599308342-7ea38adabfd5 | Bildpause nach dem Hero (lazy) |
+| `strasse-nacht-{1000,1800}.webp` | Straße bei Nacht/Regen | photo-1716908331958-dfe8e734e560 | Hintergrund der dunklen Statement-Sektion (22 % Deckung + Verlauf) |
+| `muenchen-isar-{600,900}.webp` | Isar München, Abenddämmerung | photo-1673460655608-e75424d9dfa8 | „Warum Pappenberger“ (420 px), Seiten-Hero Detektei (`fetchpriority="high"`) |
+
+Regeln: `srcset` + `sizes`, `width/height`, unterhalb der Falz `loading="lazy"`, dekorative Hintergründe `alt=""`, subtiler Reveal-Zoom 1,04 → 1 (`.reveal-img`). Das Layout funktioniert auch ohne Bilder.
 
 Altbestand ohne Referenz (löschbar): `bvsw.png`, `iso-45001.png`, `polizei-helfen.png`, `vesd.png`, `*.jpg` der Zertifikatslogos.
 
