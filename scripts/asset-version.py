@@ -19,8 +19,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 ASSETS = ("css/main.css", "js/main.js")
 PATTERN = re.compile(
-    r'((?:href|src)=")((?:\.\./)*)(css/main\.css|js/main\.js)(?:\?v=[0-9a-f]+)?(")'
+    r'((?:href|src)=")(/|(?:\.\./)*)(css/main\.css|js/main\.js)(?:\?v=[0-9a-f]+)?(")'
 )
+EXCLUDED_DIRS = {"node_modules", "seo-tool", "docs", ".vercel"}
 
 
 def content_hash(rel_path: str) -> str:
@@ -39,7 +40,7 @@ def rewrite(html: str, versions: dict[str, str]) -> str:
 def main() -> int:
     check_only = "--check" in sys.argv
     versions = {asset: content_hash(asset) for asset in ASSETS}
-    html_files = [p for p in ROOT.rglob("*.html") if "node_modules" not in p.parts]
+    html_files = [p for p in ROOT.rglob("*.html") if not EXCLUDED_DIRS & set(p.parts)]
     stale: list[Path] = []
     for path in html_files:
         original = path.read_text(encoding="utf-8")
