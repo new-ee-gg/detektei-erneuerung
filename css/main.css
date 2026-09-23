@@ -644,7 +644,7 @@ a.row:hover .row__title { color: var(--brand-text); }
 /* Seiten-Hero mit Bildspalte (Leistungsseiten) */
 .page-hero--media { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--gap); align-items: center; }
 .page-hero--media .page-hero__media { margin: 0; overflow: hidden; }
-.page-hero--media .page-hero__media img { width: 100%; height: clamp(320px, 34vw, 480px); object-fit: cover; }
+.page-hero--media .page-hero__media img { width: 100%; height: clamp(320px, 34vw, 480px); object-fit: cover; filter: saturate(0.8); }
 @media (max-width: 900px) {
   .page-hero--media { grid-template-columns: 1fr; }
   .page-hero--media .page-hero__media img { height: clamp(220px, 50vw, 360px); min-height: 0; }
@@ -656,7 +656,7 @@ a.row:hover .row__title { color: var(--brand-text); }
 .page-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; height: 100svh; z-index: -1; margin: 0; overflow: hidden; pointer-events: none; }
 .page-bg img { width: 100%; height: 100%; object-fit: cover; object-position: 62% 45%; opacity: 0.55; filter: saturate(0.7); }
 .page-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(21,22,27,0.55) 0%, rgba(21,22,27,0.25) 48%, rgba(21,22,27,0.05) 100%); }
-[data-theme="light"] .page-bg img { opacity: 0.5; filter: saturate(0.45) brightness(1.18) contrast(0.92); }
+[data-theme="light"] .page-bg img { opacity: 0.5; filter: saturate(0.25) brightness(1.25) contrast(0.9); }
 [data-theme="light"] .page-bg::after { background: linear-gradient(90deg, rgba(240,238,233,0.55) 0%, rgba(240,238,233,0.25) 48%, rgba(240,238,233,0.05) 100%); }
 
 /* Sektionsflächen über dem Foto: hell/tint leicht durchscheinend, dunkle Flächen als dunkler Schleier */
@@ -666,8 +666,8 @@ body.has-page-bg { background: transparent; }
 .has-page-bg .section--tint { background: rgba(27,28,34,0.80); }
 .has-page-bg .section-dark, .has-page-bg .cta-section { background: rgba(12,13,16,0.84); }
 .has-page-bg .site-footer { background: rgba(12,13,16,0.90); }
-[data-theme="light"] .has-page-bg .section { background: rgba(240,238,233,0.76); }
-[data-theme="light"] .has-page-bg .section--tint { background: rgba(231,228,222,0.82); }
+[data-theme="light"] .has-page-bg .section { background: rgba(240,238,233,0.82); }
+[data-theme="light"] .has-page-bg .section--tint { background: rgba(231,228,222,0.89); }
 [data-theme="light"] .has-page-bg .section-dark, [data-theme="light"] .has-page-bg .cta-section { background: rgba(12,13,16,0.84); }
 [data-theme="light"] .has-page-bg .site-footer { background: rgba(12,13,16,0.90); }
 @media (prefers-reduced-motion: reduce) { .page-bg { position: absolute; } }

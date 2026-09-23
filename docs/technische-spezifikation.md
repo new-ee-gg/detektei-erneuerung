@@ -131,9 +131,9 @@ Fotografie (`assets/images/photos/`, **Platzhalter** unter Unsplash-Lizenz, selb
 
 | Datei | Motiv | Quelle (Unsplash-ID) | Einsatz |
 |---|---|---|---|
-| `muenchen-siegestor-{800,1200,1800}.webp` | Siegestor München bei Nacht | photo-1735599308342-7ea38adabfd5 | Startseite: seitenweiter fixierter Hintergrund (`figure.page-bg`, `position: fixed`, `fetchpriority="high"`); Sektionen darüber halbtransparent (hell 76 % / Tint 82 % / dunkel 84 % / Footer 90 %), Reduced Motion → statisch |
-| `strasse-nacht-{1000,1800}.webp` | Straße bei Nacht/Regen | photo-1716908331958-dfe8e734e560 | derzeit ungenutzt (Statement-Sektion zeigt jetzt das Siegestor-Foto durch) |
-| `muenchen-isar-{600,900}.webp` | Isar München, Abenddämmerung | photo-1673460655608-e75424d9dfa8 | „Warum Pappenberger“ (420 px), Seiten-Hero Detektei (`fetchpriority="high"`) |
+| `muenchen-siegestor-{800,1200,1800}.webp` | Siegestor München bei Nacht | photo-1735599308342-7ea38adabfd5 | Startseite: seitenweiter fixierter Hintergrund (`figure.page-bg`, `position: fixed`, `fetchpriority="high"`); Sektionen darüber halbtransparent (hell 82 % / Tint 89 % / dunkel 84 % / Footer 90 %), Reduced Motion → statisch; zusätzlich Seiten-Hero Veranstaltungsschutz, Kontakt |
+| `strasse-nacht-{1000,1800}.webp` | Straße bei Nacht/Regen | photo-1716908331958-dfe8e734e560 | Seiten-Hero Objektschutz, Video-Sicherheit |
+| `muenchen-isar-{600,900}.webp` | Isar München, Abenddämmerung | photo-1673460655608-e75424d9dfa8 | „Warum Pappenberger“ (420 px), Seiten-Hero Detektei, Sonderdienste, Akademie |
 
 Regeln: `srcset` + `sizes`, `width/height`, unterhalb der Falz `loading="lazy"`, dekorative Hintergründe `alt=""`, subtiler Reveal-Zoom 1,04 → 1 (`.reveal-img`). Das Layout funktioniert auch ohne Bilder.
 
